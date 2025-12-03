@@ -24,29 +24,38 @@ st.markdown(powerbi_iframe, unsafe_allow_html=True)
 # --- Sección 2: Dataset en Python ---
 st.subheader("📈 Exploración adicional con Python")
 
-# Cargar dataset (ejemplo: consumo_cafe_honduras.csv)
-# Reemplaza con tu archivo real
-df = pd.DataFrame({
-    "Edad": [22, 30, 45, 28, 35, 50, 40, 23],
-    "Region": ["Copán", "Comayagua", "Montecillos", "Copán", "El Paraíso", "Comayagua", "Agalta", "Opalaca"],
-    "Variedad": ["Caturra", "Bourbon", "Pacas", "Typica", "Lempira", "Caturra", "Bourbon", "Pacas"],
-    "Consumo_mensual": [12, 15, 20, 10, 18, 22, 16, 14]
-})
+import pandas as pd
+import streamlit as st
+
+# Cargar dataset desde tu ruta local
+df = pd.read_csv(r"C:\Users\Latitude 5500\Documents\Ciencia de Datos Q4 2025\consumo_cafe_honduras.csv")
+
+st.write("Vista previa de los datos:")
+st.dataframe(df.head())
+
+
 
 # Filtros interactivos
-region = st.selectbox("Selecciona región", ["Todas"] + sorted(df["Region"].unique()))
+region = st.selectbox("Selecciona región", ["Todas"] + sorted(df["Región"].unique()))
 edad_rango = st.slider("Rango de edad", 18, 60, (18, 40))
 
 # Aplicar filtros
 df_filtrado = df.copy()
 if region != "Todas":
-    df_filtrado = df_filtrado[df_filtrado["Region"] == region]
+    df_filtrado = df_filtrado[df_filtrado["Región"] == region]
 df_filtrado = df_filtrado[(df_filtrado["Edad"] >= edad_rango[0]) & (df_filtrado["Edad"] <= edad_rango[1])]
 
 # Gráfico dinámico
-fig = px.bar(df_filtrado, x="Variedad", y="Consumo_mensual", color="Region",
-             title="Consumo mensual por variedad y región")
+fig = px.bar(
+    df_filtrado,
+    x="Variedad",
+    y="Frecuencia",
+    color="Región",
+    title="Frecuencia de consumo por variedad y región"
+)
+
 st.plotly_chart(fig, use_container_width=True)
+
 
 # --- Sección 3: Insights narrativos ---
 st.subheader("📖 Insights")
