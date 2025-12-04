@@ -72,7 +72,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 # -------------------------------
 st.markdown('<div class="section">', unsafe_allow_html=True)
 st.subheader("🔍 Exploración personalizada con registros")
-df = pd.read_csv("C:\Users\Latitude 5500\Documents\Ciencia de Datos Q4 2025\consumo_cafe_honduras.csv")
+df = pd.read_csv("consumo_cafe_honduras.csv")
 
 region = st.selectbox("Selecciona región", ["Todas"] + sorted(df["Región"].unique()))
 edad_rango = st.slider("Rango de edad", 18, 65, (18, 35))
