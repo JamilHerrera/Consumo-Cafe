@@ -1,0 +1,1001 @@
+﻿ID,Variedad,Preparación,Región,Contexto,Frecuencia,Edad
+1,Caturra,Colado,Agalta,Cafetería,Diario,32
+2,Bourbon,Cold brew,Copán,Oficina,Ocasional,52
+3,Caturra,Instantáneo,Comayagua,Hogar,Diario,23
+4,Bourbon,De olla,El Paraíso,Oficina,Diario,53
+5,Bourbon,Cold brew,Agalta,Oficina,Ocasional,44
+6,Bourbon,Cappuccino,El Paraíso,Cafetería,Diario,28
+7,Pacas,Espresso,Montecillos,Hogar,Diario,39
+8,Caturra,Colado,Comayagua,Hogar,Semanal,40
+9,Lempira,Espresso,Copán,Oficina,Semanal,52
+10,Caturra,Cappuccino,Copán,Oficina,Semanal,58
+11,Lempira,Espresso,El Paraíso,Hogar,Ocasional,22
+12,Caturra,Cold brew,Opalaca,Cafetería,Diario,32
+13,Caturra,Cappuccino,Montecillos,Cafetería,Ocasional,41
+14,Bourbon,Espresso,Montecillos,Hogar,Ocasional,35
+15,Caturra,Instantáneo,Agalta,Hogar,Ocasional,64
+16,Bourbon,De olla,Comayagua,Cafetería,Semanal,58
+17,Lempira,De olla,Agalta,Cafetería,Diario,32
+18,Caturra,Espresso,Comayagua,Cafetería,Diario,31
+19,Lempira,Cold brew,Montecillos,Hogar,Ocasional,49
+20,Pacas,Cold brew,Comayagua,Hogar,Semanal,26
+21,Bourbon,Cold brew,El Paraíso,Oficina,Semanal,65
+22,Lempira,Cappuccino,El Paraíso,Cafetería,Semanal,32
+23,Bourbon,Instantáneo,Comayagua,Hogar,Diario,25
+24,Bourbon,Cold brew,Opalaca,Oficina,Semanal,56
+25,Caturra,Cappuccino,Comayagua,Oficina,Semanal,51
+26,Typica,Instantáneo,Copán,Oficina,Ocasional,25
+27,Lempira,Espresso,Agalta,Cafetería,Diario,36
+28,Pacas,De olla,Comayagua,Hogar,Ocasional,64
+29,Typica,Instantáneo,Opalaca,Oficina,Diario,58
+30,Typica,Cold brew,El Paraíso,Oficina,Diario,27
+31,Typica,De olla,El Paraíso,Oficina,Diario,56
+32,Typica,Cappuccino,Copán,Hogar,Semanal,37
+33,Bourbon,Colado,Opalaca,Oficina,Diario,23
+34,Pacas,Colado,El Paraíso,Hogar,Diario,60
+35,Pacas,Instantáneo,Opalaca,Cafetería,Ocasional,56
+36,Pacas,De olla,El Paraíso,Oficina,Ocasional,30
+37,Typica,Cappuccino,Agalta,Oficina,Semanal,46
+38,Lempira,Cappuccino,Copán,Hogar,Diario,22
+39,Typica,Colado,El Paraíso,Oficina,Diario,55
+40,Bourbon,Colado,Copán,Oficina,Ocasional,21
+41,Bourbon,Colado,Copán,Cafetería,Diario,50
+42,Bourbon,Espresso,Agalta,Cafetería,Diario,52
+43,Bourbon,Cold brew,El Paraíso,Oficina,Semanal,33
+44,Pacas,Cappuccino,Opalaca,Hogar,Diario,60
+45,Pacas,Espresso,Comayagua,Cafetería,Semanal,64
+46,Caturra,Cold brew,Agalta,Oficina,Diario,21
+47,Pacas,Cold brew,Montecillos,Hogar,Diario,30
+48,Bourbon,Instantáneo,Comayagua,Hogar,Semanal,29
+49,Typica,Cappuccino,Opalaca,Hogar,Semanal,53
+50,Caturra,Colado,Agalta,Oficina,Diario,23
+51,Bourbon,De olla,Comayagua,Cafetería,Semanal,31
+52,Pacas,Colado,Opalaca,Cafetería,Diario,42
+53,Typica,Cappuccino,Montecillos,Cafetería,Ocasional,64
+54,Lempira,Cold brew,Agalta,Cafetería,Diario,30
+55,Typica,De olla,Copán,Oficina,Ocasional,52
+56,Caturra,Cold brew,Montecillos,Hogar,Diario,55
+57,Pacas,Instantáneo,El Paraíso,Hogar,Diario,50
+58,Caturra,De olla,Copán,Oficina,Diario,61
+59,Bourbon,Cappuccino,Copán,Oficina,Diario,55
+60,Lempira,Colado,El Paraíso,Hogar,Semanal,60
+61,Lempira,Instantáneo,El Paraíso,Cafetería,Semanal,31
+62,Typica,De olla,Montecillos,Cafetería,Diario,60
+63,Typica,Cappuccino,Montecillos,Hogar,Diario,47
+64,Lempira,Instantáneo,Copán,Hogar,Ocasional,31
+65,Lempira,Espresso,Opalaca,Cafetería,Diario,33
+66,Typica,Espresso,Opalaca,Cafetería,Ocasional,63
+67,Typica,Instantáneo,Agalta,Oficina,Diario,60
+68,Lempira,Espresso,Agalta,Hogar,Diario,34
+69,Caturra,Colado,Agalta,Oficina,Diario,35
+70,Typica,Instantáneo,Opalaca,Oficina,Semanal,31
+71,Typica,Instantáneo,Comayagua,Cafetería,Diario,23
+72,Pacas,Espresso,Copán,Hogar,Semanal,26
+73,Typica,De olla,Agalta,Cafetería,Ocasional,63
+74,Pacas,Instantáneo,Copán,Hogar,Diario,62
+75,Bourbon,Instantáneo,Copán,Cafetería,Ocasional,53
+76,Bourbon,Cappuccino,Opalaca,Hogar,Semanal,41
+77,Caturra,Espresso,Opalaca,Oficina,Diario,60
+78,Caturra,Espresso,El Paraíso,Cafetería,Ocasional,65
+79,Bourbon,De olla,Opalaca,Hogar,Semanal,19
+80,Bourbon,Cold brew,Montecillos,Cafetería,Ocasional,65
+81,Bourbon,Espresso,Opalaca,Oficina,Diario,42
+82,Caturra,Cappuccino,Opalaca,Hogar,Semanal,40
+83,Typica,De olla,Opalaca,Hogar,Ocasional,30
+84,Pacas,Espresso,Montecillos,Hogar,Semanal,40
+85,Lempira,Cappuccino,Agalta,Oficina,Semanal,19
+86,Caturra,Espresso,Opalaca,Oficina,Semanal,20
+87,Caturra,Instantáneo,Comayagua,Cafetería,Ocasional,38
+88,Pacas,Instantáneo,El Paraíso,Hogar,Semanal,54
+89,Bourbon,Espresso,Copán,Oficina,Semanal,18
+90,Lempira,Instantáneo,Agalta,Oficina,Ocasional,65
+91,Bourbon,Espresso,Comayagua,Hogar,Ocasional,39
+92,Lempira,Espresso,Agalta,Hogar,Ocasional,37
+93,Lempira,Espresso,Agalta,Cafetería,Semanal,43
+94,Typica,Instantáneo,Opalaca,Hogar,Semanal,60
+95,Pacas,Cold brew,Agalta,Hogar,Ocasional,54
+96,Typica,Cappuccino,El Paraíso,Hogar,Semanal,36
+97,Bourbon,Cappuccino,El Paraíso,Oficina,Ocasional,38
+98,Pacas,Cappuccino,Comayagua,Oficina,Diario,50
+99,Pacas,Cold brew,Opalaca,Oficina,Diario,36
+100,Lempira,Cold brew,Agalta,Oficina,Semanal,23
+101,Bourbon,Cold brew,Montecillos,Hogar,Diario,27
+102,Caturra,Colado,Opalaca,Cafetería,Ocasional,22
+103,Pacas,Cappuccino,Agalta,Oficina,Diario,63
+104,Pacas,Cappuccino,Comayagua,Hogar,Diario,59
+105,Caturra,Colado,Comayagua,Hogar,Diario,62
+106,Lempira,Cappuccino,Copán,Oficina,Diario,25
+107,Pacas,De olla,Comayagua,Oficina,Ocasional,53
+108,Lempira,Espresso,Comayagua,Oficina,Ocasional,50
+109,Pacas,Instantáneo,Comayagua,Hogar,Ocasional,48
+110,Pacas,Espresso,Opalaca,Oficina,Semanal,51
+111,Pacas,Cold brew,Opalaca,Cafetería,Semanal,22
+112,Typica,De olla,Montecillos,Cafetería,Semanal,52
+113,Caturra,De olla,Opalaca,Hogar,Semanal,62
+114,Bourbon,Cold brew,Opalaca,Hogar,Semanal,44
+115,Typica,Instantáneo,Comayagua,Cafetería,Diario,31
+116,Pacas,Cappuccino,El Paraíso,Oficina,Diario,54
+117,Pacas,Cappuccino,Copán,Cafetería,Semanal,42
+118,Pacas,Instantáneo,Agalta,Oficina,Ocasional,56
+119,Bourbon,Cappuccino,Opalaca,Cafetería,Semanal,49
+120,Caturra,Cappuccino,Montecillos,Oficina,Ocasional,43
+121,Bourbon,Cappuccino,Opalaca,Oficina,Ocasional,19
+122,Pacas,Instantáneo,El Paraíso,Oficina,Diario,23
+123,Pacas,De olla,Comayagua,Hogar,Diario,34
+124,Pacas,Espresso,Opalaca,Cafetería,Semanal,39
+125,Pacas,Espresso,Comayagua,Cafetería,Diario,48
+126,Caturra,Cold brew,El Paraíso,Hogar,Semanal,32
+127,Caturra,Cold brew,Copán,Hogar,Diario,30
+128,Caturra,Instantáneo,Opalaca,Hogar,Diario,48
+129,Caturra,Instantáneo,Opalaca,Cafetería,Ocasional,34
+130,Typica,De olla,El Paraíso,Oficina,Ocasional,63
+131,Caturra,De olla,Montecillos,Hogar,Ocasional,19
+132,Typica,Instantáneo,Agalta,Cafetería,Semanal,63
+133,Bourbon,Colado,El Paraíso,Oficina,Ocasional,33
+134,Caturra,Cold brew,Montecillos,Oficina,Ocasional,25
+135,Lempira,Colado,Montecillos,Oficina,Semanal,60
+136,Typica,Colado,El Paraíso,Oficina,Semanal,18
+137,Pacas,Cappuccino,Copán,Cafetería,Semanal,58
+138,Pacas,Cold brew,Opalaca,Cafetería,Diario,64
+139,Lempira,Cold brew,Montecillos,Oficina,Ocasional,48
+140,Pacas,Cappuccino,Agalta,Oficina,Semanal,38
+141,Bourbon,Colado,Montecillos,Cafetería,Diario,47
+142,Lempira,Instantáneo,Agalta,Cafetería,Semanal,19
+143,Pacas,Espresso,Opalaca,Cafetería,Diario,40
+144,Typica,Espresso,Montecillos,Oficina,Ocasional,35
+145,Lempira,Colado,El Paraíso,Hogar,Diario,33
+146,Pacas,Cappuccino,El Paraíso,Hogar,Ocasional,48
+147,Pacas,Cappuccino,Copán,Hogar,Semanal,32
+148,Pacas,Cold brew,Opalaca,Cafetería,Ocasional,55
+149,Typica,Cappuccino,El Paraíso,Oficina,Semanal,45
+150,Lempira,Espresso,Montecillos,Oficina,Semanal,35
+151,Typica,Espresso,Opalaca,Hogar,Ocasional,30
+152,Typica,Colado,Agalta,Oficina,Ocasional,29
+153,Bourbon,De olla,Agalta,Cafetería,Semanal,64
+154,Lempira,Instantáneo,El Paraíso,Cafetería,Diario,30
+155,Typica,De olla,Montecillos,Hogar,Semanal,18
+156,Lempira,De olla,Montecillos,Hogar,Diario,53
+157,Typica,Cold brew,Opalaca,Oficina,Semanal,24
+158,Caturra,Instantáneo,Montecillos,Cafetería,Semanal,46
+159,Typica,De olla,Copán,Cafetería,Semanal,25
+160,Caturra,Cappuccino,Comayagua,Hogar,Ocasional,58
+161,Caturra,De olla,Opalaca,Oficina,Semanal,23
+162,Bourbon,Colado,El Paraíso,Cafetería,Ocasional,56
+163,Lempira,De olla,El Paraíso,Cafetería,Semanal,46
+164,Typica,Instantáneo,Comayagua,Cafetería,Ocasional,57
+165,Caturra,Instantáneo,Agalta,Hogar,Diario,58
+166,Bourbon,Espresso,Agalta,Hogar,Diario,33
+167,Bourbon,Instantáneo,Copán,Hogar,Diario,44
+168,Pacas,Cold brew,El Paraíso,Cafetería,Semanal,20
+169,Bourbon,Espresso,Agalta,Cafetería,Ocasional,47
+170,Caturra,Cold brew,Opalaca,Cafetería,Ocasional,55
+171,Bourbon,Cappuccino,Copán,Oficina,Diario,59
+172,Bourbon,Espresso,Opalaca,Hogar,Diario,28
+173,Typica,Instantáneo,Agalta,Oficina,Semanal,46
+174,Caturra,Cappuccino,Agalta,Cafetería,Ocasional,43
+175,Typica,Instantáneo,El Paraíso,Cafetería,Semanal,23
+176,Lempira,Colado,Comayagua,Oficina,Semanal,56
+177,Typica,Colado,Copán,Hogar,Ocasional,54
+178,Lempira,Colado,Agalta,Cafetería,Ocasional,20
+179,Bourbon,Cappuccino,El Paraíso,Oficina,Semanal,35
+180,Bourbon,Instantáneo,Comayagua,Oficina,Semanal,23
+181,Pacas,Espresso,Comayagua,Cafetería,Semanal,60
+182,Caturra,De olla,Montecillos,Cafetería,Ocasional,49
+183,Typica,Cold brew,Comayagua,Oficina,Diario,47
+184,Caturra,Espresso,Montecillos,Cafetería,Diario,43
+185,Lempira,Colado,Agalta,Oficina,Semanal,44
+186,Caturra,De olla,El Paraíso,Cafetería,Ocasional,49
+187,Pacas,Colado,Opalaca,Cafetería,Ocasional,26
+188,Typica,Cappuccino,Agalta,Cafetería,Diario,19
+189,Lempira,De olla,Agalta,Hogar,Semanal,53
+190,Caturra,Instantáneo,Comayagua,Hogar,Diario,25
+191,Pacas,Colado,Agalta,Hogar,Semanal,63
+192,Typica,Instantáneo,Agalta,Cafetería,Semanal,48
+193,Pacas,De olla,Comayagua,Oficina,Diario,42
+194,Bourbon,Instantáneo,El Paraíso,Oficina,Diario,22
+195,Typica,Cappuccino,Montecillos,Oficina,Semanal,18
+196,Typica,Cold brew,Montecillos,Oficina,Ocasional,60
+197,Pacas,De olla,Comayagua,Oficina,Semanal,40
+198,Typica,Instantáneo,El Paraíso,Cafetería,Semanal,38
+199,Bourbon,Cold brew,Opalaca,Oficina,Semanal,32
+200,Pacas,Colado,Montecillos,Oficina,Semanal,63
+201,Pacas,Cappuccino,Agalta,Oficina,Diario,49
+202,Caturra,De olla,El Paraíso,Oficina,Semanal,24
+203,Pacas,Colado,El Paraíso,Cafetería,Diario,64
+204,Bourbon,Cappuccino,Agalta,Hogar,Diario,48
+205,Typica,Espresso,El Paraíso,Oficina,Semanal,59
+206,Caturra,Espresso,Agalta,Oficina,Semanal,38
+207,Pacas,Instantáneo,Copán,Oficina,Diario,33
+208,Typica,De olla,Agalta,Hogar,Semanal,24
+209,Caturra,Cappuccino,Opalaca,Oficina,Semanal,19
+210,Caturra,Espresso,Copán,Cafetería,Semanal,41
+211,Pacas,De olla,Opalaca,Oficina,Semanal,54
+212,Bourbon,De olla,Opalaca,Hogar,Ocasional,42
+213,Lempira,Cold brew,Opalaca,Cafetería,Ocasional,27
+214,Bourbon,Cappuccino,Agalta,Cafetería,Semanal,34
+215,Caturra,Cappuccino,Montecillos,Oficina,Ocasional,28
+216,Caturra,Cappuccino,Montecillos,Oficina,Semanal,58
+217,Pacas,Cold brew,Montecillos,Cafetería,Semanal,30
+218,Pacas,Cappuccino,Copán,Hogar,Semanal,54
+219,Typica,Instantáneo,Montecillos,Oficina,Semanal,19
+220,Pacas,Espresso,Copán,Oficina,Ocasional,65
+221,Caturra,Instantáneo,Agalta,Cafetería,Semanal,32
+222,Lempira,Espresso,Opalaca,Oficina,Diario,57
+223,Typica,Cold brew,Agalta,Oficina,Ocasional,26
+224,Caturra,Cold brew,Agalta,Hogar,Semanal,46
+225,Caturra,Instantáneo,Montecillos,Oficina,Diario,23
+226,Typica,Espresso,Agalta,Cafetería,Diario,30
+227,Bourbon,Instantáneo,Montecillos,Oficina,Ocasional,35
+228,Bourbon,Espresso,Comayagua,Cafetería,Ocasional,39
+229,Caturra,Cappuccino,Copán,Hogar,Diario,61
+230,Pacas,Instantáneo,Montecillos,Hogar,Semanal,18
+231,Typica,Instantáneo,Copán,Cafetería,Semanal,61
+232,Typica,Instantáneo,Comayagua,Oficina,Semanal,24
+233,Bourbon,Cappuccino,Copán,Oficina,Ocasional,38
+234,Lempira,De olla,Agalta,Hogar,Ocasional,47
+235,Typica,Cold brew,Comayagua,Hogar,Diario,20
+236,Caturra,Espresso,Comayagua,Hogar,Diario,33
+237,Lempira,De olla,Comayagua,Cafetería,Semanal,60
+238,Lempira,Cappuccino,El Paraíso,Oficina,Ocasional,27
+239,Pacas,Cold brew,Copán,Cafetería,Ocasional,44
+240,Typica,Colado,Agalta,Cafetería,Diario,46
+241,Pacas,De olla,Montecillos,Hogar,Ocasional,41
+242,Lempira,Cold brew,Montecillos,Hogar,Semanal,35
+243,Bourbon,Colado,Comayagua,Hogar,Ocasional,31
+244,Lempira,Colado,Copán,Cafetería,Diario,26
+245,Lempira,De olla,Copán,Oficina,Diario,55
+246,Bourbon,De olla,Montecillos,Hogar,Ocasional,18
+247,Typica,De olla,Opalaca,Oficina,Semanal,29
+248,Caturra,Cold brew,Copán,Hogar,Diario,40
+249,Bourbon,Instantáneo,Montecillos,Hogar,Diario,34
+250,Caturra,De olla,Agalta,Cafetería,Ocasional,25
+251,Caturra,Cappuccino,Comayagua,Cafetería,Ocasional,55
+252,Caturra,Cappuccino,El Paraíso,Hogar,Ocasional,20
+253,Lempira,Espresso,Comayagua,Oficina,Diario,21
+254,Pacas,Cappuccino,Comayagua,Oficina,Diario,49
+255,Pacas,Colado,Copán,Cafetería,Ocasional,27
+256,Caturra,De olla,Montecillos,Oficina,Ocasional,55
+257,Lempira,Cold brew,Montecillos,Cafetería,Ocasional,51
+258,Typica,Cappuccino,El Paraíso,Oficina,Semanal,24
+259,Caturra,Cold brew,Agalta,Oficina,Ocasional,31
+260,Pacas,Cappuccino,Opalaca,Cafetería,Semanal,47
+261,Pacas,Cappuccino,Agalta,Hogar,Semanal,45
+262,Typica,Cold brew,Montecillos,Cafetería,Diario,61
+263,Pacas,Colado,Copán,Hogar,Diario,45
+264,Caturra,Cold brew,Agalta,Cafetería,Diario,53
+265,Caturra,Instantáneo,El Paraíso,Oficina,Semanal,60
+266,Caturra,Cappuccino,Montecillos,Oficina,Semanal,64
+267,Caturra,Espresso,El Paraíso,Cafetería,Semanal,24
+268,Lempira,Instantáneo,Opalaca,Hogar,Ocasional,48
+269,Bourbon,Colado,Montecillos,Oficina,Semanal,25
+270,Typica,Instantáneo,Opalaca,Cafetería,Ocasional,57
+271,Lempira,Cold brew,Agalta,Oficina,Diario,56
+272,Typica,Colado,Opalaca,Cafetería,Ocasional,37
+273,Typica,Espresso,Copán,Hogar,Diario,54
+274,Pacas,Colado,Opalaca,Oficina,Ocasional,19
+275,Caturra,Cold brew,El Paraíso,Hogar,Semanal,44
+276,Pacas,Espresso,Opalaca,Cafetería,Semanal,64
+277,Typica,Instantáneo,El Paraíso,Hogar,Diario,27
+278,Bourbon,Instantáneo,Copán,Oficina,Diario,35
+279,Pacas,Cold brew,Comayagua,Cafetería,Ocasional,46
+280,Pacas,Espresso,Opalaca,Oficina,Diario,40
+281,Pacas,Colado,Montecillos,Oficina,Ocasional,55
+282,Pacas,Instantáneo,Agalta,Cafetería,Diario,32
+283,Pacas,Instantáneo,Copán,Hogar,Diario,37
+284,Bourbon,De olla,Montecillos,Cafetería,Semanal,25
+285,Caturra,Cappuccino,Agalta,Cafetería,Diario,26
+286,Pacas,Instantáneo,Agalta,Hogar,Ocasional,53
+287,Typica,Colado,Comayagua,Oficina,Diario,45
+288,Caturra,Cappuccino,Copán,Cafetería,Ocasional,45
+289,Lempira,Cappuccino,Agalta,Oficina,Semanal,36
+290,Caturra,Cappuccino,Copán,Cafetería,Diario,57
+291,Pacas,Cold brew,Montecillos,Hogar,Semanal,24
+292,Bourbon,Cappuccino,El Paraíso,Cafetería,Ocasional,23
+293,Pacas,Espresso,Agalta,Cafetería,Diario,39
+294,Bourbon,Colado,El Paraíso,Oficina,Diario,51
+295,Lempira,De olla,Montecillos,Cafetería,Ocasional,59
+296,Bourbon,De olla,Copán,Hogar,Semanal,30
+297,Bourbon,Instantáneo,Opalaca,Oficina,Diario,29
+298,Pacas,Cappuccino,El Paraíso,Oficina,Semanal,61
+299,Lempira,Cold brew,Agalta,Oficina,Semanal,58
+300,Typica,De olla,Comayagua,Hogar,Semanal,46
+301,Typica,Espresso,El Paraíso,Hogar,Semanal,50
+302,Caturra,Espresso,Comayagua,Cafetería,Diario,21
+303,Typica,Espresso,Copán,Oficina,Diario,57
+304,Lempira,Instantáneo,Comayagua,Cafetería,Ocasional,53
+305,Caturra,Cappuccino,El Paraíso,Oficina,Diario,38
+306,Lempira,Cappuccino,El Paraíso,Hogar,Diario,46
+307,Caturra,Espresso,Agalta,Hogar,Ocasional,59
+308,Bourbon,Colado,Opalaca,Oficina,Semanal,46
+309,Lempira,Instantáneo,El Paraíso,Hogar,Semanal,41
+310,Typica,Cappuccino,Comayagua,Cafetería,Ocasional,56
+311,Caturra,Cold brew,Agalta,Cafetería,Diario,39
+312,Caturra,Instantáneo,Agalta,Cafetería,Semanal,34
+313,Lempira,De olla,Montecillos,Hogar,Ocasional,60
+314,Bourbon,Espresso,Montecillos,Oficina,Ocasional,60
+315,Pacas,De olla,El Paraíso,Oficina,Diario,37
+316,Lempira,Cappuccino,Agalta,Cafetería,Diario,60
+317,Lempira,Colado,Agalta,Oficina,Semanal,50
+318,Typica,Colado,Montecillos,Cafetería,Diario,31
+319,Typica,Cappuccino,Opalaca,Hogar,Diario,27
+320,Caturra,Espresso,Copán,Oficina,Ocasional,65
+321,Lempira,Colado,Agalta,Cafetería,Ocasional,26
+322,Lempira,Cappuccino,Opalaca,Hogar,Diario,62
+323,Lempira,De olla,Agalta,Cafetería,Diario,44
+324,Typica,Cold brew,Agalta,Hogar,Semanal,57
+325,Typica,Cold brew,Comayagua,Hogar,Ocasional,33
+326,Typica,Cappuccino,Opalaca,Cafetería,Ocasional,54
+327,Pacas,Cappuccino,Montecillos,Cafetería,Ocasional,51
+328,Pacas,De olla,Opalaca,Oficina,Diario,34
+329,Caturra,Cold brew,Comayagua,Cafetería,Ocasional,24
+330,Lempira,Colado,Montecillos,Hogar,Diario,35
+331,Pacas,Instantáneo,Opalaca,Cafetería,Diario,32
+332,Pacas,Espresso,Copán,Cafetería,Diario,43
+333,Lempira,Espresso,Opalaca,Cafetería,Diario,41
+334,Bourbon,Colado,Montecillos,Hogar,Ocasional,59
+335,Typica,De olla,Opalaca,Hogar,Semanal,48
+336,Bourbon,Cold brew,Comayagua,Cafetería,Ocasional,18
+337,Caturra,Colado,Montecillos,Hogar,Diario,53
+338,Lempira,Instantáneo,Comayagua,Hogar,Semanal,33
+339,Typica,Colado,Copán,Hogar,Semanal,58
+340,Lempira,Cappuccino,Copán,Hogar,Semanal,56
+341,Lempira,Colado,Agalta,Oficina,Ocasional,33
+342,Bourbon,Espresso,Comayagua,Hogar,Ocasional,40
+343,Bourbon,Instantáneo,Comayagua,Hogar,Ocasional,60
+344,Caturra,Instantáneo,Montecillos,Hogar,Ocasional,52
+345,Lempira,Instantáneo,El Paraíso,Hogar,Semanal,48
+346,Caturra,Cold brew,Comayagua,Cafetería,Semanal,65
+347,Caturra,Espresso,Copán,Cafetería,Diario,64
+348,Caturra,Instantáneo,Agalta,Cafetería,Diario,20
+349,Typica,Instantáneo,Montecillos,Oficina,Diario,61
+350,Pacas,Cold brew,Comayagua,Oficina,Diario,26
+351,Caturra,Cold brew,Comayagua,Hogar,Semanal,30
+352,Caturra,De olla,Copán,Cafetería,Semanal,50
+353,Pacas,Instantáneo,Comayagua,Cafetería,Diario,59
+354,Bourbon,Espresso,Montecillos,Hogar,Ocasional,39
+355,Typica,Colado,Montecillos,Cafetería,Semanal,65
+356,Pacas,Cappuccino,Montecillos,Hogar,Semanal,62
+357,Pacas,Espresso,El Paraíso,Cafetería,Diario,64
+358,Pacas,Colado,Comayagua,Oficina,Diario,52
+359,Typica,Espresso,Copán,Hogar,Semanal,60
+360,Typica,Espresso,Comayagua,Oficina,Ocasional,45
+361,Bourbon,Cold brew,Comayagua,Cafetería,Semanal,20
+362,Typica,Instantáneo,Comayagua,Cafetería,Ocasional,21
+363,Caturra,Cold brew,Agalta,Cafetería,Semanal,50
+364,Bourbon,Colado,Opalaca,Oficina,Ocasional,46
+365,Caturra,De olla,Copán,Hogar,Ocasional,41
+366,Typica,Cappuccino,El Paraíso,Hogar,Ocasional,27
+367,Pacas,Espresso,Montecillos,Cafetería,Diario,54
+368,Bourbon,Instantáneo,Montecillos,Cafetería,Semanal,59
+369,Typica,De olla,Copán,Hogar,Ocasional,29
+370,Pacas,Instantáneo,Comayagua,Oficina,Diario,34
+371,Typica,Cold brew,Comayagua,Hogar,Ocasional,36
+372,Pacas,De olla,Copán,Hogar,Diario,46
+373,Bourbon,Cold brew,Comayagua,Hogar,Ocasional,38
+374,Typica,Cold brew,Copán,Oficina,Ocasional,36
+375,Typica,De olla,Agalta,Oficina,Ocasional,58
+376,Bourbon,Espresso,El Paraíso,Hogar,Diario,30
+377,Bourbon,De olla,Comayagua,Hogar,Semanal,53
+378,Lempira,Espresso,Comayagua,Oficina,Diario,57
+379,Caturra,Colado,Montecillos,Cafetería,Ocasional,64
+380,Pacas,Instantáneo,Comayagua,Cafetería,Ocasional,22
+381,Bourbon,Espresso,Agalta,Hogar,Semanal,47
+382,Lempira,Espresso,Opalaca,Oficina,Ocasional,55
+383,Bourbon,De olla,Comayagua,Oficina,Diario,25
+384,Lempira,De olla,Montecillos,Hogar,Diario,38
+385,Bourbon,Espresso,El Paraíso,Cafetería,Diario,34
+386,Bourbon,Cold brew,El Paraíso,Cafetería,Diario,58
+387,Typica,Instantáneo,El Paraíso,Hogar,Ocasional,59
+388,Bourbon,Instantáneo,El Paraíso,Hogar,Diario,60
+389,Lempira,Cold brew,El Paraíso,Cafetería,Ocasional,20
+390,Caturra,Colado,Copán,Oficina,Ocasional,34
+391,Bourbon,Instantáneo,Comayagua,Oficina,Ocasional,19
+392,Pacas,Cold brew,El Paraíso,Cafetería,Ocasional,37
+393,Pacas,De olla,Agalta,Cafetería,Semanal,47
+394,Caturra,Cold brew,Copán,Hogar,Semanal,44
+395,Pacas,Cappuccino,Opalaca,Cafetería,Ocasional,27
+396,Typica,Cold brew,Montecillos,Oficina,Semanal,43
+397,Bourbon,Espresso,El Paraíso,Oficina,Diario,38
+398,Bourbon,Cappuccino,Copán,Cafetería,Semanal,33
+399,Bourbon,Colado,Copán,Cafetería,Semanal,57
+400,Pacas,De olla,Opalaca,Cafetería,Ocasional,64
+401,Typica,De olla,Opalaca,Cafetería,Ocasional,47
+402,Pacas,Espresso,Comayagua,Hogar,Diario,43
+403,Lempira,Cappuccino,Opalaca,Hogar,Ocasional,40
+404,Caturra,Colado,Montecillos,Cafetería,Ocasional,59
+405,Pacas,Espresso,El Paraíso,Hogar,Diario,45
+406,Bourbon,Espresso,Agalta,Cafetería,Semanal,41
+407,Caturra,Cappuccino,Copán,Oficina,Ocasional,30
+408,Typica,Instantáneo,Montecillos,Hogar,Semanal,50
+409,Pacas,Instantáneo,Montecillos,Oficina,Ocasional,57
+410,Caturra,De olla,Copán,Cafetería,Semanal,39
+411,Lempira,Espresso,Opalaca,Hogar,Ocasional,50
+412,Pacas,Instantáneo,Copán,Hogar,Diario,26
+413,Typica,Cappuccino,El Paraíso,Cafetería,Diario,56
+414,Lempira,De olla,Montecillos,Oficina,Semanal,28
+415,Pacas,Instantáneo,Agalta,Cafetería,Ocasional,39
+416,Lempira,Instantáneo,El Paraíso,Cafetería,Ocasional,54
+417,Typica,Cappuccino,Copán,Cafetería,Semanal,61
+418,Caturra,Cappuccino,El Paraíso,Cafetería,Ocasional,62
+419,Caturra,Instantáneo,Comayagua,Cafetería,Ocasional,55
+420,Lempira,De olla,Agalta,Hogar,Ocasional,48
+421,Bourbon,Instantáneo,Agalta,Oficina,Ocasional,42
+422,Bourbon,Cold brew,Opalaca,Hogar,Ocasional,62
+423,Caturra,De olla,Copán,Cafetería,Semanal,44
+424,Bourbon,Cappuccino,Agalta,Hogar,Semanal,50
+425,Lempira,Cappuccino,Agalta,Oficina,Diario,63
+426,Bourbon,Instantáneo,Opalaca,Oficina,Semanal,60
+427,Pacas,Instantáneo,Comayagua,Cafetería,Diario,47
+428,Lempira,Espresso,El Paraíso,Cafetería,Ocasional,64
+429,Typica,Instantáneo,Comayagua,Hogar,Diario,35
+430,Lempira,Espresso,Opalaca,Cafetería,Semanal,63
+431,Bourbon,Cold brew,Agalta,Cafetería,Semanal,48
+432,Typica,Instantáneo,Agalta,Cafetería,Semanal,25
+433,Lempira,Cold brew,El Paraíso,Cafetería,Semanal,40
+434,Bourbon,Espresso,Copán,Cafetería,Ocasional,23
+435,Typica,Cappuccino,Agalta,Cafetería,Ocasional,48
+436,Bourbon,De olla,El Paraíso,Cafetería,Ocasional,62
+437,Typica,De olla,Copán,Oficina,Ocasional,55
+438,Bourbon,De olla,Copán,Oficina,Ocasional,32
+439,Bourbon,Colado,Copán,Cafetería,Semanal,63
+440,Pacas,Colado,Agalta,Hogar,Diario,53
+441,Bourbon,Cappuccino,Agalta,Cafetería,Semanal,59
+442,Bourbon,Espresso,Montecillos,Cafetería,Ocasional,21
+443,Caturra,Cold brew,El Paraíso,Hogar,Ocasional,65
+444,Caturra,De olla,Comayagua,Hogar,Diario,43
+445,Pacas,De olla,Agalta,Cafetería,Diario,18
+446,Typica,Instantáneo,El Paraíso,Hogar,Semanal,36
+447,Pacas,Cold brew,El Paraíso,Oficina,Semanal,26
+448,Lempira,Cappuccino,Montecillos,Hogar,Diario,39
+449,Bourbon,Cold brew,Comayagua,Oficina,Semanal,63
+450,Bourbon,Colado,Agalta,Cafetería,Semanal,54
+451,Bourbon,De olla,El Paraíso,Oficina,Semanal,45
+452,Lempira,Espresso,Copán,Cafetería,Ocasional,24
+453,Bourbon,De olla,Comayagua,Cafetería,Diario,18
+454,Typica,Cappuccino,Opalaca,Cafetería,Semanal,39
+455,Typica,Instantáneo,Agalta,Oficina,Diario,34
+456,Typica,Cold brew,Opalaca,Hogar,Ocasional,25
+457,Pacas,Espresso,Opalaca,Cafetería,Ocasional,50
+458,Typica,Cold brew,Copán,Oficina,Semanal,41
+459,Lempira,De olla,Opalaca,Hogar,Semanal,27
+460,Pacas,Cold brew,El Paraíso,Cafetería,Semanal,62
+461,Lempira,Cappuccino,El Paraíso,Oficina,Diario,33
+462,Lempira,Colado,El Paraíso,Cafetería,Ocasional,63
+463,Typica,Colado,El Paraíso,Hogar,Diario,53
+464,Lempira,De olla,El Paraíso,Oficina,Diario,28
+465,Typica,Instantáneo,Comayagua,Hogar,Ocasional,31
+466,Lempira,Cappuccino,Copán,Oficina,Semanal,21
+467,Pacas,De olla,El Paraíso,Cafetería,Semanal,54
+468,Caturra,Instantáneo,Comayagua,Oficina,Semanal,64
+469,Caturra,Cappuccino,Montecillos,Hogar,Ocasional,31
+470,Lempira,Colado,Copán,Cafetería,Semanal,62
+471,Caturra,Instantáneo,Copán,Hogar,Semanal,20
+472,Typica,Cappuccino,Opalaca,Hogar,Ocasional,64
+473,Pacas,Espresso,Comayagua,Cafetería,Semanal,42
+474,Caturra,Cold brew,Agalta,Oficina,Diario,59
+475,Typica,Colado,Opalaca,Oficina,Semanal,51
+476,Bourbon,Cold brew,Opalaca,Hogar,Diario,37
+477,Pacas,Cold brew,Agalta,Oficina,Semanal,52
+478,Pacas,De olla,Opalaca,Cafetería,Semanal,27
+479,Typica,De olla,Agalta,Hogar,Diario,60
+480,Pacas,Instantáneo,Copán,Hogar,Diario,22
+481,Caturra,Instantáneo,Copán,Cafetería,Ocasional,61
+482,Caturra,De olla,Agalta,Hogar,Semanal,46
+483,Bourbon,Instantáneo,Opalaca,Hogar,Diario,50
+484,Typica,De olla,Agalta,Oficina,Semanal,54
+485,Lempira,Cold brew,Montecillos,Hogar,Semanal,27
+486,Lempira,De olla,Comayagua,Cafetería,Semanal,21
+487,Lempira,Instantáneo,Agalta,Hogar,Ocasional,61
+488,Pacas,Instantáneo,Comayagua,Hogar,Semanal,59
+489,Pacas,Instantáneo,Montecillos,Oficina,Semanal,44
+490,Bourbon,Espresso,Comayagua,Hogar,Ocasional,48
+491,Bourbon,De olla,Montecillos,Oficina,Diario,47
+492,Caturra,Instantáneo,Comayagua,Cafetería,Ocasional,51
+493,Bourbon,Cappuccino,Opalaca,Cafetería,Diario,39
+494,Caturra,Cappuccino,Montecillos,Hogar,Ocasional,64
+495,Bourbon,Colado,Montecillos,Cafetería,Ocasional,56
+496,Lempira,Colado,Copán,Hogar,Ocasional,64
+497,Lempira,De olla,Comayagua,Hogar,Semanal,37
+498,Caturra,De olla,Opalaca,Oficina,Diario,65
+499,Pacas,De olla,Agalta,Oficina,Ocasional,31
+500,Pacas,De olla,El Paraíso,Cafetería,Semanal,42
+501,Pacas,Instantáneo,Agalta,Cafetería,Semanal,34
+502,Typica,Instantáneo,Comayagua,Cafetería,Diario,64
+503,Pacas,Espresso,Opalaca,Cafetería,Semanal,44
+504,Caturra,Instantáneo,Opalaca,Oficina,Diario,19
+505,Typica,Instantáneo,El Paraíso,Oficina,Ocasional,44
+506,Typica,De olla,Opalaca,Cafetería,Diario,42
+507,Lempira,De olla,Comayagua,Oficina,Ocasional,61
+508,Typica,Espresso,Comayagua,Oficina,Ocasional,65
+509,Pacas,Cappuccino,Opalaca,Oficina,Semanal,28
+510,Bourbon,Cold brew,El Paraíso,Cafetería,Diario,52
+511,Caturra,Instantáneo,Copán,Hogar,Ocasional,21
+512,Caturra,Cappuccino,Opalaca,Oficina,Diario,22
+513,Bourbon,Colado,Opalaca,Oficina,Semanal,41
+514,Caturra,Instantáneo,Agalta,Oficina,Ocasional,48
+515,Pacas,Colado,Copán,Oficina,Ocasional,44
+516,Caturra,Colado,El Paraíso,Oficina,Semanal,52
+517,Typica,Colado,El Paraíso,Oficina,Ocasional,45
+518,Bourbon,Colado,Copán,Oficina,Diario,33
+519,Bourbon,Instantáneo,El Paraíso,Cafetería,Semanal,35
+520,Pacas,Colado,Montecillos,Cafetería,Semanal,54
+521,Bourbon,Cold brew,Opalaca,Cafetería,Ocasional,23
+522,Caturra,Colado,Comayagua,Cafetería,Semanal,53
+523,Pacas,Colado,Agalta,Hogar,Ocasional,28
+524,Caturra,Cappuccino,Comayagua,Oficina,Semanal,54
+525,Caturra,Instantáneo,Copán,Hogar,Diario,62
+526,Lempira,Cappuccino,Montecillos,Hogar,Diario,61
+527,Typica,Instantáneo,El Paraíso,Oficina,Diario,29
+528,Typica,Colado,Opalaca,Oficina,Diario,63
+529,Pacas,Colado,Montecillos,Hogar,Ocasional,33
+530,Lempira,Cappuccino,Agalta,Oficina,Semanal,42
+531,Bourbon,Cold brew,Agalta,Hogar,Ocasional,65
+532,Typica,Colado,Copán,Cafetería,Diario,22
+533,Typica,Instantáneo,El Paraíso,Oficina,Semanal,38
+534,Caturra,Cold brew,Montecillos,Cafetería,Semanal,32
+535,Typica,Instantáneo,Comayagua,Cafetería,Diario,61
+536,Lempira,Cold brew,Comayagua,Hogar,Ocasional,36
+537,Bourbon,Cold brew,Copán,Hogar,Semanal,27
+538,Pacas,Cold brew,Agalta,Hogar,Ocasional,42
+539,Typica,Espresso,Copán,Hogar,Diario,37
+540,Pacas,Espresso,Montecillos,Hogar,Diario,23
+541,Bourbon,Cappuccino,Comayagua,Oficina,Ocasional,50
+542,Pacas,Colado,Copán,Hogar,Semanal,53
+543,Caturra,Instantáneo,El Paraíso,Cafetería,Semanal,18
+544,Typica,Cappuccino,Comayagua,Hogar,Ocasional,53
+545,Bourbon,Instantáneo,El Paraíso,Hogar,Ocasional,42
+546,Bourbon,De olla,Montecillos,Cafetería,Semanal,49
+547,Bourbon,Colado,Opalaca,Cafetería,Semanal,44
+548,Typica,Cappuccino,Copán,Cafetería,Semanal,33
+549,Pacas,Instantáneo,El Paraíso,Hogar,Semanal,24
+550,Bourbon,Espresso,Copán,Cafetería,Semanal,57
+551,Pacas,Espresso,Comayagua,Cafetería,Semanal,59
+552,Lempira,De olla,Montecillos,Cafetería,Ocasional,62
+553,Bourbon,Cappuccino,Montecillos,Hogar,Semanal,38
+554,Typica,Cold brew,Agalta,Oficina,Semanal,54
+555,Bourbon,Espresso,Comayagua,Cafetería,Semanal,41
+556,Caturra,Instantáneo,Opalaca,Oficina,Ocasional,29
+557,Lempira,Colado,Agalta,Cafetería,Ocasional,31
+558,Pacas,Espresso,Agalta,Hogar,Semanal,61
+559,Pacas,De olla,Agalta,Cafetería,Diario,34
+560,Bourbon,Cold brew,Comayagua,Cafetería,Diario,46
+561,Lempira,Cappuccino,El Paraíso,Cafetería,Ocasional,50
+562,Pacas,Instantáneo,Copán,Cafetería,Ocasional,52
+563,Lempira,Cold brew,Copán,Hogar,Diario,60
+564,Typica,De olla,Agalta,Oficina,Diario,54
+565,Pacas,Espresso,Comayagua,Hogar,Diario,24
+566,Typica,De olla,El Paraíso,Oficina,Ocasional,53
+567,Lempira,Cold brew,El Paraíso,Hogar,Semanal,41
+568,Pacas,Cappuccino,Agalta,Oficina,Ocasional,50
+569,Bourbon,Espresso,Copán,Cafetería,Diario,36
+570,Pacas,Colado,Copán,Oficina,Diario,40
+571,Typica,Espresso,Comayagua,Hogar,Ocasional,48
+572,Typica,Cappuccino,Copán,Cafetería,Ocasional,62
+573,Pacas,Espresso,Copán,Cafetería,Diario,63
+574,Caturra,Colado,Montecillos,Oficina,Diario,61
+575,Bourbon,Cold brew,Opalaca,Oficina,Diario,53
+576,Bourbon,Espresso,El Paraíso,Cafetería,Semanal,32
+577,Pacas,Cold brew,Opalaca,Hogar,Ocasional,60
+578,Pacas,Cappuccino,Copán,Oficina,Ocasional,30
+579,Pacas,Instantáneo,Comayagua,Cafetería,Diario,63
+580,Bourbon,De olla,Montecillos,Oficina,Diario,54
+581,Caturra,Instantáneo,Opalaca,Cafetería,Semanal,30
+582,Pacas,Colado,Montecillos,Oficina,Semanal,51
+583,Typica,Instantáneo,Comayagua,Oficina,Semanal,55
+584,Caturra,Espresso,Montecillos,Cafetería,Ocasional,29
+585,Typica,Instantáneo,El Paraíso,Hogar,Ocasional,26
+586,Typica,Colado,Opalaca,Cafetería,Diario,29
+587,Typica,Cold brew,Opalaca,Oficina,Semanal,44
+588,Lempira,De olla,El Paraíso,Cafetería,Semanal,29
+589,Pacas,Cold brew,El Paraíso,Oficina,Ocasional,29
+590,Lempira,De olla,Comayagua,Cafetería,Diario,29
+591,Typica,Cappuccino,El Paraíso,Hogar,Semanal,18
+592,Pacas,De olla,Opalaca,Cafetería,Ocasional,50
+593,Pacas,Cappuccino,Agalta,Cafetería,Semanal,63
+594,Pacas,Cappuccino,Opalaca,Hogar,Ocasional,19
+595,Bourbon,Espresso,Copán,Cafetería,Diario,52
+596,Typica,De olla,Comayagua,Oficina,Ocasional,49
+597,Lempira,Instantáneo,Copán,Oficina,Diario,35
+598,Lempira,Espresso,El Paraíso,Hogar,Ocasional,46
+599,Lempira,De olla,Comayagua,Hogar,Ocasional,59
+600,Bourbon,Espresso,Copán,Cafetería,Semanal,40
+601,Caturra,Cappuccino,Copán,Hogar,Diario,65
+602,Lempira,Cold brew,Montecillos,Oficina,Ocasional,58
+603,Pacas,De olla,El Paraíso,Hogar,Diario,31
+604,Caturra,Instantáneo,Montecillos,Oficina,Semanal,56
+605,Lempira,De olla,Montecillos,Oficina,Semanal,36
+606,Lempira,Espresso,El Paraíso,Oficina,Diario,26
+607,Pacas,Colado,Montecillos,Oficina,Diario,62
+608,Bourbon,De olla,Opalaca,Oficina,Semanal,33
+609,Pacas,Cappuccino,Opalaca,Oficina,Ocasional,35
+610,Pacas,Cappuccino,Comayagua,Hogar,Ocasional,23
+611,Pacas,Instantáneo,Agalta,Cafetería,Ocasional,41
+612,Pacas,Cappuccino,Montecillos,Oficina,Diario,64
+613,Caturra,Cold brew,Comayagua,Oficina,Ocasional,62
+614,Typica,Colado,El Paraíso,Cafetería,Diario,45
+615,Bourbon,Cappuccino,Montecillos,Cafetería,Semanal,39
+616,Lempira,Instantáneo,Opalaca,Oficina,Semanal,39
+617,Caturra,Colado,Copán,Oficina,Semanal,19
+618,Caturra,De olla,Comayagua,Cafetería,Diario,45
+619,Bourbon,Cold brew,Opalaca,Oficina,Semanal,28
+620,Typica,Colado,Agalta,Cafetería,Semanal,23
+621,Typica,Cold brew,Agalta,Hogar,Diario,43
+622,Typica,Cold brew,Agalta,Hogar,Semanal,59
+623,Caturra,Cold brew,Copán,Hogar,Diario,48
+624,Caturra,De olla,El Paraíso,Hogar,Ocasional,61
+625,Pacas,Colado,Copán,Oficina,Semanal,25
+626,Pacas,Cold brew,Opalaca,Cafetería,Diario,32
+627,Pacas,Colado,Agalta,Hogar,Diario,38
+628,Typica,Espresso,Opalaca,Cafetería,Diario,59
+629,Bourbon,Colado,El Paraíso,Oficina,Diario,57
+630,Bourbon,Cappuccino,Montecillos,Oficina,Diario,58
+631,Bourbon,Cappuccino,El Paraíso,Oficina,Semanal,31
+632,Caturra,Colado,Opalaca,Hogar,Ocasional,64
+633,Pacas,Espresso,Comayagua,Cafetería,Diario,33
+634,Typica,Cold brew,Copán,Hogar,Ocasional,56
+635,Lempira,Cold brew,El Paraíso,Cafetería,Ocasional,19
+636,Typica,De olla,El Paraíso,Oficina,Ocasional,30
+637,Pacas,Espresso,Agalta,Hogar,Diario,49
+638,Pacas,Colado,Opalaca,Cafetería,Ocasional,56
+639,Caturra,Instantáneo,Copán,Cafetería,Semanal,26
+640,Pacas,Instantáneo,Comayagua,Cafetería,Ocasional,61
+641,Bourbon,Cappuccino,Copán,Hogar,Ocasional,22
+642,Caturra,Espresso,Opalaca,Hogar,Diario,43
+643,Lempira,Espresso,Agalta,Oficina,Ocasional,44
+644,Pacas,Cold brew,Comayagua,Hogar,Ocasional,52
+645,Lempira,Instantáneo,Opalaca,Cafetería,Diario,37
+646,Caturra,Instantáneo,Opalaca,Hogar,Ocasional,38
+647,Pacas,Instantáneo,Agalta,Oficina,Ocasional,59
+648,Caturra,Espresso,Agalta,Cafetería,Ocasional,33
+649,Caturra,De olla,Copán,Cafetería,Diario,47
+650,Lempira,Instantáneo,Copán,Cafetería,Ocasional,65
+651,Bourbon,Colado,Copán,Oficina,Diario,62
+652,Caturra,De olla,Comayagua,Cafetería,Ocasional,51
+653,Typica,De olla,Montecillos,Hogar,Ocasional,35
+654,Caturra,Colado,Montecillos,Cafetería,Semanal,51
+655,Caturra,Espresso,Agalta,Oficina,Ocasional,22
+656,Pacas,Cappuccino,El Paraíso,Cafetería,Diario,49
+657,Lempira,De olla,Montecillos,Hogar,Semanal,24
+658,Lempira,Cold brew,Agalta,Hogar,Diario,65
+659,Lempira,Colado,Copán,Hogar,Diario,20
+660,Pacas,Espresso,Comayagua,Hogar,Diario,20
+661,Lempira,Cold brew,Agalta,Oficina,Semanal,32
+662,Typica,De olla,Comayagua,Oficina,Semanal,35
+663,Caturra,Instantáneo,Montecillos,Hogar,Ocasional,61
+664,Caturra,De olla,Opalaca,Oficina,Diario,43
+665,Caturra,Cappuccino,Montecillos,Cafetería,Semanal,23
+666,Lempira,Cappuccino,Copán,Cafetería,Diario,36
+667,Lempira,Espresso,Agalta,Oficina,Diario,47
+668,Typica,Instantáneo,Comayagua,Hogar,Ocasional,52
+669,Bourbon,De olla,Copán,Cafetería,Diario,32
+670,Lempira,Espresso,Agalta,Oficina,Diario,39
+671,Caturra,Cold brew,Comayagua,Oficina,Ocasional,37
+672,Caturra,De olla,El Paraíso,Hogar,Semanal,49
+673,Caturra,De olla,Agalta,Cafetería,Diario,20
+674,Bourbon,Instantáneo,Comayagua,Oficina,Semanal,47
+675,Caturra,Instantáneo,Copán,Oficina,Diario,58
+676,Pacas,Colado,El Paraíso,Oficina,Diario,45
+677,Bourbon,De olla,Montecillos,Cafetería,Semanal,43
+678,Typica,Espresso,Comayagua,Cafetería,Diario,22
+679,Bourbon,De olla,El Paraíso,Hogar,Diario,24
+680,Bourbon,Cappuccino,Comayagua,Cafetería,Semanal,25
+681,Lempira,Espresso,Opalaca,Cafetería,Semanal,47
+682,Typica,Colado,Copán,Hogar,Ocasional,37
+683,Lempira,Colado,Opalaca,Cafetería,Diario,23
+684,Bourbon,Espresso,Comayagua,Oficina,Diario,61
+685,Typica,Espresso,Opalaca,Hogar,Semanal,46
+686,Lempira,Cold brew,El Paraíso,Hogar,Diario,47
+687,Caturra,De olla,Copán,Hogar,Diario,32
+688,Bourbon,De olla,Comayagua,Cafetería,Ocasional,58
+689,Caturra,Instantáneo,El Paraíso,Cafetería,Diario,19
+690,Caturra,De olla,Agalta,Cafetería,Diario,23
+691,Typica,Colado,Copán,Cafetería,Diario,28
+692,Lempira,Cappuccino,Agalta,Cafetería,Semanal,19
+693,Pacas,Cold brew,Comayagua,Hogar,Semanal,31
+694,Bourbon,Espresso,Montecillos,Cafetería,Diario,20
+695,Lempira,Instantáneo,El Paraíso,Hogar,Ocasional,36
+696,Pacas,Cappuccino,El Paraíso,Cafetería,Diario,23
+697,Typica,Cappuccino,Opalaca,Cafetería,Diario,59
+698,Lempira,De olla,Agalta,Oficina,Diario,42
+699,Typica,Cappuccino,El Paraíso,Cafetería,Semanal,54
+700,Lempira,Espresso,Comayagua,Cafetería,Diario,19
+701,Typica,Instantáneo,Opalaca,Hogar,Semanal,21
+702,Pacas,Instantáneo,Montecillos,Oficina,Diario,28
+703,Caturra,De olla,Agalta,Hogar,Semanal,52
+704,Caturra,De olla,El Paraíso,Cafetería,Semanal,29
+705,Bourbon,De olla,El Paraíso,Cafetería,Ocasional,62
+706,Typica,Instantáneo,Copán,Oficina,Ocasional,40
+707,Lempira,Instantáneo,Opalaca,Oficina,Diario,49
+708,Lempira,Espresso,Opalaca,Cafetería,Diario,23
+709,Caturra,De olla,El Paraíso,Hogar,Diario,51
+710,Pacas,Colado,Montecillos,Oficina,Diario,26
+711,Typica,Cold brew,Opalaca,Cafetería,Diario,19
+712,Bourbon,Instantáneo,Agalta,Hogar,Diario,51
+713,Typica,Colado,Montecillos,Oficina,Ocasional,43
+714,Lempira,Colado,Montecillos,Cafetería,Semanal,26
+715,Bourbon,Cold brew,Comayagua,Oficina,Semanal,59
+716,Typica,De olla,Agalta,Oficina,Ocasional,57
+717,Typica,De olla,Agalta,Oficina,Diario,42
+718,Typica,Cold brew,Agalta,Cafetería,Diario,29
+719,Caturra,Cold brew,El Paraíso,Cafetería,Ocasional,20
+720,Bourbon,Instantáneo,Montecillos,Oficina,Diario,58
+721,Lempira,Colado,Comayagua,Hogar,Semanal,65
+722,Caturra,De olla,Montecillos,Cafetería,Diario,58
+723,Caturra,Cold brew,Agalta,Oficina,Ocasional,39
+724,Pacas,Colado,Montecillos,Hogar,Diario,62
+725,Caturra,Espresso,Montecillos,Hogar,Ocasional,18
+726,Caturra,Cappuccino,Comayagua,Oficina,Semanal,28
+727,Pacas,Cappuccino,Comayagua,Cafetería,Ocasional,42
+728,Caturra,Cappuccino,El Paraíso,Oficina,Ocasional,32
+729,Bourbon,Cappuccino,Copán,Hogar,Semanal,19
+730,Typica,Espresso,Copán,Hogar,Semanal,28
+731,Pacas,De olla,Agalta,Hogar,Ocasional,23
+732,Typica,Instantáneo,El Paraíso,Cafetería,Ocasional,19
+733,Pacas,Cold brew,Opalaca,Oficina,Semanal,28
+734,Caturra,Colado,Montecillos,Hogar,Diario,44
+735,Lempira,Cold brew,Agalta,Oficina,Semanal,60
+736,Typica,Espresso,Opalaca,Hogar,Diario,43
+737,Lempira,Instantáneo,Comayagua,Hogar,Diario,41
+738,Caturra,Cappuccino,Copán,Cafetería,Ocasional,58
+739,Lempira,Cappuccino,Opalaca,Hogar,Diario,31
+740,Bourbon,Cold brew,Montecillos,Hogar,Semanal,25
+741,Typica,Cappuccino,Comayagua,Cafetería,Ocasional,34
+742,Caturra,Cold brew,El Paraíso,Cafetería,Diario,41
+743,Pacas,Espresso,Opalaca,Cafetería,Diario,34
+744,Pacas,Cappuccino,Montecillos,Hogar,Semanal,54
+745,Caturra,De olla,Agalta,Oficina,Diario,23
+746,Typica,Instantáneo,Comayagua,Oficina,Diario,53
+747,Caturra,Cappuccino,El Paraíso,Cafetería,Ocasional,61
+748,Pacas,Instantáneo,Opalaca,Cafetería,Semanal,23
+749,Pacas,Cold brew,Copán,Oficina,Ocasional,51
+750,Lempira,Cold brew,El Paraíso,Hogar,Diario,46
+751,Bourbon,De olla,Opalaca,Hogar,Diario,20
+752,Pacas,Colado,Agalta,Cafetería,Diario,58
+753,Bourbon,Instantáneo,Montecillos,Cafetería,Ocasional,22
+754,Caturra,Cappuccino,El Paraíso,Cafetería,Ocasional,38
+755,Typica,Instantáneo,Comayagua,Hogar,Ocasional,57
+756,Lempira,Instantáneo,Comayagua,Hogar,Semanal,27
+757,Bourbon,Instantáneo,El Paraíso,Oficina,Diario,24
+758,Lempira,Colado,Montecillos,Oficina,Semanal,44
+759,Typica,Cappuccino,Agalta,Cafetería,Ocasional,56
+760,Pacas,Colado,Opalaca,Cafetería,Semanal,27
+761,Lempira,Instantáneo,Agalta,Oficina,Semanal,20
+762,Pacas,Espresso,Agalta,Hogar,Diario,65
+763,Pacas,Espresso,Montecillos,Hogar,Semanal,37
+764,Typica,Espresso,Comayagua,Oficina,Ocasional,24
+765,Bourbon,De olla,Montecillos,Oficina,Semanal,38
+766,Typica,Cold brew,Comayagua,Oficina,Ocasional,23
+767,Bourbon,Cappuccino,Opalaca,Cafetería,Ocasional,49
+768,Lempira,Espresso,Copán,Oficina,Diario,22
+769,Typica,Cold brew,El Paraíso,Cafetería,Diario,51
+770,Lempira,Colado,Opalaca,Hogar,Diario,21
+771,Bourbon,Colado,Comayagua,Hogar,Semanal,63
+772,Bourbon,Espresso,Montecillos,Cafetería,Ocasional,43
+773,Caturra,Cold brew,Copán,Hogar,Semanal,49
+774,Lempira,Cappuccino,Opalaca,Cafetería,Ocasional,53
+775,Typica,Espresso,Opalaca,Cafetería,Ocasional,62
+776,Caturra,Espresso,Copán,Cafetería,Diario,28
+777,Lempira,De olla,Opalaca,Oficina,Diario,61
+778,Bourbon,Espresso,Agalta,Cafetería,Ocasional,19
+779,Caturra,Cappuccino,Opalaca,Oficina,Diario,56
+780,Caturra,De olla,Montecillos,Oficina,Semanal,63
+781,Typica,Cappuccino,Comayagua,Cafetería,Semanal,34
+782,Bourbon,Cappuccino,Montecillos,Oficina,Ocasional,57
+783,Pacas,Instantáneo,Copán,Hogar,Ocasional,60
+784,Typica,Instantáneo,Agalta,Oficina,Ocasional,36
+785,Typica,Cold brew,Copán,Cafetería,Diario,39
+786,Typica,Cold brew,Montecillos,Cafetería,Semanal,59
+787,Typica,De olla,Opalaca,Oficina,Diario,21
+788,Lempira,Cappuccino,Agalta,Cafetería,Ocasional,26
+789,Caturra,Cold brew,Comayagua,Cafetería,Semanal,44
+790,Pacas,Cappuccino,Agalta,Hogar,Ocasional,63
+791,Lempira,De olla,Montecillos,Oficina,Ocasional,32
+792,Lempira,Cold brew,Comayagua,Oficina,Semanal,50
+793,Typica,De olla,Agalta,Oficina,Diario,36
+794,Caturra,Cappuccino,Opalaca,Oficina,Semanal,64
+795,Lempira,De olla,Agalta,Cafetería,Ocasional,23
+796,Bourbon,Espresso,Opalaca,Oficina,Semanal,44
+797,Typica,Espresso,Montecillos,Oficina,Semanal,47
+798,Caturra,Cappuccino,Copán,Oficina,Ocasional,55
+799,Lempira,Colado,Comayagua,Hogar,Ocasional,25
+800,Pacas,Instantáneo,Montecillos,Cafetería,Diario,27
+801,Bourbon,De olla,Montecillos,Cafetería,Ocasional,47
+802,Bourbon,Espresso,Agalta,Hogar,Diario,49
+803,Typica,Cold brew,Opalaca,Cafetería,Ocasional,21
+804,Caturra,Cappuccino,Montecillos,Hogar,Diario,54
+805,Bourbon,Cappuccino,Copán,Hogar,Ocasional,45
+806,Pacas,Cappuccino,Comayagua,Cafetería,Semanal,18
+807,Caturra,Instantáneo,Opalaca,Oficina,Semanal,18
+808,Typica,Instantáneo,Opalaca,Hogar,Ocasional,18
+809,Bourbon,De olla,Agalta,Cafetería,Semanal,26
+810,Caturra,Cappuccino,El Paraíso,Oficina,Semanal,28
+811,Caturra,Colado,Montecillos,Cafetería,Semanal,64
+812,Lempira,Instantáneo,El Paraíso,Cafetería,Semanal,61
+813,Bourbon,Espresso,Comayagua,Cafetería,Diario,28
+814,Pacas,Colado,Opalaca,Hogar,Ocasional,26
+815,Bourbon,Cold brew,Copán,Oficina,Ocasional,28
+816,Caturra,Espresso,Agalta,Oficina,Diario,42
+817,Typica,Instantáneo,El Paraíso,Hogar,Ocasional,21
+818,Caturra,Cold brew,Copán,Hogar,Ocasional,25
+819,Pacas,Cappuccino,Comayagua,Hogar,Ocasional,34
+820,Pacas,Cold brew,Opalaca,Hogar,Ocasional,61
+821,Caturra,Espresso,Comayagua,Oficina,Diario,60
+822,Lempira,Espresso,El Paraíso,Oficina,Ocasional,26
+823,Pacas,Colado,El Paraíso,Oficina,Ocasional,25
+824,Typica,Colado,Copán,Cafetería,Diario,56
+825,Bourbon,Espresso,El Paraíso,Hogar,Semanal,63
+826,Pacas,Espresso,Opalaca,Hogar,Ocasional,49
+827,Bourbon,Cold brew,Comayagua,Cafetería,Diario,18
+828,Caturra,Cold brew,Copán,Hogar,Ocasional,60
+829,Pacas,De olla,Copán,Oficina,Diario,64
+830,Caturra,Espresso,Agalta,Hogar,Semanal,36
+831,Typica,Cappuccino,Copán,Hogar,Diario,20
+832,Typica,Espresso,Agalta,Cafetería,Semanal,65
+833,Caturra,Colado,Copán,Hogar,Diario,60
+834,Bourbon,Espresso,Montecillos,Cafetería,Ocasional,35
+835,Caturra,Espresso,Montecillos,Hogar,Diario,43
+836,Pacas,Cappuccino,Montecillos,Cafetería,Ocasional,48
+837,Pacas,Cold brew,Opalaca,Hogar,Diario,62
+838,Caturra,De olla,Copán,Cafetería,Ocasional,48
+839,Lempira,Cold brew,Comayagua,Hogar,Ocasional,42
+840,Typica,Instantáneo,Copán,Oficina,Ocasional,26
+841,Pacas,Cappuccino,Copán,Cafetería,Semanal,20
+842,Caturra,Espresso,Agalta,Cafetería,Diario,63
+843,Lempira,Cold brew,El Paraíso,Oficina,Ocasional,32
+844,Typica,Instantáneo,El Paraíso,Oficina,Ocasional,57
+845,Caturra,Cappuccino,Agalta,Oficina,Diario,48
+846,Typica,Cold brew,Agalta,Oficina,Semanal,27
+847,Lempira,Instantáneo,Copán,Hogar,Ocasional,28
+848,Lempira,Cappuccino,Comayagua,Hogar,Diario,49
+849,Typica,De olla,Montecillos,Cafetería,Diario,50
+850,Bourbon,Instantáneo,Agalta,Cafetería,Semanal,33
+851,Caturra,Cappuccino,Comayagua,Oficina,Semanal,23
+852,Pacas,Cappuccino,Montecillos,Hogar,Semanal,65
+853,Caturra,Colado,Comayagua,Cafetería,Diario,53
+854,Lempira,Colado,Copán,Oficina,Ocasional,58
+855,Typica,Instantáneo,El Paraíso,Hogar,Ocasional,60
+856,Pacas,Espresso,Montecillos,Hogar,Diario,47
+857,Typica,Instantáneo,El Paraíso,Oficina,Semanal,63
+858,Typica,Cold brew,Comayagua,Hogar,Diario,60
+859,Bourbon,Colado,Montecillos,Cafetería,Ocasional,36
+860,Lempira,Instantáneo,Montecillos,Oficina,Diario,20
+861,Bourbon,Cappuccino,Opalaca,Oficina,Ocasional,64
+862,Pacas,Colado,Montecillos,Oficina,Diario,30
+863,Caturra,Cappuccino,Opalaca,Cafetería,Diario,63
+864,Typica,Colado,Comayagua,Hogar,Ocasional,61
+865,Lempira,Colado,Comayagua,Cafetería,Ocasional,55
+866,Lempira,De olla,Comayagua,Hogar,Ocasional,65
+867,Caturra,Instantáneo,Comayagua,Oficina,Semanal,50
+868,Bourbon,Cold brew,El Paraíso,Hogar,Ocasional,26
+869,Caturra,Cappuccino,Agalta,Oficina,Ocasional,38
+870,Lempira,Cappuccino,Comayagua,Oficina,Ocasional,33
+871,Typica,Cappuccino,Montecillos,Cafetería,Semanal,26
+872,Bourbon,Cappuccino,El Paraíso,Oficina,Ocasional,50
+873,Typica,Cold brew,El Paraíso,Cafetería,Ocasional,65
+874,Lempira,Cold brew,Opalaca,Hogar,Diario,57
+875,Typica,Cold brew,Montecillos,Oficina,Diario,63
+876,Bourbon,Instantáneo,El Paraíso,Oficina,Ocasional,38
+877,Caturra,Espresso,El Paraíso,Cafetería,Ocasional,54
+878,Pacas,Cold brew,Agalta,Oficina,Semanal,45
+879,Caturra,Instantáneo,Copán,Hogar,Semanal,27
+880,Caturra,Cold brew,Copán,Hogar,Semanal,28
+881,Typica,Cold brew,Montecillos,Hogar,Diario,62
+882,Typica,De olla,El Paraíso,Hogar,Semanal,46
+883,Caturra,Instantáneo,Agalta,Oficina,Ocasional,32
+884,Lempira,Cappuccino,Opalaca,Oficina,Ocasional,36
+885,Caturra,Cappuccino,Comayagua,Cafetería,Ocasional,38
+886,Lempira,Colado,Copán,Oficina,Semanal,30
+887,Lempira,Cappuccino,Opalaca,Oficina,Ocasional,63
+888,Typica,Instantáneo,El Paraíso,Oficina,Ocasional,30
+889,Bourbon,Espresso,Comayagua,Hogar,Ocasional,22
+890,Bourbon,De olla,Agalta,Oficina,Diario,42
+891,Caturra,Cappuccino,Montecillos,Oficina,Semanal,26
+892,Bourbon,Instantáneo,Montecillos,Hogar,Semanal,47
+893,Bourbon,Colado,Opalaca,Cafetería,Ocasional,21
+894,Lempira,Cold brew,Montecillos,Cafetería,Ocasional,53
+895,Typica,Colado,Agalta,Cafetería,Ocasional,32
+896,Bourbon,Instantáneo,Copán,Oficina,Diario,44
+897,Lempira,Instantáneo,Comayagua,Hogar,Semanal,32
+898,Bourbon,Cold brew,Montecillos,Cafetería,Semanal,36
+899,Bourbon,Instantáneo,El Paraíso,Cafetería,Ocasional,59
+900,Caturra,Colado,Agalta,Cafetería,Semanal,33
+901,Lempira,Instantáneo,Opalaca,Hogar,Ocasional,38
+902,Pacas,Colado,Comayagua,Cafetería,Ocasional,64
+903,Typica,Colado,El Paraíso,Cafetería,Ocasional,50
+904,Pacas,Cappuccino,Copán,Cafetería,Ocasional,30
+905,Typica,Instantáneo,Copán,Hogar,Diario,52
+906,Lempira,Colado,Agalta,Hogar,Diario,60
+907,Bourbon,Cold brew,Comayagua,Hogar,Diario,52
+908,Pacas,Cold brew,Copán,Oficina,Ocasional,27
+909,Caturra,Cappuccino,Agalta,Cafetería,Diario,23
+910,Caturra,Colado,Opalaca,Cafetería,Ocasional,22
+911,Lempira,De olla,Montecillos,Cafetería,Semanal,46
+912,Pacas,Cappuccino,Montecillos,Hogar,Semanal,61
+913,Caturra,Instantáneo,Copán,Oficina,Ocasional,57
+914,Caturra,Cold brew,El Paraíso,Hogar,Ocasional,22
+915,Typica,Instantáneo,Copán,Cafetería,Ocasional,37
+916,Lempira,Colado,Montecillos,Cafetería,Semanal,43
+917,Caturra,Cappuccino,Opalaca,Oficina,Diario,26
+918,Pacas,Instantáneo,Montecillos,Oficina,Diario,37
+919,Typica,Colado,El Paraíso,Oficina,Diario,25
+920,Caturra,Colado,El Paraíso,Oficina,Semanal,52
+921,Lempira,Colado,Montecillos,Hogar,Ocasional,65
+922,Typica,De olla,Comayagua,Oficina,Ocasional,27
+923,Bourbon,De olla,Opalaca,Oficina,Semanal,30
+924,Caturra,De olla,Agalta,Oficina,Diario,53
+925,Pacas,Cold brew,El Paraíso,Hogar,Semanal,60
+926,Caturra,Espresso,Copán,Hogar,Ocasional,55
+927,Pacas,Espresso,Montecillos,Hogar,Ocasional,59
+928,Bourbon,Colado,Montecillos,Oficina,Diario,30
+929,Typica,Cappuccino,Comayagua,Cafetería,Ocasional,60
+930,Typica,Cold brew,El Paraíso,Hogar,Ocasional,54
+931,Typica,Espresso,Comayagua,Hogar,Diario,38
+932,Bourbon,De olla,Agalta,Oficina,Ocasional,45
+933,Typica,Espresso,Opalaca,Oficina,Ocasional,39
+934,Pacas,Cappuccino,Comayagua,Cafetería,Semanal,49
+935,Lempira,Colado,Opalaca,Oficina,Ocasional,23
+936,Typica,De olla,El Paraíso,Hogar,Semanal,64
+937,Caturra,Cold brew,Copán,Hogar,Ocasional,58
+938,Caturra,Instantáneo,El Paraíso,Cafetería,Ocasional,31
+939,Caturra,Instantáneo,Montecillos,Oficina,Ocasional,48
+940,Bourbon,Espresso,Comayagua,Hogar,Ocasional,64
+941,Typica,De olla,Comayagua,Oficina,Ocasional,23
+942,Pacas,Espresso,El Paraíso,Hogar,Ocasional,33
+943,Lempira,Cold brew,Opalaca,Oficina,Diario,46
+944,Bourbon,De olla,El Paraíso,Oficina,Ocasional,27
+945,Pacas,Espresso,Copán,Hogar,Semanal,32
+946,Caturra,Espresso,Montecillos,Hogar,Diario,60
+947,Bourbon,Instantáneo,Montecillos,Cafetería,Semanal,47
+948,Caturra,Colado,Agalta,Cafetería,Diario,63
+949,Lempira,Cold brew,Montecillos,Oficina,Semanal,55
+950,Lempira,Instantáneo,Opalaca,Cafetería,Ocasional,42
+951,Typica,Instantáneo,Agalta,Hogar,Ocasional,34
+952,Pacas,De olla,El Paraíso,Cafetería,Semanal,40
+953,Pacas,Cappuccino,El Paraíso,Hogar,Ocasional,26
+954,Pacas,De olla,Opalaca,Hogar,Ocasional,59
+955,Typica,De olla,Opalaca,Hogar,Diario,41
+956,Lempira,Cold brew,Copán,Oficina,Diario,44
+957,Typica,Cold brew,Copán,Cafetería,Ocasional,48
+958,Pacas,De olla,El Paraíso,Hogar,Ocasional,44
+959,Caturra,De olla,Copán,Hogar,Ocasional,55
+960,Bourbon,De olla,Agalta,Oficina,Diario,54
+961,Bourbon,Colado,Opalaca,Cafetería,Diario,51
+962,Pacas,Instantáneo,El Paraíso,Oficina,Diario,64
+963,Typica,Colado,Opalaca,Cafetería,Ocasional,48
+964,Pacas,De olla,Opalaca,Cafetería,Ocasional,27
+965,Lempira,De olla,El Paraíso,Oficina,Ocasional,34
+966,Bourbon,Cold brew,Agalta,Cafetería,Semanal,56
+967,Lempira,Colado,Opalaca,Cafetería,Semanal,26
+968,Caturra,Colado,Opalaca,Oficina,Ocasional,61
+969,Pacas,De olla,El Paraíso,Hogar,Diario,48
+970,Lempira,Instantáneo,Copán,Oficina,Ocasional,25
+971,Caturra,Cappuccino,Agalta,Hogar,Ocasional,52
+972,Caturra,Cold brew,Agalta,Cafetería,Ocasional,44
+973,Typica,Colado,Agalta,Oficina,Semanal,32
+974,Pacas,Cappuccino,Montecillos,Oficina,Ocasional,62
+975,Lempira,Colado,Comayagua,Hogar,Semanal,48
+976,Bourbon,Colado,Montecillos,Oficina,Ocasional,44
+977,Typica,De olla,Copán,Oficina,Ocasional,18
+978,Lempira,Instantáneo,Copán,Oficina,Diario,42
+979,Bourbon,Cold brew,Montecillos,Cafetería,Semanal,24
+980,Bourbon,Cappuccino,Agalta,Oficina,Semanal,34
+981,Lempira,Cappuccino,El Paraíso,Cafetería,Ocasional,35
+982,Pacas,De olla,Comayagua,Oficina,Ocasional,48
+983,Bourbon,Espresso,El Paraíso,Oficina,Semanal,34
+984,Typica,Instantáneo,Montecillos,Oficina,Semanal,65
+985,Bourbon,Cold brew,Copán,Oficina,Diario,46
+986,Bourbon,Colado,Opalaca,Oficina,Semanal,39
+987,Lempira,Instantáneo,Agalta,Oficina,Ocasional,21
+988,Bourbon,Cappuccino,Agalta,Hogar,Diario,27
+989,Pacas,Instantáneo,Comayagua,Hogar,Diario,34
+990,Bourbon,Espresso,Copán,Oficina,Diario,64
+991,Pacas,Cappuccino,El Paraíso,Oficina,Ocasional,36
+992,Lempira,Colado,Opalaca,Oficina,Semanal,46
+993,Caturra,De olla,Agalta,Oficina,Semanal,30
+994,Caturra,Instantáneo,El Paraíso,Oficina,Ocasional,32
+995,Lempira,De olla,Agalta,Hogar,Semanal,33
+996,Caturra,De olla,Copán,Cafetería,Semanal,40
+997,Pacas,Cappuccino,El Paraíso,Hogar,Ocasional,18
+998,Caturra,Colado,El Paraíso,Cafetería,Ocasional,53
+999,Lempira,Espresso,Montecillos,Cafetería,Diario,56
+1000,Bourbon,Cappuccino,Comayagua,Oficina,Diario,34
