@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import os
+import sys
 
 # -----------------------------------------------------------------------------
 # 1. CONFIGURACIÓN DE PÁGINA
@@ -17,24 +18,36 @@ st.set_page_config(
 # Paleta de colores "Coffee & Earth" (Discreta para gráficos como Pie, Sunburst)
 COLOR_PALETTE = ['#4B3621', '#A0522D', '#D2691E', '#CD853F', '#F4A460', '#DEB887', '#556B2F']
 # Paleta Continua (Plotly predefinida) para gráficos como Mapas de calor/Barras con gradiente
-COLOR_CONTINUOUS = 'Sunsetdark' # Usando una paleta Plotly predefinida para evitar el error 'copper'
+COLOR_CONTINUOUS = 'Sunsetdark' 
 
 # -----------------------------------------------------------------------------
 # 2. CARGAR RECURSOS EXTERNOS (CSS Y JS)
 # -----------------------------------------------------------------------------
-def load_css(file_name):
+def load_file_content(file_name):
+    """Carga el contenido de un archivo externo de forma segura."""
     try:
-        with open(file_name) as f:
-            st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+        # Aseguramos la lectura con codificación UTF-8
+        with open(file_name, 'r', encoding='utf-8') as f:
+            return f.read()
     except FileNotFoundError:
+        return None
+    except Exception as e:
+        # Capturamos cualquier otro error de lectura
+        st.error(f"Error al leer el archivo {file_name}: {e}")
+        return None
+
+def load_css(file_name):
+    css_content = load_file_content(file_name)
+    if css_content:
+        st.markdown(f'<style>{css_content}</style>', unsafe_allow_html=True)
+    else:
         st.warning(f"⚠️ {file_name} no encontrado. El diseño puede variar.")
 
 def load_js(file_name):
-    try:
-        with open(file_name) as f:
-            st.markdown(f'<script>{f.read()}</script>', unsafe_allow_html=True)
-    except FileNotFoundError:
-        pass # No mostramos warning por JS, ya que a veces es opcional
+    js_content = load_file_content(file_name)
+    if js_content:
+        st.markdown(f'<script>{js_content}</script>', unsafe_allow_html=True)
+    # No mostramos warning por JS, ya que a veces es opcional o solo para logging
 
 # Cargamos los archivos si existen
 load_css("style.css")
@@ -50,14 +63,16 @@ def load_data():
         return df
     except FileNotFoundError:
         # Generar datos dummy si no se encuentra el archivo
-        st.error("⚠️ Archivo 'consumo_cafe_honduras.csv' no encontrado. Usando datos de ejemplo.")
+        st.error("⚠️ Archivo 'consumo_cafe_honduras.csv' no encontrado. Usando datos de ejemplo para evitar fallas.")
+        
+        # Generación de 100 filas de datos dummy
         data = {
-            "Variedad": ["Caturra", "Bourbon", "Pacas", "Lempira", "Typica"] * 20,
-            "Preparación": ["Colado", "Espresso", "Cold brew", "Cappuccino", "De olla"] * 20,
-            "Región": ["Copán", "Comayagua", "Agalta", "El Paraíso", "Montecillos"] * 20,
-            "Contexto": ["Hogar", "Oficina", "Cafetería"] * 33 + ["Hogar"],
-            "Frecuencia": ["Diario", "Semanal", "Ocasional"] * 33 + ["Diario"],
-            "Edad": [25, 30, 45, 22, 55, 60, 35, 28, 40, 50] * 10
+            "Variedad": (["Caturra", "Bourbon", "Pacas", "Lempira", "Typica"] * 20)[:100],
+            "Preparación": (["Colado", "Espresso", "Cold brew", "Cappuccino", "De olla"] * 20)[:100],
+            "Región": (["Copán", "Comayagua", "Agalta", "El Paraíso", "Montecillos"] * 20)[:100],
+            "Contexto": (["Hogar", "Oficina", "Cafetería"] * 33 + ["Hogar"])[1:101],
+            "Frecuencia": (["Diario", "Semanal", "Ocasional"] * 33 + ["Diario"])[1:101],
+            "Edad": ([25, 30, 45, 22, 55, 60, 35, 28, 40, 50] * 10)[:100]
         }
         return pd.DataFrame(data)
 
@@ -87,7 +102,6 @@ st.markdown("---")
 # -----------------------------------------------------------------------------
 
 # --- KPI ROW (FILA DE MÉTRICAS) ---
-# Calculamos algunos KPIs reales del CSV si existen datos, si no, mostramos placeholders
 if not df.empty:
     total_encuestados = len(df)
     region_top = df['Región'].mode()[0] if 'Región' in df.columns else "N/A"
@@ -116,7 +130,6 @@ with tab1:
     
     with col_left:
         st.subheader("Crecimiento Histórico del Consumo")
-        # Gráfico de Área con gradiente (Simulado con Plotly)
         fig_trend = px.area(df_oficial, x="Año", y="Consumo", 
                             title="Evolución en Quintales (Datos IHCAFE)",
                             markers=True, color_discrete_sequence=['#8B4513'])
@@ -126,7 +139,6 @@ with tab1:
     with col_right:
         st.subheader("Contexto de Consumo")
         if not df.empty and 'Contexto' in df.columns:
-            # Donut Chart
             fig_pie = px.pie(df, names='Contexto', hole=0.6, 
                              color_discrete_sequence=COLOR_PALETTE,
                              title="¿Dónde se toma café?")
@@ -162,7 +174,7 @@ with tab2:
             (df['Edad'] <= rango_edad[1])
         ]
 
-        # GRÁFICO SUNBURST (Muy llamativo para ver jerarquías)
+        # GRÁFICO SUNBURST
         col_sun, col_bar = st.columns([1.5, 1])
         
         with col_sun:
@@ -193,12 +205,10 @@ with tab3:
     with col_map:
         st.subheader("Intensidad por Región")
         if not df.empty and 'Región' in df.columns:
-            # Mapa de calor simple (Bar Chart horizontal simulando ranking)
             conteo_region = df['Región'].value_counts().reset_index()
             conteo_region.columns = ['Región', 'Encuestados']
             
-            # --- CORRECCIÓN APLICADA AQUÍ ---
-            # Se cambió 'copper' por la variable COLOR_CONTINUOUS (que es 'Sunsetdark')
+            # El fix para el ValueError: se usa COLOR_CONTINUOUS
             fig_map = px.bar(conteo_region, y='Región', x='Encuestados', orientation='h',
                              color='Encuestados', 
                              color_continuous_scale=COLOR_CONTINUOUS, 
