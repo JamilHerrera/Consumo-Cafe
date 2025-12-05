@@ -1,11 +1,9 @@
-document.addEventListener("DOMContentLoaded", function() {
-    // Animación de fade-in en títulos
-    let headers = document.querySelectorAll("h1, h2, h3");
-    headers.forEach(h => {
-        h.style.opacity = 0;
-        setTimeout(() => {
-            h.style.transition = "opacity 2s";
-            h.style.opacity = 1;
-        }, 500);
-    });
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("☕ Honduras Coffee Trends: Recursos cargados correctamente.");
+    
+    // Ejemplo: Agregar un efecto sutil al título si se desea
+    const title = window.parent.document.querySelector('h1');
+    if (title) {
+        title.style.textShadow = "2px 2px 4px rgba(0,0,0,0.1)";
+    }
 });

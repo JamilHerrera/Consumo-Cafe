@@ -1,35 +1,72 @@
-body {
-    background-color: #fdfcf7;
-    font-family: 'Segoe UI', sans-serif;
+/* -----------------------------------------------------------------------------
+   Honduras Coffee Trends - Hoja de Estilos Principal
+----------------------------------------------------------------------------- */
+
+/* Fondo principal más suave (Crema) */
+.stApp {
+    background-color: #f8f5f2;
 }
 
-h1 {
-    color: #6b4226;
+/* Estilo para las métricas (Tarjetas KPI) */
+div[data-testid="stMetric"] {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
     text-align: center;
-    font-size: 3em;
-    margin-bottom: 0.5em;
+    transition: transform 0.2s ease-in-out;
 }
 
-h2, h3 {
-    color: #8b5e3c;
+div[data-testid="stMetric"]:hover {
+    transform: scale(1.02);
+    box-shadow: 4px 4px 10px rgba(75, 54, 33, 0.1);
 }
 
-.section {
-    background-color: #fff8f0;
+/* Títulos personalizados */
+h1, h2, h3 {
+    color: #4a3b2a;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+/* Ajuste del color de las etiquetas de las métricas */
+div[data-testid="stMetricLabel"] {
+    color: #8b5a2b;
+    font-weight: bold;
+}
+
+/* Pestañas de Navegación (Tabs) */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 10px;
+}
+
+.stTabs [data-baseweb="tab"] {
+    height: 50px;
+    white-space: pre-wrap;
+    background-color: #ffffff;
+    border-radius: 4px 4px 0px 0px;
+    gap: 1px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #4a3b2a;
+    border: 1px solid #e0e0e0;
+    border-bottom: none;
+}
+
+.stTabs [aria-selected="true"] {
+    background-color: #4a3b2a;
+    color: white;
+}
+
+/* Footer */
+footer {
+    visibility: hidden;
+}
+
+.custom-footer {
+    text-align: center; 
+    color: #888;
     padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
-}
-
-iframe {
-    border-radius: 10px;
-    border: 2px solid #d3bfa6;
-}
-
-.footer {
-    text-align: center;
-    font-size: 0.9em;
-    color: #555;
-    margin-top: 50px;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 30px;
 }
