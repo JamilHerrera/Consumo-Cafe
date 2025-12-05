@@ -1,4 +1,4 @@
-import streamlit as st
+mport streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
@@ -14,28 +14,31 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Paleta de colores "Coffee & Earth"
+# Paleta de colores "Coffee & Earth" (Discreta para gráficos como Pie, Sunburst)
 COLOR_PALETTE = ['#4B3621', '#A0522D', '#D2691E', '#CD853F', '#F4A460', '#DEB887', '#556B2F']
+# Paleta Continua (Plotly predefinida) para gráficos como Mapas de calor/Barras con gradiente
+COLOR_CONTINUOUS = 'Sunsetdark' # Usando una paleta Plotly predefinida para evitar el error 'copper'
 
 # -----------------------------------------------------------------------------
 # 2. CARGAR RECURSOS EXTERNOS (CSS Y JS)
 # -----------------------------------------------------------------------------
 def load_css(file_name):
-    with open(file_name) as f:
-        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+    try:
+        with open(file_name) as f:
+            st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+    except FileNotFoundError:
+        st.warning(f"⚠️ {file_name} no encontrado. El diseño puede variar.")
 
 def load_js(file_name):
-    with open(file_name) as f:
-        st.markdown(f'<script>{f.read()}</script>', unsafe_allow_html=True)
+    try:
+        with open(file_name) as f:
+            st.markdown(f'<script>{f.read()}</script>', unsafe_allow_html=True)
+    except FileNotFoundError:
+        pass # No mostramos warning por JS, ya que a veces es opcional
 
 # Cargamos los archivos si existen
-if os.path.exists("style.css"):
-    load_css("style.css")
-else:
-    st.warning("⚠️ style.css no encontrado. El diseño puede variar.")
-
-if os.path.exists("script.js"):
-    load_js("script.js")
+load_css("style.css")
+load_js("script.js")
 
 # -----------------------------------------------------------------------------
 # 3. CARGA DE DATOS
@@ -46,7 +49,18 @@ def load_data():
         df = pd.read_csv("consumo_cafe_honduras.csv")
         return df
     except FileNotFoundError:
-        return pd.DataFrame()
+        # Generar datos dummy si no se encuentra el archivo
+        st.error("⚠️ Archivo 'consumo_cafe_honduras.csv' no encontrado. Usando datos de ejemplo.")
+        data = {
+            "Variedad": ["Caturra", "Bourbon", "Pacas", "Lempira", "Typica"] * 20,
+            "Preparación": ["Colado", "Espresso", "Cold brew", "Cappuccino", "De olla"] * 20,
+            "Región": ["Copán", "Comayagua", "Agalta", "El Paraíso", "Montecillos"] * 20,
+            "Contexto": ["Hogar", "Oficina", "Cafetería"] * 33 + ["Hogar"],
+            "Frecuencia": ["Diario", "Semanal", "Ocasional"] * 33 + ["Diario"],
+            "Edad": [25, 30, 45, 22, 55, 60, 35, 28, 40, 50] * 10
+        }
+        return pd.DataFrame(data)
+
 
 df = load_data()
 
@@ -183,8 +197,11 @@ with tab3:
             conteo_region = df['Región'].value_counts().reset_index()
             conteo_region.columns = ['Región', 'Encuestados']
             
+            # --- CORRECCIÓN APLICADA AQUÍ ---
+            # Se cambió 'copper' por la variable COLOR_CONTINUOUS (que es 'Sunsetdark')
             fig_map = px.bar(conteo_region, y='Región', x='Encuestados', orientation='h',
-                             color='Encuestados', color_continuous_scale='copper',
+                             color='Encuestados', 
+                             color_continuous_scale=COLOR_CONTINUOUS, 
                              text='Encuestados')
             fig_map.update_layout(yaxis={'categoryorder':'total ascending'})
             st.plotly_chart(fig_map, use_container_width=True)
