@@ -48,7 +48,7 @@ div[data-testid="stMetric"]:hover {
 
 /* Títulos personalizados: Cambiado a BLANCO para máxima legibilidad en el fondo oscuro */
 h1, h2, h3 {
-    color: #FFFFFF; 
+    color: #3C2F2F; 
     font-family: 'Helvetica Neue', sans-serif;
 }
 
