@@ -78,7 +78,7 @@ div[data-testid="stMetricLabel"] {
 
 .stTabs [aria-selected="true"] {
     background-color: #4a3b2a;
-    color: white;
+    color: #black;
 }
 
 /* Footer */
