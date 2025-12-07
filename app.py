@@ -4,6 +4,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import os
 import sys
+import streamlit.components.v1 as components # Importamos para usar st.components.v1.html
 
 # -----------------------------------------------------------------------------
 # 1. CONFIGURACIÓN DE PÁGINA
@@ -30,25 +31,25 @@ CUSTOM_CSS = """
     background-color: #2C201C; 
 }
 
-/* Estilo para las métricas (Tarjetas KPI), se mantienen blancas para contrastar con el fondo oscuro */
+/* Estilo para las métricas (Tarjetas KPI): Cambiado a color café claro/latte para mejor contraste con el fondo oscuro y tema */
 div[data-testid="stMetric"] {
-    background-color: #F5E5C9;
-    border: 1px solid #e0e0e0;
+    background-color: #F5E5C9; /* Color: Latte claro */
+    border: 1px solid #c9b493;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.4); /* Sombra más oscura para fondo oscuro */
     text-align: center;
     transition: transform 0.2s ease-in-out;
 }
 
 div[data-testid="stMetric"]:hover {
     transform: scale(1.02);
-    box-shadow: 4px 4px 10px rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2); /* Sombra de brillo para destacar en fondo oscuro */
 }
 
 /* Títulos personalizados: Cambiado a BLANCO para máxima legibilidad en el fondo oscuro */
 h1, h2, h3 {
-    color: #black; 
+    color: #FFFFFF; 
     font-family: 'Helvetica Neue', sans-serif;
 }
 
@@ -78,7 +79,7 @@ div[data-testid="stMetricLabel"] {
 
 .stTabs [aria-selected="true"] {
     background-color: #4a3b2a;
-    color: #ffffff;
+    color: white;
 }
 
 /* Footer */
@@ -121,7 +122,7 @@ def load_js(file_name):
 load_js("script.js")
 
 # -----------------------------------------------------------------------------
-# 3. CARGA DE DATOS
+# 3. CARGA DE DATOS (Se mantienen para las otras pestañas de análisis)
 # -----------------------------------------------------------------------------
 @st.cache_data
 def load_data():
@@ -192,70 +193,26 @@ st.markdown("###") # Espacio
 tab1, tab2, tab3 = st.tabs(["📊 Panorama General", "🧬 ADN del Consumidor", "🗺️ Mapa & Datos"])
 
 with tab1:
-    # FILA 1: TENDENCIA MACRO vs DISTRIBUCIÓN
-    col_left, col_right = st.columns([2, 1])
+    st.subheader("Dashboard de Power BI Integrado")
+    st.warning("⚠️ Nota: La URL de Power BI que proporcionaste carga el reporte completo. Si deseas mostrar gráficos individuales, Power BI requiere la configuración de 'visual embedding' específico, lo cual no es posible directamente con este enlace. Por ahora, mostraremos el reporte completo en esta sección.")
     
-    with col_left:
-        st.subheader("Crecimiento Histórico del Consumo")
-        fig_trend = px.area(df_oficial, x="Año", y="Consumo", 
-                            title="Evolución en Quintales (Datos IHCAFE)",
-                            markers=True, color_discrete_sequence=['#8B4513'])
-        fig_trend.update_layout(plot_bgcolor="rgba(0,0,0,0)", yaxis_gridcolor='#e0e0e0')
-        st.plotly_chart(fig_trend, use_container_width=True)
-        
-    with col_right:
-        st.subheader("Contexto de Consumo")
-        if not df.empty and 'Contexto' in df.columns:
-            fig_pie = px.pie(df, names='Contexto', hole=0.6, 
-                             color_discrete_sequence=COLOR_PALETTE,
-                             title="¿Dónde se toma café?")
-            st.plotly_chart(fig_pie, use_container_width=True)
-        else:
-            st.info("No hay datos de contexto disponibles.")
+    # URL de Power BI proporcionada por el usuario (incrustada)
+    power_bi_iframe = """
+    <iframe title="proyecto" width="100%" height="600" 
+            src="https://app.powerbi.com/view?r=eyJrIjoiMDdjNWU5MDctMTlmNC00MWJjLWIwNmYtNGMwMDM5NzQyNjUxIiwidCI6ImFmMmZkMTk2LTFkOWYtNDdiNC05MDY5LTM5MWE0NmY4MzYwMSIsImMiOjR9" 
+            frameborder="0" allowFullScreen="true">
+    </iframe>
+    """
+    
+    # Usamos st.components.v1.html para incrustar el iframe
+    components.html(power_bi_iframe, height=650, scrolling=True)
 
-    # FILA 2: TEXTO NARRATIVO DESTACADO
+    # Texto narrativo destacado (Mantenemos el texto)
     st.info("""
-    💡 **Insight:** El consumo interno ha crecido un **1,850% en la última década**, 
+    💡 **Insight (del análisis original):** El consumo interno ha crecido un **1,850% en la última década**, 
     impulsado fuertemente por el consumo en **Oficinas y Cafeterías**, rompiendo el mito de que 
     el hondureño solo toma café en casa.
     """)
-
-    st.markdown("###")
-    st.subheader("Detalle del Crecimiento Exponencial (2014-2024)")
-    
-    # Datos oficiales específicos para este gráfico
-    años_g = [2014, 2020, 2024]
-    consumo_g = [20000, 250000, 390000]
-
-    fig_growth = go.Figure()
-
-    fig_growth.add_trace(go.Scatter(
-        x=años_g,
-        y=consumo_g,
-        mode="lines+markers",
-        line=dict(color="#6b4226", width=3),
-        marker=dict(size=10, color="#8b5e3c"),
-        name="Consumo interno (quintales)"
-    ))
-
-    # Anotación del 1850%
-    fig_growth.add_annotation(
-        x=2024, y=390000,
-        text="↑ +1850% en 10 años",
-        showarrow=True,
-        arrowhead=2,
-        ax=-50, ay=-50,
-        font=dict(color="green", size=14, family="Arial Black")
-    )
-
-    fig_growth.update_layout(
-        title="Impacto del Auge Cafetero",
-        xaxis_title="Año",
-        yaxis_title="Quintales consumidos",
-        template="plotly_white",
-        height=450
-    )
-    st.plotly_chart(fig_growth, use_container_width=True)
     
 
 with tab2:
