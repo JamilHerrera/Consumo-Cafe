@@ -66,7 +66,7 @@ div[data-testid="stMetricLabel"] {
 .stTabs [data-baseweb="tab"] {
     height: 50px;
     white-space: pre-wrap;
-    background-color: #ffffff;
+    background-color: #cafe;
     border-radius: 4px 4px 0px 0px;
     gap: 1px;
     padding-top: 10px;
@@ -78,7 +78,7 @@ div[data-testid="stMetricLabel"] {
 
 .stTabs [aria-selected="true"] {
     background-color: #4a3b2a;
-    color: #black;
+    color: #white;
 }
 
 /* Footer */
