@@ -381,7 +381,7 @@ with tab1:
     # URL de Power BI proporcionada por el usuario (incrustada)
     power_bi_iframe = """
     <iframe title="proyecto" width="100%" height="700" 
-            src="https://app.powerbi.com/view?r=eyJrIjoiMDdjNWU5MDctMTlmNC00MWJjLWIwNmYtNGMwMDM5NzQyNjUxIiwidCI6ImFmMmZkMTk2LTFkOWYtNDdiNC05MDY5LTM5MWE0NmY4MzYwMSIsImMiOjR9" 
+            src="<iframe title="proyecto" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiMDdjNWU5MDctMTlmNC00MWJjLWIwNmYtNGMwMDM5NzQyNjUxIiwidCI6ImFmMmZkMTk2LTFkOWYtNDdiNC05MDY5LTM5MWE0NmY4MzYwMSIsImMiOjR9&pageName=26513b8306c77008142e" frameborder="0" allowFullScreen="true"></iframe>" 
             frameborder="0" allowFullScreen="true">
     </iframe>
     """
