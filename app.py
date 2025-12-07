@@ -25,9 +25,9 @@ COLOR_CONTINUOUS = 'Sunsetdark'
 # -----------------------------------------------------------------------------
 # CSS EMBEBIDO: Inyectamos el CSS directamente para evitar el error "file not found".
 CUSTOM_CSS = """
-/* FONDO PRINCIPAL MODIFICADO PARA MEJOR CONTRASTE Y TEMÁTICA DE CAFÉ */
+/* FONDO PRINCIPAL MODIFICADO PARA MÁXIMO CONTRASTE Y TEMÁTICA DE CAFÉ */
 .stApp {
-    background-color: #F4EFE9; /* Nuevo color: Mocha Suave */
+    background-color: #FCF8F5; /* Nuevo color: Crema de Vainilla para mejor contraste */
 }
 
 /* Estilo para las métricas (Tarjetas KPI) */
@@ -46,15 +46,15 @@ div[data-testid="stMetric"]:hover {
     box-shadow: 4px 4px 10px rgba(75, 54, 33, 0.1);
 }
 
-/* Títulos personalizados */
+/* Títulos personalizados: Color más oscuro (#3C2F2F Deep Espresso) para mayor legibilidad */
 h1, h2, h3 {
-    color: #4a3b2a;
+    color: #3C2F2F; 
     font-family: 'Helvetica Neue', sans-serif;
 }
 
-/* Ajuste del color de las etiquetas de las métricas */
+/* Ajuste del color de las etiquetas de las métricas: Oscurecido para asegurar contraste */
 div[data-testid="stMetricLabel"] {
-    color: #8b5a2b;
+    color: #3C2F2F; 
     font-weight: bold;
 }
 
@@ -88,7 +88,7 @@ footer {
 
 .custom-footer {
     text-align: center; 
-    color: #888;
+    color: #555; /* Oscurecido para mejor contraste */
     padding: 20px;
     border-top: 1px solid #e0e0e0;
     margin-top: 30px;
