@@ -194,7 +194,7 @@ tab1, tab2, tab3 = st.tabs(["📊 Panorama General", "🧬 ADN del Consumidor", 
 
 with tab1:
     st.subheader("Dashboard de Power BI Integrado")
-    st.warning("⚠️ Nota: La URL de Power BI que proporcionaste carga el reporte completo. Si deseas mostrar gráficos individuales, Power BI requiere la configuración de 'visual embedding' específico, lo cual no es posible directamente con este enlace. Por ahora, mostraremos el reporte completo en esta sección.")
+    
     
     # URL de Power BI proporcionada por el usuario (incrustada)
     power_bi_iframe = """
