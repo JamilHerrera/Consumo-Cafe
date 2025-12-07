@@ -190,7 +190,110 @@ kpi4.metric("Edad Promedio", f"{edad_promedio} años", "Perfil del consumidor")
 st.markdown("###") # Espacio
 
 # --- PESTAÑAS DE NAVEGACIÓN ---
-tab1, tab2, tab3 = st.tabs(["📊 Panorama General", "🧬 ADN del Consumidor", "🗺️ Mapa & Datos"])
+tab1, tab_story, tab2, tab3 = st.tabs(["📊 Panorama General", "📖 El Viaje del Consumidor", "🧬 ADN del Consumidor", "🗺️ Mapa & Datos"])
+
+# -----------------------------------------------------------------------------
+# STORYTELLING TAB (NUEVA PESTAÑA)
+# -----------------------------------------------------------------------------
+with tab_story:
+    st.header("📖 El Viaje de la Taza: Transformación del Consumo de Café en Honduras")
+    st.markdown("""
+    Esta es la historia de cómo la cultura cafetera, tradicionalmente ligada a la producción de exportación, 
+    ha florecido internamente, creando un consumidor más sofisticado y apasionado en la última década.
+    """)
+    st.markdown("---")
+    
+    # CAPÍTULO 1: El Despertar del Consumo Interno
+    st.markdown('<div class="story-chapter">', unsafe_allow_html=True)
+    st.subheader("Capítulo 1: El Despertar (2014-2024)")
+    st.markdown("""
+    Históricamente, el café hondureño era un producto de exportación. Sin embargo, en la última década, 
+    el consumo interno ha experimentado un **crecimiento exponencial**. 
+    Este auge no es casualidad; es el resultado de una nueva apreciación por la calidad.
+    """)
+
+    # Gráfico de Trend
+    fig_trend = px.area(df_oficial, x="Año", y="Consumo", 
+                        title="📈 Crecimiento del Consumo Interno: +1850% en 10 años",
+                        markers=True, color_discrete_sequence=['#A0522D'],
+                        height=350)
+    fig_trend.update_layout(plot_bgcolor="#3C2F2F", yaxis_gridcolor='#554444')
+    st.plotly_chart(fig_trend, use_container_width=True)
+    
+    st.markdown("""
+    **El Dato Clave:** El volumen de café consumido dentro del país ha pasado de ser marginal a 
+    una fuerza significativa en la economía local, impulsado por las nuevas generaciones.
+    """)
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("---")
+    
+    # CAPÍTULO 2: El Nuevo Escenario
+    st.markdown('<div class="story-chapter">', unsafe_allow_html=True)
+    st.subheader("Capítulo 2: Del Hogar a la Cafetería ☕🏢")
+    st.markdown("""
+    La forma en que se consume el café ha cambiado drásticamente. El café "de olla" sigue siendo importante, 
+    pero los nuevos centros de consumo han robado el protagonismo. 
+    **Las cafeterías y los ambientes de oficina** son ahora los motores de la innovación.
+    """)
+
+    col_home, col_office = st.columns(2)
+    
+    if not df.empty and 'Contexto' in df.columns:
+        conteo_contexto = df['Contexto'].value_counts().reset_index()
+        conteo_contexto.columns = ['Contexto', 'Frecuencia']
+        
+        with col_home:
+            # Gráfico de barras para contexto
+            fig_context = px.bar(conteo_contexto, y='Contexto', x='Frecuencia', orientation='h',
+                                 color='Frecuencia', color_continuous_scale='Agsunset',
+                                 title="Distribución por Contexto")
+            fig_context.update_layout(plot_bgcolor="#3C2F2F", yaxis_gridcolor='#554444')
+            st.plotly_chart(fig_context, use_container_width=True)
+            
+        with col_office:
+            # Gráfico de Pastel para preparación
+            fig_prep = px.pie(df, names='Preparación', hole=0.5, 
+                             color_discrete_sequence=['#D2691E', '#CD853F', '#F4A460', '#DEB887', '#556B2F'],
+                             title="Métodos de Preparación Más Populares")
+            st.plotly_chart(fig_prep, use_container_width=True)
+            
+    st.markdown("""
+    **El Impacto:** El auge del café en la oficina (Diario/Semanal) y la popularidad de métodos como el 
+    **Espresso** y el **Cold Brew** (Cafeterías) indican una profesionalización de la experiencia del café.
+    """)
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("---")
+    
+    # CAPÍTULO 3: El Perfil del Nuevo Conocedor
+    st.markdown('<div class="story-chapter">', unsafe_allow_html=True)
+    st.subheader("Capítulo 3: El Conocedor Joven y la Variedad 🧠🌱")
+    
+    if not df.empty and all(col in df.columns for col in ['Variedad', 'Edad']):
+        
+        # Filtramos para mostrar solo los 5 más comunes para claridad en la historia
+        top_varieties = df['Variedad'].value_counts().nlargest(5).index
+        df_top_varieties = df[df['Variedad'].isin(top_varieties)]
+        
+        # Gráfico Boxplot para edad vs. variedad
+        fig_age_variety = px.box(df_top_varieties, x="Variedad", y="Edad", color="Variedad",
+                                 color_discrete_sequence=['#4B3621', '#A0522D', '#D2691E', '#CD853F', '#F4A460'],
+                                 title="Edad Promedio por Variedad de Café Consumida")
+        fig_age_variety.update_layout(plot_bgcolor="#3C2F2F", yaxis_gridcolor='#554444')
+        st.plotly_chart(fig_age_variety, use_container_width=True)
+
+        st.markdown(f"""
+        **La Demografía:** La edad promedio del consumidor se mantiene en los **{edad_promedio} años**, 
+        pero el consumo de variedades más finas como **Bourbon** y **Caturra** está concentrado 
+        en rangos de edad más jóvenes (visualmente en el gráfico de caja, se puede inferir 
+        que el rango intercuartílico es más bajo para estas variedades).
+        
+        El consumidor hondureño ya no pregunta solo por "café", sino por el origen (**Copán**, **Montecillos**) 
+        y la variedad (**Pacas**, **Typica**), demostrando un profundo nivel de **Madurez del Mercado**.
+        """)
+    else:
+        st.warning("Datos insuficientes para el análisis demográfico del Storytelling.")
+        
+    st.markdown('</div>', unsafe_allow_html=True)
 
 with tab1:
     st.subheader("Dashboard de Power BI Integrado")
