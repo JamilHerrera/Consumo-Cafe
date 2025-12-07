@@ -48,7 +48,7 @@ div[data-testid="stMetric"]:hover {
 
 /* Títulos personalizados: Cambiado a BLANCO para máxima legibilidad en el fondo oscuro */
 h1, h2, h3 {
-    color: #3C2F2F; 
+    color: #black; 
     font-family: 'Helvetica Neue', sans-serif;
 }
 
@@ -66,7 +66,7 @@ div[data-testid="stMetricLabel"] {
 .stTabs [data-baseweb="tab"] {
     height: 50px;
     white-space: pre-wrap;
-    background-color: #cafe;
+    background-color: #ffffff;
     border-radius: 4px 4px 0px 0px;
     gap: 1px;
     padding-top: 10px;
@@ -78,7 +78,7 @@ div[data-testid="stMetricLabel"] {
 
 .stTabs [aria-selected="true"] {
     background-color: #4a3b2a;
-    color: #white;
+    color: #ffffff;
 }
 
 /* Footer */
