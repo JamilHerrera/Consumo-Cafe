@@ -190,7 +190,13 @@ kpi4.metric("Edad Promedio", f"{edad_promedio} años", "Perfil del consumidor")
 st.markdown("###") # Espacio
 
 # --- PESTAÑAS DE NAVEGACIÓN ---
-tab1, tab_story, tab2, tab3 = st.tabs(["📊 Panorama General", "📖 El Viaje del Consumidor", "🧬 ADN del Consumidor", "🗺️ Mapa & Datos"])
+tab1, tab_story, tab_strategy, tab2, tab3 = st.tabs([
+    "📊 Panorama General", 
+    "📖 El Viaje del Consumidor", 
+    "🎯 Estrategia y Segmentación", # NUEVA PESTAÑA
+    "🧬 ADN del Consumidor", 
+    "🗺️ Mapa & Datos"
+])
 
 # -----------------------------------------------------------------------------
 # STORYTELLING TAB (NUEVA PESTAÑA)
@@ -294,6 +300,98 @@ with tab_story:
         st.warning("Datos insuficientes para el análisis demográfico del Storytelling.")
         
     st.markdown('</div>', unsafe_allow_html=True)
+with tab_strategy:
+    st.header("🎯 Estrategia Accionable: Mapa de Oportunidades de Mercado")
+    st.markdown("""
+    Este análisis cruza la **Fidelidad (Frecuencia)** con la **Variedad** para identificar dónde invertir 
+    esfuerzos de marketing: **nichos consolidados** vs. **oportunidades de crecimiento**.
+    """)
+    st.markdown("---")
+
+    if not df.empty and all(col in df.columns for col in ['Variedad', 'Frecuencia', 'Edad']):
+        
+        # --- 1. MATRIZ DE OPORTUNIDAD (HEATMAP) ---
+        
+        # Cruzamos Frecuencia (Y) y Variedad (X)
+        df_crosstab = pd.crosstab(df['Frecuencia'], df['Variedad'])
+        
+        # Reordenamos los ejes para mejor lectura
+        frecuencia_order = ['Diario', 'Semanal', 'Ocasional']
+        df_crosstab = df_crosstab.reindex(frecuencia_order, axis=0).fillna(0)
+        
+        # Convertimos a formato para Plotly
+        z = df_crosstab.values
+        x = df_crosstab.columns
+        y = df_crosstab.index
+        
+        # Crear el Heatmap
+        fig_heatmap = go.Figure(data=go.Heatmap(
+                z=z,
+                x=x,
+                y=y,
+                colorscale=COLOR_CONTINUOUS, # Utilizamos la paleta de café
+                text=[[str(val) for val in row] for row in z], # Muestra el número de conteo
+                texttemplate="%{text}",
+                hovertemplate="Variedad: %{x}<br>Frecuencia: %{y}<br>Conteo: %{z}<extra></extra>"
+            ))
+        
+        fig_heatmap.update_layout(
+            title='Matriz de Oportunidad: Frecuencia vs. Variedad',
+            xaxis_title="Variedad de Café",
+            yaxis_title="Frecuencia de Consumo",
+            plot_bgcolor="#2C201C"
+        )
+        st.plotly_chart(fig_heatmap, use_container_width=True)
+        
+        st.markdown('<div class="insight-box">', unsafe_allow_html=True)
+        st.markdown("""
+        #### **🚀 Insights Estratégicos del Heatmap**
+        * **Zona de Fidelidad Máxima (Consolidación):** Observa dónde se cruzan los consumidores **"Diarios"** con la variedad **'Lempira'**. Esta es nuestra base de clientes más fiel. La estrategia aquí es la retención y la venta cruzada (cross-selling) de productos complementarios.
+        * **Nicho Desatendido (Oportunidad):** Busca variedades de alta calidad (ej. **Bourbon** o **Caturra**) con baja frecuencia (**"Ocasional"**). Este segmento ama la calidad, pero no ha sido convertido al consumo diario/semanal. La campaña debe enfocarse en la **accesibilidad** y la **rutina**.
+        """)
+        st.markdown('</div>', unsafe_allow_html=True)
+        
+        st.markdown("---")
+        
+        # --- 2. SEGMENTACIÓN POR VALOR (Edad vs. Frecuencia) ---
+        st.subheader("Segmento de Mayor Potencial de Gasto (RFM Simplificado)")
+        st.markdown("""
+        Cruzamos la Frecuencia (Fidelidad) con la Edad (Indicador de Ingreso/Poder Adquisitivo) para 
+        identificar al "Consumidor Valioso" y al "Consumidor de Futuro".
+        """)
+        
+        # Creamos una columna de Gasto Potencial (simplificado: Diario=3, Semanal=2, Ocasional=1)
+        gasto_mapping = {'Diario': 3, 'Semanal': 2, 'Ocasional': 1}
+        df['GastoPotencial'] = df['Frecuencia'].map(gasto_mapping)
+        
+        # Creamos el Scatter Plot (Gráfico de Burbujas)
+        # Tamaño de la burbuja por la Preparación (cuántos métodos diferentes prueba)
+        df_scatter = df.groupby(['Edad', 'Frecuencia'], as_index=False).agg(
+            Conteo=('ID', 'size'),
+            DiversidadMetodo=('Preparación', 'nunique')
+        )
+
+        fig_scatter = px.scatter(df_scatter, x='Edad', y='Frecuencia', size='Conteo', 
+                                 color='DiversidadMetodo', # Color por cuántos métodos diferentes prueban
+                                 color_continuous_scale='Inferno',
+                                 log_x=False, size_max=40,
+                                 category_orders={"Frecuencia": frecuencia_order},
+                                 title="Relación Edad, Frecuencia y Diversidad de Métodos")
+        
+        fig_scatter.update_layout(plot_bgcolor="#2C201C")
+        st.plotly_chart(fig_scatter, use_container_width=True)
+        
+        st.markdown('<div class="insight-box">', unsafe_allow_html=True)
+        st.markdown("""
+        #### **💰 Segmentos Clave de Valor**
+        * **El Consumidor Premium (Alto Valor):** Individuos en el rango de **30-45 años** que consumen **"Diario"** y muestran alta **Diversidad de Métodos** (color amarillo/blanco). Ellos están dispuestos a pagar por una experiencia variada y constante.
+        * **El Consumidor de Mañana (Potencial):** Jóvenes **menores de 25 años** que consumen **"Semanal"**. Requieren educación sobre la rutina cafetera para pasar a la frecuencia "Diario".
+        """)
+        st.markdown('</div>', unsafe_allow_html=True)
+        
+    else:
+        st.error("Datos insuficientes para generar el análisis estratégico de alto impacto.")
+
 
 with tab1:
     st.subheader("Dashboard de Power BI Integrado")
