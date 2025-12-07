@@ -115,6 +115,29 @@ div[data-testid="stMetricLabel"] {
     border: 3px solid #F4A460;
 }
 
+/* Estilo para los bloques de decisión (Roadmap) */
+.decision-block {
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    border: 2px solid #D2691E; /* Borde café claro */
+    background: linear-gradient(135deg, #4B3621, #2C201C); /* Gradiente sutil */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    color: #F5E5C9;
+}
+
+.decision-block h4 {
+    color: #F4A460; /* Título color naranja suave */
+    border-bottom: 2px solid #D2691E;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+.decision-block ul {
+    list-style-type: '☕ '; /* Icono de café para las listas */
+    padding-left: 20px;
+}
+
 /* Footer */
 footer {
     visibility: hidden;
@@ -194,21 +217,11 @@ df = load_data()
 def predict_coffee_consumption(df_history, years_to_predict=6, degree=2):
     """
     Entrena un modelo de regresión polinomial y predice el consumo futuro.
-    
-    Args:
-        df_history (pd.DataFrame): DataFrame con columnas 'Año' y 'Consumo'.
-        years_to_predict (int): Número de años para proyectar (ej. 2025-2030 = 6 años).
-        degree (int): Grado del polinomio (2 para crecimiento cuadrático/acelerado).
-        
-    Returns:
-        pd.DataFrame: DataFrame combinado con datos históricos y predicciones.
     """
-    # 1. Preparar datos de entrenamiento
     X = df_history['Año'].values
     y = df_history['Consumo'].values
     
     # 2. Entrenar el modelo (Ajustar un polinomio de grado 'degree' a los datos)
-    # Coeficientes: p[0]*x**2 + p[1]*x**1 + p[2]*x**0
     coefficients = np.polyfit(X, y, degree)
     polynomial = np.poly1d(coefficients)
     
@@ -278,91 +291,83 @@ kpi_pred.metric("Consumo Proyectado (2030)", f"{consumo_2030:,.0f} Quintales", f
 st.markdown("###") # Espacio
 
 # --- PESTAÑAS DE NAVEGACIÓN ---
-tab1, tab_story, tab_strategy, tab_predict, tab2, tab3 = st.tabs([
+tab1, tab_story, tab_strategy, tab_predict, tab_roadmap, tab2, tab3 = st.tabs([
     "📊 Panorama General", 
     "📖 El Viaje del Consumidor", 
     "🎯 Estrategia y Segmentación",
-    "🔮 Proyección de Consumo", # NUEVA PESTAÑA
+    "🔮 Proyección de Consumo",
+    "💡 Roadmap de Decisión", # NUEVA PESTAÑA DE ALTO VALOR
     "🧬 ADN del Consumidor", 
     "🗺️ Mapa & Datos"
 ])
 
 # -----------------------------------------------------------------------------
-# NUEVA PESTAÑA: PREDICCIÓN
+# NUEVA PESTAÑA: ROADMAP DE DECISIÓN
 # -----------------------------------------------------------------------------
-with tab_predict:
-    st.header("🔮 Proyección del Consumo Interno de Café en Honduras (Hasta 2030)")
+with tab_roadmap:
+    st.header("💡 Roadmap Estratégico 2025-2030: Maximizando la Oportunidad del Café")
     st.markdown("""
-    Aplicamos un **Modelo de Regresión Polinomial de Grado 2** a los datos históricos 
-    (2014-2024) para proyectar el crecimiento acelerado del mercado hasta el año 2030.
-    Este modelo se basa en la tendencia no lineal observada en la última década.
+    Esta sección traduce el análisis predictivo y la segmentación del consumidor en **tres pilares de acción inmediata**,
+    alineando la producción y el marketing con el crecimiento proyectado.
     """)
     st.markdown("---")
+    
+    col_pro, col_dist, col_inv = st.columns(3)
+    
+    # ------------------
+    # PILAR 1: PRODUCTO
+    # ------------------
+    with col_pro:
+        st.markdown('<div class="decision-block">', unsafe_allow_html=True)
+        st.markdown("<h4>Estrategia de Producto: Fidelizar y Sofisticar</h4>", unsafe_allow_html=True)
+        st.markdown("Basada en la **Matriz de Oportunidad** (Heatmap):")
+        
+        st.markdown("**Objetivo:** Aumentar la tasa de conversión de 'Ocasional' a 'Diario' en segmentos de valor.")
+        
+        st.markdown("<ul>")
+        st.markdown(f"<li>**Foco de Retención (Variedades Estables):** Reforzar la disponibilidad de **Lempira** y **Pacas** en contextos de Oficina y Hogar. Este es el ingreso base, la fidelidad diaria.</li>")
+        st.markdown(f"<li>**Foco de Crecimiento (Variedades Premium):** Crear kits de iniciación y programas de suscripción para **Bourbon** y **Caturra**. Dirigido al consumidor de 25-45 años, cuyo alto potencial de gasto está actualmente clasificado como 'Ocasional'.</li>")
+        st.markdown(f"<li>**Innovación en Métodos:** Invertir en promocionar el **Cold Brew** y **Espresso**. Estos métodos dominan en la demografía más joven (menores de 35 años) y son la clave para atraer a la Generación Z.</li>")
+        st.markdown("</ul>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
 
-    # Gráfico de Predicción
-    if not df_proyeccion.empty:
+    # ------------------
+    # PILAR 2: DISTRIBUCIÓN
+    # ------------------
+    with col_dist:
+        st.markdown('<div class="decision-block">', unsafe_allow_html=True)
+        st.markdown("<h4>Estrategia de Distribución: Dominar el Contexto</h4>", unsafe_allow_html=True)
+        st.markdown("Basada en el **Análisis de Contexto** (Storytelling):")
         
-        # El gráfico combina el histórico (línea sólida) y la proyección (línea punteada/diferente color)
-        fig_pred = px.scatter(df_proyeccion, x='Año', y='Consumo', 
-                              color='Tipo', 
-                              color_discrete_map={'Histórico': '#CD853F', 'Proyección': '#A0522D'},
-                              title='Consumo Histórico vs. Proyección (Quintales de Café)',
-                              labels={'Consumo': 'Consumo Estimado (Quintales)', 'Año': 'Año', 'Tipo': 'Tipo de Dato'})
+        st.markdown("**Objetivo:** Capitalizar la transición de 'Hogar' a 'Oficina/Cafetería' como centro de consumo.")
         
-        # Añadir la línea de tendencia completa (Histórico + Proyección)
-        fig_pred.add_trace(go.Line(
-            x=df_proyeccion['Año'],
-            y=df_proyeccion['Consumo'],
-            mode='lines',
-            line=dict(color='#A0522D', width=3),
-            name='Línea de Tendencia'
-        ))
+        st.markdown("<ul>")
+        st.markdown(f"<li>**Expansión B2B (Oficina):** Crear convenios de suministro exclusivo con las 50 empresas más grandes. El consumo en la Oficina es el segundo más alto y garantiza una demanda semanal estable. </li>")
+        st.markdown(f"<li>**Geografía de Inversión:** Dirigir la inversión en nuevas cafeterías y puntos de venta a **Copán** y **Comayagua** (regiones con alta muestra), pero con atención prioritaria a **Montecillos** y **El Paraíso** para equilibrar el mercado.</li>")
+        st.markdown(f"<li>**Retail Inteligente:** Rediseñar el empaque para el canal de Hogar, enfatizando la **Región de Origen** (trazabilidad), que resuena con el consumidor más informado (30-45 años).</li>")
+        st.markdown("</ul>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
         
-        # Estilizar el gráfico
-        fig_pred.update_layout(plot_bgcolor="#3C2F2F", yaxis_gridcolor='#554444')
-        fig_pred.update_traces(marker=dict(size=10))
+    # ------------------
+    # PILAR 3: INVERSIÓN
+    # ------------------
+    with col_inv:
+        st.markdown('<div class="decision-block">', unsafe_allow_html=True)
+        st.markdown("<h4>Estrategia de Inversión: Escalar la Capacidad</h4>", unsafe_allow_html=True)
+        st.markdown(f"Basada en la **Proyección a 2030**:")
         
-        st.plotly_chart(fig_pred, use_container_width=True)
-
-        st.markdown('<div class="prediction-box">', unsafe_allow_html=True)
-        st.markdown(f"**PREDICCIÓN CLAVE 2030:**")
-        st.markdown(f"Se proyecta que el consumo interno alcanzará los **{consumo_2030:,.0f} quintales**.")
-        st.markdown(f"Esto representa una oportunidad de mercado de **+{crecimiento_proyectado:,.0f}%** en los próximos 6 años.")
-        st.markdown('</div>', unsafe_allow_html=True)
+        st.markdown(f"**Objetivo:** Asegurar una capacidad de producción y procesamiento para satisfacer una demanda de **{consumo_2030:,.0f} quintales**.")
         
-        st.markdown("---")
-        st.subheader("Análisis de Riesgo y Sensibilidad")
-        st.markdown("""
-        La predicción asume que los factores clave de crecimiento (urbanización, cultura de cafeterías, 
-        y cambio demográfico) continúan al ritmo actual.
-        """)
-        
-        col_risk1, col_risk2 = st.columns(2)
-        
-        with col_risk1:
-            st.info("""
-            **Riesgos a la Baja (Low-End):**
-            * Volatilidad en los precios de exportación que desvíe el foco del productor.
-            * Recesión económica que afecte el poder adquisitivo para cafés especiales.
-            * Cambios regulatorios o climáticos severos.
-            """)
-        with col_risk2:
-            st.success("""
-            **Potencial al Alza (High-End):**
-            * Inversión agresiva en infraestructura de cafeterías (mayor accesibilidad).
-            * Programas de educación de consumo patrocinados por IHCAFE o marcas.
-            * Aumento de la clase media que demanda más calidad y conveniencia.
-            """)
-            
-    else:
-        st.error("No se pudo generar el modelo predictivo debido a datos insuficientes.")
-        
+        st.markdown("<ul>")
+        st.markdown(f"<li>**Expansión de Tostado:** Planificar la inversión en 3 nuevas plantas de tostado de alta capacidad para el año 2028, anticipando la demanda del 2030. La capacidad actual no es sostenible con el crecimiento del **{crecimiento_proyectado:,.0f}%**.</li>")
+        st.markdown(f"<li>**Gestión de Inventario:** Mantener reservas de café verde premium para mitigar la volatilidad de precios en el mercado de exportación, asegurando que la demanda interna no afecte la calidad del producto. [Image of coffee bean warehouse]</li>")
+        st.markdown(f"<li>**Talento y Capacitación:** Lanzar un programa de certificación de baristas para profesionalizar el servicio en el canal HORECA (Hoteles, Restaurantes y Cafeterías), elevando la experiencia de consumo en los centros de crecimiento.</li>")
+        st.markdown("</ul>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
-# RESTO DE PESTAÑAS (Contenido anterior)
-# -----------------------------------------------------------------------------
-
 # Pestaña 1 (Panorama General)
+# -----------------------------------------------------------------------------
 with tab1:
     st.header("Panorama General y Dashboard Interactivo")
     
@@ -584,6 +589,76 @@ with tab_strategy:
         
     else:
         st.error("Datos insuficientes para generar el análisis estratégico de alto impacto.")
+
+
+# Pestaña 4 (Predicción)
+with tab_predict:
+    st.header("🔮 Proyección del Consumo Interno de Café en Honduras (Hasta 2030)")
+    st.markdown("""
+    Aplicamos un **Modelo de Regresión Polinomial de Grado 2** a los datos históricos 
+    (2014-2024) para proyectar el crecimiento acelerado del mercado hasta el año 2030.
+    Este modelo se basa en la tendencia no lineal observada en la última década.
+    """)
+    st.markdown("---")
+
+    # Gráfico de Predicción
+    if not df_proyeccion.empty:
+        
+        # El gráfico combina el histórico (línea sólida) y la proyección (línea punteada/diferente color)
+        fig_pred = px.scatter(df_proyeccion, x='Año', y='Consumo', 
+                              color='Tipo', 
+                              color_discrete_map={'Histórico': '#CD853F', 'Proyección': '#A0522D'},
+                              title='Consumo Histórico vs. Proyección (Quintales de Café)',
+                              labels={'Consumo': 'Consumo Estimado (Quintales)', 'Año': 'Año', 'Tipo': 'Tipo de Dato'})
+        
+        # Añadir la línea de tendencia completa (Histórico + Proyección)
+        fig_pred.add_trace(go.Line(
+            x=df_proyeccion['Año'],
+            y=df_proyeccion['Consumo'],
+            mode='lines',
+            line=dict(color='#A0522D', width=3),
+            name='Línea de Tendencia'
+        ))
+        
+        # Estilizar el gráfico
+        fig_pred.update_layout(plot_bgcolor="#3C2F2F", yaxis_gridcolor='#554444')
+        fig_pred.update_traces(marker=dict(size=10))
+        
+        st.plotly_chart(fig_pred, use_container_width=True)
+
+        st.markdown('<div class="prediction-box">', unsafe_allow_html=True)
+        st.markdown(f"**PREDICCIÓN CLAVE 2030:**")
+        st.markdown(f"Se proyecta que el consumo interno alcanzará los **{consumo_2030:,.0f} quintales**.")
+        st.markdown(f"Esto representa una oportunidad de mercado de **+{crecimiento_proyectado:,.0f}%** en los próximos 6 años.")
+        st.markdown('</div>', unsafe_allow_html=True)
+        
+        st.markdown("---")
+        st.subheader("Análisis de Riesgo y Sensibilidad")
+        st.markdown("""
+        La predicción asume que los factores clave de crecimiento (urbanización, cultura de cafeterías, 
+        y cambio demográfico) continúan al ritmo actual.
+        """)
+        
+        col_risk1, col_risk2 = st.columns(2)
+        
+        with col_risk1:
+            st.info("""
+            **Riesgos a la Baja (Low-End):**
+            * Volatilidad en los precios de exportación que desvíe el foco del productor.
+            * Recesión económica que afecte el poder adquisitivo para cafés especiales.
+            * Cambios regulatorios o climáticos severos.
+            """)
+        with col_risk2:
+            st.success("""
+            **Potencial al Alza (High-End):**
+            * Inversión agresiva en infraestructura de cafeterías (mayor accesibilidad).
+            * Programas de educación de consumo patrocinados por IHCAFE o marcas.
+            * Aumento de la clase media que demanda más calidad y conveniencia.
+            """)
+            
+    else:
+        st.error("No se pudo generar el modelo predictivo debido a datos insuficientes.")
+
 
 # Pestaña 5 (ADN del Consumidor)
 with tab2:
