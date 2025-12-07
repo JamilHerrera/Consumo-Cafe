@@ -21,8 +21,83 @@ COLOR_PALETTE = ['#4B3621', '#A0522D', '#D2691E', '#CD853F', '#F4A460', '#DEB887
 COLOR_CONTINUOUS = 'Sunsetdark' 
 
 # -----------------------------------------------------------------------------
-# 2. CARGAR RECURSOS EXTERNOS (CSS Y JS)
+# 2. CONFIGURACIÓN DE ESTILOS Y RECURSOS
 # -----------------------------------------------------------------------------
+### INICIO DE MODIFICACIÓN DE ARCHIVO (Solución al error de carga de CSS) ###
+# CSS EMBEBIDO: Inyectamos el CSS directamente para evitar el error "file not found".
+CUSTOM_CSS = """
+/* Fondo principal más suave (Crema) */
+.stApp {
+    background-color: #f8f5f2;
+}
+
+/* Estilo para las métricas (Tarjetas KPI) */
+div[data-testid="stMetric"] {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+div[data-testid="stMetric"]:hover {
+    transform: scale(1.02);
+    box-shadow: 4px 4px 10px rgba(75, 54, 33, 0.1);
+}
+
+/* Títulos personalizados */
+h1, h2, h3 {
+    color: #4a3b2a;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+/* Ajuste del color de las etiquetas de las métricas */
+div[data-testid="stMetricLabel"] {
+    color: #8b5a2b;
+    font-weight: bold;
+}
+
+/* Pestañas de Navegación (Tabs) */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 10px;
+}
+
+.stTabs [data-baseweb="tab"] {
+    height: 50px;
+    white-space: pre-wrap;
+    background-color: #ffffff;
+    border-radius: 4px 4px 0px 0px;
+    gap: 1px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #4a3b2a;
+    border: 1px solid #e0e0e0;
+    border-bottom: none;
+}
+
+.stTabs [aria-selected="true"] {
+    background-color: #4a3b2a;
+    color: white;
+}
+
+/* Footer */
+footer {
+    visibility: hidden;
+}
+
+.custom-footer {
+    text-align: center; 
+    color: #888;
+    padding: 20px;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 30px;
+}
+"""
+st.markdown(f'<style>{CUSTOM_CSS}</style>', unsafe_allow_html=True)
+
+
 def load_file_content(file_name):
     """Carga el contenido de un archivo externo de forma segura."""
     try:
@@ -36,22 +111,16 @@ def load_file_content(file_name):
         st.error(f"Error al leer el archivo {file_name}: {e}")
         return None
 
-def load_css(file_name):
-    css_content = load_file_content(file_name)
-    if css_content:
-        st.markdown(f'<style>{css_content}</style>', unsafe_allow_html=True)
-    else:
-        st.warning(f"⚠️ {file_name} no encontrado. El diseño puede variar.")
-
+# Eliminamos la función load_css, ahora cargamos el CSS directamente.
 def load_js(file_name):
     js_content = load_file_content(file_name)
     if js_content:
         st.markdown(f'<script>{js_content}</script>', unsafe_allow_html=True)
     # No mostramos warning por JS, ya que a veces es opcional o solo para logging
 
-# Cargamos los archivos si existen
-load_css("style.css")
+# Cargamos el archivo JS (CSS ya está embebido)
 load_js("script.js")
+### FIN DE MODIFICACIÓN DE ARCHIVO ###
 
 # -----------------------------------------------------------------------------
 # 3. CARGA DE DATOS
