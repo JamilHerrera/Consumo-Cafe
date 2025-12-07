@@ -25,34 +25,34 @@ COLOR_CONTINUOUS = 'Sunsetdark'
 # -----------------------------------------------------------------------------
 # CSS EMBEBIDO: Inyectamos el CSS directamente para evitar el error "file not found".
 CUSTOM_CSS = """
-/* FONDO PRINCIPAL MODIFICADO PARA MÁXIMO CONTRASTE Y TEMÁTICA DE CAFÉ */
+/* FONDO PRINCIPAL MODIFICADO A CAFÉ OSCURO PARA MÁXIMO CONTRASTE (Dark Espresso) */
 .stApp {
-    background-color: #FCF8F5; /* Nuevo color: Crema de Vainilla para mejor contraste */
+    background-color: #2C201C; 
 }
 
-/* Estilo para las métricas (Tarjetas KPI) */
+/* Estilo para las métricas (Tarjetas KPI), se mantienen blancas para contrastar con el fondo oscuro */
 div[data-testid="stMetric"] {
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
     text-align: center;
     transition: transform 0.2s ease-in-out;
 }
 
 div[data-testid="stMetric"]:hover {
     transform: scale(1.02);
-    box-shadow: 4px 4px 10px rgba(75, 54, 33, 0.1);
+    box-shadow: 4px 4px 10px rgba(255, 255, 255, 0.1);
 }
 
-/* Títulos personalizados: Color más oscuro (#3C2F2F Deep Espresso) para mayor legibilidad */
+/* Títulos personalizados: Cambiado a BLANCO para máxima legibilidad en el fondo oscuro */
 h1, h2, h3 {
-    color: #3C2F2F; 
+    color: #FFFFFF; 
     font-family: 'Helvetica Neue', sans-serif;
 }
 
-/* Ajuste del color de las etiquetas de las métricas: Oscurecido para asegurar contraste */
+/* Ajuste del color de las etiquetas de las métricas: Se mantienen oscuras para el contraste con el fondo BLANCO de la tarjeta KPI */
 div[data-testid="stMetricLabel"] {
     color: #3C2F2F; 
     font-weight: bold;
@@ -86,11 +86,12 @@ footer {
     visibility: hidden;
 }
 
+/* Texto del footer cambiado a gris claro para contraste en fondo oscuro */
 .custom-footer {
     text-align: center; 
-    color: #555; /* Oscurecido para mejor contraste */
+    color: #AAAAAA; 
     padding: 20px;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid #444444; /* Línea divisoria oscura */
     margin-top: 30px;
 }
 """
