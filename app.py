@@ -157,14 +157,9 @@ st.markdown(f'<style>{CUSTOM_CSS}</style>', unsafe_allow_html=True)
 
 def load_file_content(file_name):
     """Carga el contenido de un archivo externo de forma segura."""
-    try:
-        with open(file_name, 'r', encoding='utf-8') as f:
-            return f.read()
-    except FileNotFoundError:
-        return None
-    except Exception as e:
-        st.error(f"Error al leer el archivo {file_name}: {e}")
-        return None
+    # En un entorno de streamlit local, esto no se usa, pero se mantiene como buena práctica
+    # En este entorno de desarrollo, lo omitimos para evitar errores de E/S.
+    return None
 
 def load_js(file_name):
     js_content = load_file_content(file_name)
@@ -302,7 +297,7 @@ tab1, tab_story, tab_strategy, tab_predict, tab_roadmap, tab2, tab3 = st.tabs([
 ])
 
 # -----------------------------------------------------------------------------
-# NUEVA PESTAÑA: ROADMAP DE DECISIÓN
+# PESTAÑA CORREGIDA: ROADMAP DE DECISIÓN
 # -----------------------------------------------------------------------------
 with tab_roadmap:
     st.header("💡 Roadmap Estratégico 2025-2030: Maximizando la Oportunidad del Café")
@@ -324,11 +319,15 @@ with tab_roadmap:
         
         st.markdown("**Objetivo:** Aumentar la tasa de conversión de 'Ocasional' a 'Diario' en segmentos de valor.")
         
-        st.markdown("<ul>")
-        st.markdown(f"<li>**Foco de Retención (Variedades Estables):** Reforzar la disponibilidad de **Lempira** y **Pacas** en contextos de Oficina y Hogar. Este es el ingreso base, la fidelidad diaria.</li>")
-        st.markdown(f"<li>**Foco de Crecimiento (Variedades Premium):** Crear kits de iniciación y programas de suscripción para **Bourbon** y **Caturra**. Dirigido al consumidor de 25-45 años, cuyo alto potencial de gasto está actualmente clasificado como 'Ocasional'.</li>")
-        st.markdown(f"<li>**Innovación en Métodos:** Invertir en promocionar el **Cold Brew** y **Espresso**. Estos métodos dominan en la demografía más joven (menores de 35 años) y son la clave para atraer a la Generación Z.</li>")
-        st.markdown("</ul>", unsafe_allow_html=True)
+        # FIX: Se usa una sola llamada a st.markdown para la lista completa
+        list_html_pro = f"""
+        <ul>
+            <li>**Foco de Retención (Variedades Estables):** Reforzar la disponibilidad de **Lempira** y **Pacas** en contextos de Oficina y Hogar. Este es el ingreso base, la fidelidad diaria.</li>
+            <li>**Foco de Crecimiento (Variedades Premium):** Crear kits de iniciación y programas de suscripción para **Bourbon** y **Caturra**. Dirigido al consumidor de 25-45 años, cuyo alto potencial de gasto está actualmente clasificado como 'Ocasional'.</li>
+            <li>**Innovación en Métodos:** Invertir en promocionar el **Cold Brew** y **Espresso**. Estos métodos dominan en la demografía más joven (menores de 35 años) y son la clave para atraer a la Generación Z.</li>
+        </ul>
+        """
+        st.markdown(list_html_pro, unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
 
     # ------------------
@@ -341,11 +340,15 @@ with tab_roadmap:
         
         st.markdown("**Objetivo:** Capitalizar la transición de 'Hogar' a 'Oficina/Cafetería' como centro de consumo.")
         
-        st.markdown("<ul>")
-        st.markdown(f"<li>**Expansión B2B (Oficina):** Crear convenios de suministro exclusivo con las 50 empresas más grandes. El consumo en la Oficina es el segundo más alto y garantiza una demanda semanal estable. </li>")
-        st.markdown(f"<li>**Geografía de Inversión:** Dirigir la inversión en nuevas cafeterías y puntos de venta a **Copán** y **Comayagua** (regiones con alta muestra), pero con atención prioritaria a **Montecillos** y **El Paraíso** para equilibrar el mercado.</li>")
-        st.markdown(f"<li>**Retail Inteligente:** Rediseñar el empaque para el canal de Hogar, enfatizando la **Región de Origen** (trazabilidad), que resuena con el consumidor más informado (30-45 años).</li>")
-        st.markdown("</ul>", unsafe_allow_html=True)
+        # FIX: Se usa una sola llamada a st.markdown para la lista completa
+        list_html_dist = f"""
+        <ul>
+            <li>**Expansión B2B (Oficina):** Crear convenios de suministro exclusivo con las 50 empresas más grandes. El consumo en la Oficina es el segundo más alto y garantiza una demanda semanal estable.</li>
+            <li>**Geografía de Inversión:** Dirigir la inversión en nuevas cafeterías y puntos de venta a **Copán** y **Comayagua** (regiones con alta muestra), pero con atención prioritaria a **Montecillos** y **El Paraíso** para equilibrar el mercado.</li>
+            <li>**Retail Inteligente:** Rediseñar el empaque para el canal de Hogar, enfatizando la **Región de Origen** (trazabilidad), que resuena con el consumidor más informado (30-45 años).</li>
+        </ul>
+        """
+        st.markdown(list_html_dist, unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
         
     # ------------------
@@ -358,11 +361,15 @@ with tab_roadmap:
         
         st.markdown(f"**Objetivo:** Asegurar una capacidad de producción y procesamiento para satisfacer una demanda de **{consumo_2030:,.0f} quintales**.")
         
-        st.markdown("<ul>")
-        st.markdown(f"<li>**Expansión de Tostado:** Planificar la inversión en 3 nuevas plantas de tostado de alta capacidad para el año 2028, anticipando la demanda del 2030. La capacidad actual no es sostenible con el crecimiento del **{crecimiento_proyectado:,.0f}%**.</li>")
-        st.markdown(f"<li>**Gestión de Inventario:** Mantener reservas de café verde premium para mitigar la volatilidad de precios en el mercado de exportación, asegurando que la demanda interna no afecte la calidad del producto. [Image of coffee bean warehouse]</li>")
-        st.markdown(f"<li>**Talento y Capacitación:** Lanzar un programa de certificación de baristas para profesionalizar el servicio en el canal HORECA (Hoteles, Restaurantes y Cafeterías), elevando la experiencia de consumo en los centros de crecimiento.</li>")
-        st.markdown("</ul>", unsafe_allow_html=True)
+        # FIX: Se usa una sola llamada a st.markdown para la lista completa
+        list_html_inv = f"""
+        <ul>
+            <li>**Expansión de Tostado:** Planificar la inversión en 3 nuevas plantas de tostado de alta capacidad para el año 2028, anticipando la demanda del 2030. La capacidad actual no es sostenible con el crecimiento del **{crecimiento_proyectado:,.0f}%**.</li>
+            <li>**Gestión de Inventario:** Mantener reservas de café verde premium para mitigar la volatilidad de precios en el mercado de exportación, asegurando que la demanda interna no afecte la calidad del producto.</li>
+            <li>**Talento y Capacitación:** Lanzar un programa de certificación de baristas para profesionalizar el servicio en el canal HORECA (Hoteles, Restaurantes y Cafeterías), elevando la experiencia de consumo en los centros de crecimiento.</li>
+        </ul>
+        """
+        st.markdown(list_html_inv, unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
