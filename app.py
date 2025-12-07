@@ -153,6 +153,44 @@ with tab1:
     el hondureño solo toma café en casa.
     """)
 
+    st.markdown("###")
+    st.subheader("Detalle del Crecimiento Exponencial (2014-2024)")
+    
+    # Datos oficiales específicos para este gráfico
+    años_g = [2014, 2020, 2024]
+    consumo_g = [20000, 250000, 390000]
+
+    fig_growth = go.Figure()
+
+    fig_growth.add_trace(go.Scatter(
+        x=años_g,
+        y=consumo_g,
+        mode="lines+markers",
+        line=dict(color="#6b4226", width=3),
+        marker=dict(size=10, color="#8b5e3c"),
+        name="Consumo interno (quintales)"
+    ))
+
+    # Anotación del 1850%
+    fig_growth.add_annotation(
+        x=2024, y=390000,
+        text="↑ +1850% en 10 años",
+        showarrow=True,
+        arrowhead=2,
+        ax=-50, ay=-50,
+        font=dict(color="green", size=14, family="Arial Black")
+    )
+
+    fig_growth.update_layout(
+        title="Impacto del Auge Cafetero",
+        xaxis_title="Año",
+        yaxis_title="Quintales consumidos",
+        template="plotly_white",
+        height=450
+    )
+    st.plotly_chart(fig_growth, use_container_width=True)
+   
+
 with tab2:
     st.subheader("Segmentación Avanzada del Consumidor")
     
