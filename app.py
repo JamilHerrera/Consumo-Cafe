@@ -32,7 +32,7 @@ CUSTOM_CSS = """
 
 /* Estilo para las métricas (Tarjetas KPI), se mantienen blancas para contrastar con el fondo oscuro */
 div[data-testid="stMetric"] {
-    background-color: #ffffff;
+    background-color: #F5E5C9;
     border: 1px solid #e0e0e0;
     padding: 15px;
     border-radius: 10px;
