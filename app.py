@@ -2,9 +2,10 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import numpy as np # Necesario para la regresión polinomial (modelo predictivo)
 import os
 import sys
-import streamlit.components.v1 as components # Importamos para usar st.components.v1.html
+import streamlit.components.v1 as components
 
 # -----------------------------------------------------------------------------
 # 1. CONFIGURACIÓN DE PÁGINA
@@ -16,44 +17,42 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Paleta de colores "Coffee & Earth" (Discreta para gráficos como Pie, Sunburst)
+# Paleta de colores "Coffee & Earth"
 COLOR_PALETTE = ['#4B3621', '#A0522D', '#D2691E', '#CD853F', '#F4A460', '#DEB887', '#556B2F']
-# Paleta Continua (Plotly predefinida) para gráficos como Mapas de calor/Barras con gradiente
 COLOR_CONTINUOUS = 'Sunsetdark' 
 
 # -----------------------------------------------------------------------------
 # 2. CONFIGURACIÓN DE ESTILOS Y RECURSOS
 # -----------------------------------------------------------------------------
-# CSS EMBEBIDO: Inyectamos el CSS directamente para evitar el error "file not found".
 CUSTOM_CSS = """
 /* FONDO PRINCIPAL MODIFICADO A CAFÉ OSCURO PARA MÁXIMO CONTRASTE (Dark Espresso) */
 .stApp {
     background-color: #2C201C; 
 }
 
-/* Estilo para las métricas (Tarjetas KPI): Cambiado a color café claro/latte para mejor contraste con el fondo oscuro y tema */
+/* Estilo para las métricas (Tarjetas KPI) */
 div[data-testid="stMetric"] {
     background-color: #F5E5C9; /* Color: Latte claro */
     border: 1px solid #c9b493;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.4); /* Sombra más oscura para fondo oscuro */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
     text-align: center;
     transition: transform 0.2s ease-in-out;
 }
 
 div[data-testid="stMetric"]:hover {
     transform: scale(1.02);
-    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2); /* Sombra de brillo para destacar en fondo oscuro */
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
 }
 
-/* Títulos personalizados: Cambiado a BLANCO para máxima legibilidad en el fondo oscuro */
-h1, h2, h3 {
+/* Títulos personalizados: BLANCO */
+h1, h2, h3, h4 {
     color: #FFFFFF; 
     font-family: 'Helvetica Neue', sans-serif;
 }
 
-/* Ajuste del color de las etiquetas de las métricas: Se mantienen oscuras para el contraste con el fondo BLANCO de la tarjeta KPI */
+/* Ajuste del color de las etiquetas de las métricas */
 div[data-testid="stMetricLabel"] {
     color: #3C2F2F; 
     font-weight: bold;
@@ -82,6 +81,40 @@ div[data-testid="stMetricLabel"] {
     color: white;
 }
 
+/* Estilo específico para el texto de Storytelling */
+.story-chapter {
+    padding: 20px;
+    margin-bottom: 25px;
+    border-left: 5px solid #D2691E;
+    background-color: #3C2F2F;
+    border-radius: 8px;
+    color: #F5E5C9;
+}
+
+/* Estilo para los insights clave en la sección de estrategia */
+.insight-box {
+    background-color: #4B3621;
+    color: #F5E5C9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-style: italic;
+    border: 1px solid #D2691E;
+}
+
+/* Estilo específico para la proyección predictiva */
+.prediction-box {
+    background-color: #A0522D; /* Color terracota */
+    color: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 20px;
+    border: 3px solid #F4A460;
+}
+
 /* Footer */
 footer {
     visibility: hidden;
@@ -92,7 +125,7 @@ footer {
     text-align: center; 
     color: #AAAAAA; 
     padding: 20px;
-    border-top: 1px solid #444444; /* Línea divisoria oscura */
+    border-top: 1px solid #444444;
     margin-top: 30px;
 }
 """
@@ -102,13 +135,11 @@ st.markdown(f'<style>{CUSTOM_CSS}</style>', unsafe_allow_html=True)
 def load_file_content(file_name):
     """Carga el contenido de un archivo externo de forma segura."""
     try:
-        # Aseguramos la lectura con codificación UTF-8
         with open(file_name, 'r', encoding='utf-8') as f:
             return f.read()
     except FileNotFoundError:
         return None
     except Exception as e:
-        # Capturamos cualquier otro error de lectura
         st.error(f"Error al leer el archivo {file_name}: {e}")
         return None
 
@@ -116,45 +147,97 @@ def load_js(file_name):
     js_content = load_file_content(file_name)
     if js_content:
         st.markdown(f'<script>{js_content}</script>', unsafe_allow_html=True)
-    # No mostramos warning por JS, ya que a veces es opcional o solo para logging
 
 # Cargamos el archivo JS (CSS ya está embebido)
 load_js("script.js")
 
 # -----------------------------------------------------------------------------
-# 3. CARGA DE DATOS (Se mantienen para las otras pestañas de análisis)
+# 3. CARGA Y MODELADO DE DATOS 
 # -----------------------------------------------------------------------------
 @st.cache_data
 def load_data():
     try:
+        # Se asume que 'consumo_cafe_honduras.csv' está disponible
         df = pd.read_csv("consumo_cafe_honduras.csv")
+        # Generar una columna 'ID' si no existe, solo por si acaso
+        if 'ID' not in df.columns:
+            df['ID'] = range(1, len(df) + 1)
         return df
     except FileNotFoundError:
-        # Generar datos dummy si no se encuentra el archivo
         st.error("⚠️ Archivo 'consumo_cafe_honduras.csv' no encontrado. Usando datos de ejemplo para evitar fallas.")
         
-        # Generación de 100 filas de datos dummy
+        # Generación de 1000 filas de datos dummy
+        N = 1000
         data = {
-            "Variedad": (["Caturra", "Bourbon", "Pacas", "Lempira", "Typica"] * 20)[:100],
-            "Preparación": (["Colado", "Espresso", "Cold brew", "Cappuccino", "De olla"] * 20)[:100],
-            "Región": (["Copán", "Comayagua", "Agalta", "El Paraíso", "Montecillos"] * 20)[:100],
-            "Contexto": (["Hogar", "Oficina", "Cafetería"] * 33 + ["Hogar"])[1:101],
-            "Frecuencia": (["Diario", "Semanal", "Ocasional"] * 33 + ["Diario"])[1:101],
-            "Edad": ([25, 30, 45, 22, 55, 60, 35, 28, 40, 50] * 10)[:100]
+            "ID": range(1, N + 1),
+            "Variedad": (["Caturra", "Bourbon", "Pacas", "Lempira", "Typica"] * (N // 5 + 1))[:N],
+            "Preparación": (["Colado", "Espresso", "Cold brew", "Cappuccino", "De olla", "Instantáneo"] * (N // 6 + 1))[:N],
+            "Región": (["Copán", "Comayagua", "Agalta", "El Paraíso", "Montecillos", "Opalaca"] * (N // 6 + 1))[:N],
+            "Contexto": (["Hogar", "Oficina", "Cafetería"] * (N // 3 + 1))[:N],
+            "Frecuencia": (["Diario", "Semanal", "Ocasional"] * (N // 3 + 1))[:N],
+            "Edad": np.random.randint(18, 65, N) 
         }
         return pd.DataFrame(data)
 
+# Datos "Oficiales" (Hardcoded para el contexto macro)
+# Estos datos muestran un crecimiento no lineal (acelerado)
+df_oficial = pd.DataFrame({
+    "Año": [2014, 2016, 2018, 2020, 2022, 2024],
+    "Consumo": [20000, 80000, 150000, 250000, 320000, 390000] # Consumo en quintales
+})
 
 df = load_data()
 
-# Datos "Oficiales" (Hardcoded para el contexto macro)
-df_oficial = pd.DataFrame({
-    "Año": [2014, 2016, 2018, 2020, 2022, 2024],
-    "Consumo": [20000, 80000, 150000, 250000, 320000, 390000]
-})
+# -----------------------------------------------------------------------------
+# 4. MODELO PREDICTIVO (REGRESIÓN POLINOMIAL)
+# -----------------------------------------------------------------------------
+def predict_coffee_consumption(df_history, years_to_predict=6, degree=2):
+    """
+    Entrena un modelo de regresión polinomial y predice el consumo futuro.
+    
+    Args:
+        df_history (pd.DataFrame): DataFrame con columnas 'Año' y 'Consumo'.
+        years_to_predict (int): Número de años para proyectar (ej. 2025-2030 = 6 años).
+        degree (int): Grado del polinomio (2 para crecimiento cuadrático/acelerado).
+        
+    Returns:
+        pd.DataFrame: DataFrame combinado con datos históricos y predicciones.
+    """
+    # 1. Preparar datos de entrenamiento
+    X = df_history['Año'].values
+    y = df_history['Consumo'].values
+    
+    # 2. Entrenar el modelo (Ajustar un polinomio de grado 'degree' a los datos)
+    # Coeficientes: p[0]*x**2 + p[1]*x**1 + p[2]*x**0
+    coefficients = np.polyfit(X, y, degree)
+    polynomial = np.poly1d(coefficients)
+    
+    # 3. Generar años futuros para la predicción
+    last_year = df_history['Año'].max()
+    prediction_years = np.arange(last_year + 1, last_year + years_to_predict + 1)
+    
+    # 4. Generar las predicciones
+    predicted_consumption = polynomial(prediction_years)
+    
+    # 5. Crear DataFrame de predicciones
+    df_predictions = pd.DataFrame({
+        'Año': prediction_years,
+        'Consumo': predicted_consumption.round(0).astype(int),
+        'Tipo': 'Proyección'
+    })
+    
+    # 6. Combinar con datos históricos
+    df_history['Tipo'] = 'Histórico'
+    df_combined = pd.concat([df_history, df_predictions], ignore_index=True)
+    
+    return df_combined, polynomial
+
+# Entrenar y obtener el modelo
+df_proyeccion, model_polynomial = predict_coffee_consumption(df_oficial.copy(), years_to_predict=6, degree=2)
+
 
 # -----------------------------------------------------------------------------
-# 4. ENCABEZADO (HERO SECTION)
+# 5. ENCABEZADO (HERO SECTION)
 # -----------------------------------------------------------------------------
 col_logo, col_title = st.columns([1, 5])
 with col_logo:
@@ -166,7 +249,7 @@ with col_title:
 st.markdown("---")
 
 # -----------------------------------------------------------------------------
-# 5. DASHBOARD INTERACTIVO
+# 6. DASHBOARD INTERACTIVO
 # -----------------------------------------------------------------------------
 
 # --- KPI ROW (FILA DE MÉTRICAS) ---
@@ -181,26 +264,149 @@ else:
     metodo_top = "-"
     edad_promedio = 0
 
-kpi1, kpi2, kpi3, kpi4 = st.columns(4)
+# Obtener la predicción para 2030 y el crecimiento total proyectado
+consumo_2030 = df_proyeccion[df_proyeccion['Año'] == 2030]['Consumo'].iloc[0] if not df_proyeccion.empty and 2030 in df_proyeccion['Año'].values else 0
+consumo_2024 = df_oficial[df_oficial['Año'] == 2024]['Consumo'].iloc[0] if not df_oficial.empty and 2024 in df_oficial['Año'].values else 1 # Evitar división por cero
+crecimiento_proyectado = ((consumo_2030 - consumo_2024) / consumo_2024) * 100 if consumo_2024 > 0 else 0
+
+kpi1, kpi2, kpi3, kpi_pred = st.columns(4)
 kpi1.metric("Muestra Analizada", f"{total_encuestados}", "Personas encuestadas")
 kpi2.metric("Región Dominante", region_top, "Mayor participación")
 kpi3.metric("Método Favorito", metodo_top, "Tendencia #1")
-kpi4.metric("Edad Promedio", f"{edad_promedio} años", "Perfil del consumidor")
+kpi_pred.metric("Consumo Proyectado (2030)", f"{consumo_2030:,.0f} Quintales", f"Crecimiento del {crecimiento_proyectado:,.0f}% vs. 2024")
 
 st.markdown("###") # Espacio
 
 # --- PESTAÑAS DE NAVEGACIÓN ---
-tab1, tab_story, tab_strategy, tab2, tab3 = st.tabs([
+tab1, tab_story, tab_strategy, tab_predict, tab2, tab3 = st.tabs([
     "📊 Panorama General", 
     "📖 El Viaje del Consumidor", 
-    "🎯 Estrategia y Segmentación", # NUEVA PESTAÑA
+    "🎯 Estrategia y Segmentación",
+    "🔮 Proyección de Consumo", # NUEVA PESTAÑA
     "🧬 ADN del Consumidor", 
     "🗺️ Mapa & Datos"
 ])
 
 # -----------------------------------------------------------------------------
-# STORYTELLING TAB (NUEVA PESTAÑA)
+# NUEVA PESTAÑA: PREDICCIÓN
 # -----------------------------------------------------------------------------
+with tab_predict:
+    st.header("🔮 Proyección del Consumo Interno de Café en Honduras (Hasta 2030)")
+    st.markdown("""
+    Aplicamos un **Modelo de Regresión Polinomial de Grado 2** a los datos históricos 
+    (2014-2024) para proyectar el crecimiento acelerado del mercado hasta el año 2030.
+    Este modelo se basa en la tendencia no lineal observada en la última década.
+    """)
+    st.markdown("---")
+
+    # Gráfico de Predicción
+    if not df_proyeccion.empty:
+        
+        # El gráfico combina el histórico (línea sólida) y la proyección (línea punteada/diferente color)
+        fig_pred = px.scatter(df_proyeccion, x='Año', y='Consumo', 
+                              color='Tipo', 
+                              color_discrete_map={'Histórico': '#CD853F', 'Proyección': '#A0522D'},
+                              title='Consumo Histórico vs. Proyección (Quintales de Café)',
+                              labels={'Consumo': 'Consumo Estimado (Quintales)', 'Año': 'Año', 'Tipo': 'Tipo de Dato'})
+        
+        # Añadir la línea de tendencia completa (Histórico + Proyección)
+        fig_pred.add_trace(go.Line(
+            x=df_proyeccion['Año'],
+            y=df_proyeccion['Consumo'],
+            mode='lines',
+            line=dict(color='#A0522D', width=3),
+            name='Línea de Tendencia'
+        ))
+        
+        # Estilizar el gráfico
+        fig_pred.update_layout(plot_bgcolor="#3C2F2F", yaxis_gridcolor='#554444')
+        fig_pred.update_traces(marker=dict(size=10))
+        
+        st.plotly_chart(fig_pred, use_container_width=True)
+
+        st.markdown('<div class="prediction-box">', unsafe_allow_html=True)
+        st.markdown(f"**PREDICCIÓN CLAVE 2030:**")
+        st.markdown(f"Se proyecta que el consumo interno alcanzará los **{consumo_2030:,.0f} quintales**.")
+        st.markdown(f"Esto representa una oportunidad de mercado de **+{crecimiento_proyectado:,.0f}%** en los próximos 6 años.")
+        st.markdown('</div>', unsafe_allow_html=True)
+        
+        st.markdown("---")
+        st.subheader("Análisis de Riesgo y Sensibilidad")
+        st.markdown("""
+        La predicción asume que los factores clave de crecimiento (urbanización, cultura de cafeterías, 
+        y cambio demográfico) continúan al ritmo actual.
+        """)
+        
+        col_risk1, col_risk2 = st.columns(2)
+        
+        with col_risk1:
+            st.info("""
+            **Riesgos a la Baja (Low-End):**
+            * Volatilidad en los precios de exportación que desvíe el foco del productor.
+            * Recesión económica que afecte el poder adquisitivo para cafés especiales.
+            * Cambios regulatorios o climáticos severos.
+            """)
+        with col_risk2:
+            st.success("""
+            **Potencial al Alza (High-End):**
+            * Inversión agresiva en infraestructura de cafeterías (mayor accesibilidad).
+            * Programas de educación de consumo patrocinados por IHCAFE o marcas.
+            * Aumento de la clase media que demanda más calidad y conveniencia.
+            """)
+            
+    else:
+        st.error("No se pudo generar el modelo predictivo debido a datos insuficientes.")
+        
+
+# -----------------------------------------------------------------------------
+# RESTO DE PESTAÑAS (Contenido anterior)
+# -----------------------------------------------------------------------------
+
+# Pestaña 1 (Panorama General)
+with tab1:
+    st.header("Panorama General y Dashboard Interactivo")
+    
+    # URL de Power BI proporcionada por el usuario (incrustada)
+    power_bi_iframe = """
+    <iframe title="proyecto" width="100%" height="700" 
+            src="https://app.powerbi.com/view?r=eyJrIjoiMDdjNWU5MDctMTlmNC00MWJjLWIwNmYtNGMwMDM5NzQyNjUxIiwidCI6ImFmMmZkMTk2LTFkOWYtNDdiNC05MDY5LTM5MWE0NmY4MzYwMSIsImMiOjR9" 
+            frameborder="0" allowFullScreen="true">
+    </iframe>
+    """
+    
+    # Se incrusta el Power BI (reporte completo)
+    st.subheader("Reporte Completo de Power BI")
+    components.html(power_bi_iframe, height=750, scrolling=True)
+    
+    st.markdown("---")
+    st.subheader("Análisis de Crecimiento (Plotly)")
+    
+    # Gráfico de Plotly debajo del Power BI
+    col_left, col_right = st.columns([2, 1])
+    
+    with col_left:
+        fig_trend = px.area(df_oficial, x="Año", y="Consumo", 
+                            title="Evolución Histórica en Quintales (Datos IHCAFE)",
+                            markers=True, color_discrete_sequence=['#8B4513'])
+        fig_trend.update_layout(plot_bgcolor="rgba(0,0,0,0)", yaxis_gridcolor='#e0e0e0')
+        st.plotly_chart(fig_trend, use_container_width=True)
+        
+    with col_right:
+        if not df.empty and 'Contexto' in df.columns:
+            fig_pie = px.pie(df, names='Contexto', hole=0.6, 
+                             color_discrete_sequence=COLOR_PALETTE,
+                             title="Distribución por Contexto de Consumo")
+            st.plotly_chart(fig_pie, use_container_width=True)
+        else:
+            st.info("No hay datos de contexto disponibles.")
+
+    st.info("""
+    💡 **Insight:** El consumo interno ha crecido un **1,850% en la última década**, 
+    impulsado fuertemente por el consumo en **Oficinas y Cafeterías**, rompiendo el mito de que 
+    el hondureño solo toma café en casa.
+    """)
+
+# Pestaña 2 (Storytelling)
 with tab_story:
     st.header("📖 El Viaje de la Taza: Transformación del Consumo de Café en Honduras")
     st.markdown("""
@@ -276,7 +482,6 @@ with tab_story:
     
     if not df.empty and all(col in df.columns for col in ['Variedad', 'Edad']):
         
-        # Filtramos para mostrar solo los 5 más comunes para claridad en la historia
         top_varieties = df['Variedad'].value_counts().nlargest(5).index
         df_top_varieties = df[df['Variedad'].isin(top_varieties)]
         
@@ -290,8 +495,7 @@ with tab_story:
         st.markdown(f"""
         **La Demografía:** La edad promedio del consumidor se mantiene en los **{edad_promedio} años**, 
         pero el consumo de variedades más finas como **Bourbon** y **Caturra** está concentrado 
-        en rangos de edad más jóvenes (visualmente en el gráfico de caja, se puede inferir 
-        que el rango intercuartílico es más bajo para estas variedades).
+        en rangos de edad más jóvenes.
         
         El consumidor hondureño ya no pregunta solo por "café", sino por el origen (**Copán**, **Montecillos**) 
         y la variedad (**Pacas**, **Typica**), demostrando un profundo nivel de **Madurez del Mercado**.
@@ -300,6 +504,8 @@ with tab_story:
         st.warning("Datos insuficientes para el análisis demográfico del Storytelling.")
         
     st.markdown('</div>', unsafe_allow_html=True)
+
+# Pestaña 3 (Estrategia)
 with tab_strategy:
     st.header("🎯 Estrategia Accionable: Mapa de Oportunidades de Mercado")
     st.markdown("""
@@ -311,26 +517,20 @@ with tab_strategy:
     if not df.empty and all(col in df.columns for col in ['Variedad', 'Frecuencia', 'Edad']):
         
         # --- 1. MATRIZ DE OPORTUNIDAD (HEATMAP) ---
-        
-        # Cruzamos Frecuencia (Y) y Variedad (X)
         df_crosstab = pd.crosstab(df['Frecuencia'], df['Variedad'])
-        
-        # Reordenamos los ejes para mejor lectura
         frecuencia_order = ['Diario', 'Semanal', 'Ocasional']
         df_crosstab = df_crosstab.reindex(frecuencia_order, axis=0).fillna(0)
         
-        # Convertimos a formato para Plotly
         z = df_crosstab.values
         x = df_crosstab.columns
         y = df_crosstab.index
         
-        # Crear el Heatmap
         fig_heatmap = go.Figure(data=go.Heatmap(
                 z=z,
                 x=x,
                 y=y,
-                colorscale=COLOR_CONTINUOUS, # Utilizamos la paleta de café
-                text=[[str(val) for val in row] for row in z], # Muestra el número de conteo
+                colorscale=COLOR_CONTINUOUS, 
+                text=[[str(val) for val in row] for row in z],
                 texttemplate="%{text}",
                 hovertemplate="Variedad: %{x}<br>Frecuencia: %{y}<br>Conteo: %{z}<extra></extra>"
             ))
@@ -346,8 +546,8 @@ with tab_strategy:
         st.markdown('<div class="insight-box">', unsafe_allow_html=True)
         st.markdown("""
         #### **🚀 Insights Estratégicos del Heatmap**
-        * **Zona de Fidelidad Máxima (Consolidación):** Observa dónde se cruzan los consumidores **"Diarios"** con la variedad **'Lempira'**. Esta es nuestra base de clientes más fiel. La estrategia aquí es la retención y la venta cruzada (cross-selling) de productos complementarios.
-        * **Nicho Desatendido (Oportunidad):** Busca variedades de alta calidad (ej. **Bourbon** o **Caturra**) con baja frecuencia (**"Ocasional"**). Este segmento ama la calidad, pero no ha sido convertido al consumo diario/semanal. La campaña debe enfocarse en la **accesibilidad** y la **rutina**.
+        * **Zona de Fidelidad Máxima (Consolidación):** Observa dónde se cruzan los consumidores **"Diarios"** con las variedades tradicionales. La estrategia aquí es la retención.
+        * **Nicho Desatendido (Oportunidad):** Busca variedades de alta calidad (ej. **Bourbon** o **Caturra**) con baja frecuencia (**"Ocasional"**). La campaña debe enfocarse en la **accesibilidad** y la **rutina**.
         """)
         st.markdown('</div>', unsafe_allow_html=True)
         
@@ -355,24 +555,17 @@ with tab_strategy:
         
         # --- 2. SEGMENTACIÓN POR VALOR (Edad vs. Frecuencia) ---
         st.subheader("Segmento de Mayor Potencial de Gasto (RFM Simplificado)")
-        st.markdown("""
-        Cruzamos la Frecuencia (Fidelidad) con la Edad (Indicador de Ingreso/Poder Adquisitivo) para 
-        identificar al "Consumidor Valioso" y al "Consumidor de Futuro".
-        """)
         
-        # Creamos una columna de Gasto Potencial (simplificado: Diario=3, Semanal=2, Ocasional=1)
         gasto_mapping = {'Diario': 3, 'Semanal': 2, 'Ocasional': 1}
         df['GastoPotencial'] = df['Frecuencia'].map(gasto_mapping)
         
-        # Creamos el Scatter Plot (Gráfico de Burbujas)
-        # Tamaño de la burbuja por la Preparación (cuántos métodos diferentes prueba)
         df_scatter = df.groupby(['Edad', 'Frecuencia'], as_index=False).agg(
             Conteo=('ID', 'size'),
             DiversidadMetodo=('Preparación', 'nunique')
         )
 
         fig_scatter = px.scatter(df_scatter, x='Edad', y='Frecuencia', size='Conteo', 
-                                 color='DiversidadMetodo', # Color por cuántos métodos diferentes prueban
+                                 color='DiversidadMetodo', 
                                  color_continuous_scale='Inferno',
                                  log_x=False, size_max=40,
                                  category_orders={"Frecuencia": frecuencia_order},
@@ -384,38 +577,15 @@ with tab_strategy:
         st.markdown('<div class="insight-box">', unsafe_allow_html=True)
         st.markdown("""
         #### **💰 Segmentos Clave de Valor**
-        * **El Consumidor Premium (Alto Valor):** Individuos en el rango de **30-45 años** que consumen **"Diario"** y muestran alta **Diversidad de Métodos** (color amarillo/blanco). Ellos están dispuestos a pagar por una experiencia variada y constante.
-        * **El Consumidor de Mañana (Potencial):** Jóvenes **menores de 25 años** que consumen **"Semanal"**. Requieren educación sobre la rutina cafetera para pasar a la frecuencia "Diario".
+        * **El Consumidor Premium (Alto Valor):** Individuos en el rango de **30-45 años** que consumen **"Diario"** y muestran alta **Diversidad de Métodos**.
+        * **El Consumidor de Mañana (Potencial):** Jóvenes **menores de 25 años** que consumen **"Semanal"**. Requieren educación para la fidelización diaria.
         """)
         st.markdown('</div>', unsafe_allow_html=True)
         
     else:
         st.error("Datos insuficientes para generar el análisis estratégico de alto impacto.")
 
-
-with tab1:
-    st.subheader("Dashboard de Power BI Integrado")
-    
-    
-    # URL de Power BI proporcionada por el usuario (incrustada)
-    power_bi_iframe = """
-    <iframe title="proyecto" width="100%" height="600" 
-            src="https://app.powerbi.com/view?r=eyJrIjoiMDdjNWU5MDctMTlmNC00MWJjLWIwNmYtNGMwMDM5NzQyNjUxIiwidCI6ImFmMmZkMTk2LTFkOWYtNDdiNC05MDY5LTM5MWE0NmY4MzYwMSIsImMiOjR9" 
-            frameborder="0" allowFullScreen="true">
-    </iframe>
-    """
-    
-    # Usamos st.components.v1.html para incrustar el iframe
-    components.html(power_bi_iframe, height=650, scrolling=True)
-
-    # Texto narrativo destacado (Mantenemos el texto)
-    st.info("""
-    💡 **Insight (del análisis original):** El consumo interno ha crecido un **1,850% en la última década**, 
-    impulsado fuertemente por el consumo en **Oficinas y Cafeterías**, rompiendo el mito de que 
-    el hondureño solo toma café en casa.
-    """)
-    
-
+# Pestaña 5 (ADN del Consumidor)
 with tab2:
     st.subheader("Segmentación Avanzada del Consumidor")
     
@@ -437,7 +607,7 @@ with tab2:
             (df['Edad'] <= rango_edad[1])
         ]
 
-        # GRÁFICO SUNBURST
+        # GRÁFICO SUNBURST Y BOXPLOT - Separados en columnas
         col_sun, col_bar = st.columns([1.5, 1])
         
         with col_sun:
@@ -452,7 +622,6 @@ with tab2:
 
         with col_bar:
             st.markdown("**Frecuencia por Rango de Edad**")
-            # Box plot para ver distribución
             if not df_filtered.empty and all(col in df.columns for col in ['Frecuencia', 'Edad']):
                 fig_box = px.box(df_filtered, x="Frecuencia", y="Edad", color="Frecuencia",
                                     color_discrete_sequence=COLOR_PALETTE)
@@ -462,16 +631,16 @@ with tab2:
     else:
         st.error("No se han cargado datos para el análisis detallado.")
 
+# Pestaña 6 (Mapa & Datos)
 with tab3:
     col_map, col_raw = st.columns([1, 1])
     
     with col_map:
-        st.subheader("Intensidad por Región")
+        st.subheader("Intensidad de Muestra por Región")
         if not df.empty and 'Región' in df.columns:
             conteo_region = df['Región'].value_counts().reset_index()
             conteo_region.columns = ['Región', 'Encuestados']
             
-            # El fix para el ValueError: se usa COLOR_CONTINUOUS
             fig_map = px.bar(conteo_region, y='Región', x='Encuestados', orientation='h',
                              color='Encuestados', 
                              color_continuous_scale=COLOR_CONTINUOUS, 
@@ -494,7 +663,8 @@ with tab3:
                 mime='text/csv',
             )
 
+
 # -----------------------------------------------------------------------------
-# 6. FOOTER
+# 7. FOOTER
 # -----------------------------------------------------------------------------
 st.markdown('<div class="custom-footer">Proyecto de Ciencias de Datos | Honduras 2025 | Datos fuente: Encuestas propias & IHCAFE</div>', unsafe_allow_html=True)
