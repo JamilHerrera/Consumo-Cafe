@@ -23,12 +23,11 @@ COLOR_CONTINUOUS = 'Sunsetdark'
 # -----------------------------------------------------------------------------
 # 2. CONFIGURACIÓN DE ESTILOS Y RECURSOS
 # -----------------------------------------------------------------------------
-### INICIO DE MODIFICACIÓN DE ARCHIVO (Solución al error de carga de CSS) ###
 # CSS EMBEBIDO: Inyectamos el CSS directamente para evitar el error "file not found".
 CUSTOM_CSS = """
-/* Fondo principal más suave (Crema) */
+/* FONDO PRINCIPAL MODIFICADO PARA MEJOR CONTRASTE Y TEMÁTICA DE CAFÉ */
 .stApp {
-    background-color: #f8f5f2;
+    background-color: #F4EFE9; /* Nuevo color: Mocha Suave */
 }
 
 /* Estilo para las métricas (Tarjetas KPI) */
@@ -111,7 +110,6 @@ def load_file_content(file_name):
         st.error(f"Error al leer el archivo {file_name}: {e}")
         return None
 
-# Eliminamos la función load_css, ahora cargamos el CSS directamente.
 def load_js(file_name):
     js_content = load_file_content(file_name)
     if js_content:
@@ -120,7 +118,6 @@ def load_js(file_name):
 
 # Cargamos el archivo JS (CSS ya está embebido)
 load_js("script.js")
-### FIN DE MODIFICACIÓN DE ARCHIVO ###
 
 # -----------------------------------------------------------------------------
 # 3. CARGA DE DATOS
