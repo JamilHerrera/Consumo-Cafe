@@ -378,10 +378,10 @@ with tab_roadmap:
 with tab1:
     st.header("Panorama General y Dashboard Interactivo")
     
-    # URL de Power BI proporcionada por el usuario (incrustada)
+    # Nuevo Iframe de Power BI proporcionado por el usuario
     power_bi_iframe = """
     <iframe title="proyecto" width="100%" height="700" 
-            src="<iframe title="proyecto" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiMDdjNWU5MDctMTlmNC00MWJjLWIwNmYtNGMwMDM5NzQyNjUxIiwidCI6ImFmMmZkMTk2LTFkOWYtNDdiNC05MDY5LTM5MWE0NmY4MzYwMSIsImMiOjR9&pageName=26513b8306c77008142e" frameborder="0" allowFullScreen="true"></iframe>" 
+            src="https://app.powerbi.com/view?r=eyJrIjoiMDdjNWU5MDctMTlmNC00MWJjLWIwNmYtNGMwMDM5NzQyNjUxIiwidCI6ImFmMmZkMTk2LTFkOWYtNDdiNC05MDY5LTM5MWE0NmY4MzYwMSIsImMiOjR9&pageName=26513b8306c77008142e" 
             frameborder="0" allowFullScreen="true">
     </iframe>
     """
