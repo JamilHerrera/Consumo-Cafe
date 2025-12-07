@@ -189,7 +189,7 @@ with tab1:
         height=450
     )
     st.plotly_chart(fig_growth, use_container_width=True)
-   
+    
 
 with tab2:
     st.subheader("Segmentación Avanzada del Consumidor")
@@ -219,8 +219,8 @@ with tab2:
             st.markdown("**Patrones de Consumo: Región ➡ Variedad ➡ Preparación**")
             if not df_filtered.empty and all(col in df.columns for col in ['Región', 'Variedad', 'Preparación']):
                 fig_sun = px.sunburst(df_filtered, path=['Región', 'Variedad', 'Preparación'], 
-                                      color_discrete_sequence=COLOR_PALETTE,
-                                      height=500)
+                                        color_discrete_sequence=COLOR_PALETTE,
+                                        height=500)
                 st.plotly_chart(fig_sun, use_container_width=True)
             else:
                 st.warning("No hay datos suficientes para generar el gráfico radial.")
@@ -230,7 +230,7 @@ with tab2:
             # Box plot para ver distribución
             if not df_filtered.empty and all(col in df.columns for col in ['Frecuencia', 'Edad']):
                 fig_box = px.box(df_filtered, x="Frecuencia", y="Edad", color="Frecuencia",
-                                 color_discrete_sequence=COLOR_PALETTE)
+                                    color_discrete_sequence=COLOR_PALETTE)
                 st.plotly_chart(fig_box, use_container_width=True)
             else:
                 st.warning("No hay datos para el gráfico de caja.")
