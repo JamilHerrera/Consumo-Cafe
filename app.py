@@ -322,9 +322,9 @@ with tab_roadmap:
         # FIX: Se usa una sola llamada a st.markdown para la lista completa
         list_html_pro = f"""
         <ul>
-            <li>**Foco de Retención (Variedades Estables):** Reforzar la disponibilidad de **Lempira** y **Pacas** en contextos de Oficina y Hogar. Este es el ingreso base, la fidelidad diaria.</li>
-            <li>**Foco de Crecimiento (Variedades Premium):** Crear kits de iniciación y programas de suscripción para **Bourbon** y **Caturra**. Dirigido al consumidor de 25-45 años, cuyo alto potencial de gasto está actualmente clasificado como 'Ocasional'.</li>
-            <li>**Innovación en Métodos:** Invertir en promocionar el **Cold Brew** y **Espresso**. Estos métodos dominan en la demografía más joven (menores de 35 años) y son la clave para atraer a la Generación Z.</li>
+            <li>Foco de Retención (Variedades Estables):Reforzar la disponibilidad de Lempiray Pacas en contextos de Oficina y Hogar. Este es el ingreso base, la fidelidad diaria.</li>
+            <li>Foco de Crecimiento (Variedades Premium): Crear kits de iniciación y programas de suscripción para Bourbon y Caturra. Dirigido al consumidor de 25-45 años, cuyo alto potencial de gasto está actualmente clasificado como 'Ocasional'.</li>
+            <li>Innovación en Métodos:Invertir en promocionar el Cold Brew y Espresso. Estos métodos dominan en la demografía más joven (menores de 35 años) y son la clave para atraer a la Generación Z.</li>
         </ul>
         """
         st.markdown(list_html_pro, unsafe_allow_html=True)
@@ -343,9 +343,9 @@ with tab_roadmap:
         # FIX: Se usa una sola llamada a st.markdown para la lista completa
         list_html_dist = f"""
         <ul>
-            <li>**Expansión B2B (Oficina):** Crear convenios de suministro exclusivo con las 50 empresas más grandes. El consumo en la Oficina es el segundo más alto y garantiza una demanda semanal estable.</li>
-            <li>**Geografía de Inversión:** Dirigir la inversión en nuevas cafeterías y puntos de venta a **Copán** y **Comayagua** (regiones con alta muestra), pero con atención prioritaria a **Montecillos** y **El Paraíso** para equilibrar el mercado.</li>
-            <li>**Retail Inteligente:** Rediseñar el empaque para el canal de Hogar, enfatizando la **Región de Origen** (trazabilidad), que resuena con el consumidor más informado (30-45 años).</li>
+            <li>Expansión B2B (Oficina):Crear convenios de suministro exclusivo con las 50 empresas más grandes. El consumo en la Oficina es el segundo más alto y garantiza una demanda semanal estable.</li>
+            <li>Geografía de Inversión:Dirigir la inversión en nuevas cafeterías y puntos de venta a Copán y Comayagua (regiones con alta muestra), pero con atención prioritaria a **Montecillos** y **El Paraíso** para equilibrar el mercado.</li>
+            <li>Retail Inteligente:Rediseñar el empaque para el canal de Hogar, enfatizando la Región de Origen(trazabilidad), que resuena con el consumidor más informado (30-45 años).</li>
         </ul>
         """
         st.markdown(list_html_dist, unsafe_allow_html=True)
@@ -364,9 +364,9 @@ with tab_roadmap:
         # FIX: Se usa una sola llamada a st.markdown para la lista completa
         list_html_inv = f"""
         <ul>
-            <li>**Expansión de Tostado:** Planificar la inversión en 3 nuevas plantas de tostado de alta capacidad para el año 2028, anticipando la demanda del 2030. La capacidad actual no es sostenible con el crecimiento del **{crecimiento_proyectado:,.0f}%**.</li>
-            <li>**Gestión de Inventario:** Mantener reservas de café verde premium para mitigar la volatilidad de precios en el mercado de exportación, asegurando que la demanda interna no afecte la calidad del producto.</li>
-            <li>**Talento y Capacitación:** Lanzar un programa de certificación de baristas para profesionalizar el servicio en el canal HORECA (Hoteles, Restaurantes y Cafeterías), elevando la experiencia de consumo en los centros de crecimiento.</li>
+            <li>Expansión de Tostado:Planificar la inversión en 3 nuevas plantas de tostado de alta capacidad para el año 2028, anticipando la demanda del 2030. La capacidad actual no es sostenible con el crecimiento del{crecimiento_proyectado:,.0f}%.</li>
+            <li>Gestión de Inventario:Mantener reservas de café verde premium para mitigar la volatilidad de precios en el mercado de exportación, asegurando que la demanda interna no afecte la calidad del producto.</li>
+            <li>Talento y Capacitación:Lanzar un programa de certificación de baristas para profesionalizar el servicio en el canal HORECA (Hoteles, Restaurantes y Cafeterías), elevando la experiencia de consumo en los centros de crecimiento.</li>
         </ul>
         """
         st.markdown(list_html_inv, unsafe_allow_html=True)
@@ -391,7 +391,7 @@ with tab1:
     components.html(power_bi_iframe, height=750, scrolling=True)
     
     st.markdown("---")
-    st.subheader("Análisis de Crecimiento (Plotly)")
+    st.subheader("Análisis de Crecimiento")
     
     # Gráfico de Plotly debajo del Power BI
     col_left, col_right = st.columns([2, 1])
