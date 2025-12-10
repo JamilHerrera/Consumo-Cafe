@@ -6,6 +6,7 @@ import numpy as np # Necesario para la regresión polinomial (modelo predictivo)
 import os
 import sys
 import streamlit.components.v1 as components
+from sklearn.metrics import mean_squared_error, r2_score
 
 # -----------------------------------------------------------------------------
 # 1. CONFIGURACIÓN DE PÁGINA
@@ -205,6 +206,93 @@ df_oficial = pd.DataFrame({
 })
 
 df = load_data()
+def enhanced_prediction_model(df_history, years_to_predict=6, max_degree=3):
+    """
+    Modelo mejorado que selecciona automáticamente el mejor grado polinomial
+    usando validación y muestra intervalos de confianza.
+    """
+    X = df_history['Año'].values
+    y = df_history['Consumo'].values
+    
+    # Dividir datos para validación (si hay suficientes puntos)
+    if len(X) >= 6:
+        # Usamos los últimos 2 puntos para validación
+        X_train, X_val = X[:-2], X[-2:]
+        y_train, y_val = y[:-2], y[-2:]
+        use_validation = True
+    else:
+        X_train, y_train = X, y
+        use_validation = False
+    
+    best_degree = 2
+    best_model = None
+    best_score = float('inf')
+    
+    # Probar diferentes grados
+    for degree in range(1, max_degree + 1):
+        try:
+            coefficients = np.polyfit(X_train, y_train, degree)
+            polynomial = np.poly1d(coefficients)
+            
+            if use_validation:
+                y_pred_val = polynomial(X_val)
+                score = mean_squared_error(y_val, y_pred_val)
+            else:
+                y_pred_train = polynomial(X_train)
+                score = mean_squared_error(y_train, y_pred_train)
+            
+            if score < best_score:
+                best_score = score
+                best_degree = degree
+                best_model = polynomial
+        except:
+            continue
+    
+    # Entrenar modelo final con todos los datos usando el mejor grado
+    final_coefficients = np.polyfit(X, y, best_degree)
+    final_model = np.poly1d(final_coefficients)
+    
+    # Generar predicciones
+    last_year = df_history['Año'].max()
+    prediction_years = np.arange(last_year + 1, last_year + years_to_predict + 1)
+    predicted_consumption = final_model(prediction_years)
+    
+    # Calcular intervalos de confianza (simplificado)
+    residuals = y - final_model(X)
+    std_residuals = np.std(residuals)
+    conf_low = predicted_consumption - 1.96 * std_residuals
+    conf_high = predicted_consumption + 1.96 * std_residuals
+    
+    # Crear DataFrame de predicciones
+    df_predictions = pd.DataFrame({
+        'Año': prediction_years,
+        'Consumo': predicted_consumption.round(0).astype(int),
+        'Confianza_Baja': conf_low.round(0).astype(int),
+        'Confianza_Alta': conf_high.round(0).astype(int),
+        'Tipo': 'Proyección'
+    })
+    
+    # Datos históricos con intervalo (igual al valor real)
+    df_history['Tipo'] = 'Histórico'
+    df_history['Confianza_Baja'] = df_history['Consumo']
+    df_history['Confianza_Alta'] = df_history['Consumo']
+    
+    # Combinar
+    df_combined = pd.concat([df_history, df_predictions], ignore_index=True)
+    
+    # Métricas del modelo
+    y_pred_all = final_model(X)
+    r2 = r2_score(y, y_pred_all)
+    mse = mean_squared_error(y, y_pred_all)
+    
+    metrics = {
+        'grado_polinomio': best_degree,
+        'r2_score': r2,
+        'mse': mse,
+        'intervalo_confianza': std_residuals
+    }
+    
+    return df_combined, final_model, metrics
 
 # -----------------------------------------------------------------------------
 # 4. MODELO PREDICTIVO (REGRESIÓN POLINOMIAL)
@@ -243,7 +331,93 @@ def predict_coffee_consumption(df_history, years_to_predict=6, degree=2):
 # Entrenar y obtener el modelo
 df_proyeccion, model_polynomial = predict_coffee_consumption(df_oficial.copy(), years_to_predict=6, degree=2)
 
+# Entrenar el modelo mejorado para obtener las métricas
+df_proyeccion_mejorado, model_mejorado, metrics_modelo = enhanced_prediction_model(df_oficial.copy(), years_to_predict=6, max_degree=3)
 
+# ======================================================================
+# 6. SISTEMA DE RECOMENDACIONES AUTOMÁTICAS
+# ======================================================================
+@st.cache_data
+def generar_recomendaciones_automaticas(_df, df_proyeccion, df_oficial, metrics_modelo):
+    """
+    Genera recomendaciones estratégicas basadas en el análisis de datos.
+    """
+    recomendaciones = []
+    
+    # 1. ANÁLISIS DE TENDENCIAS DE CONSUMO
+    crecimiento_historico = ((df_oficial['Consumo'].iloc[-1] - df_oficial['Consumo'].iloc[0]) / 
+                            df_oficial['Consumo'].iloc[0]) * 100
+    
+    if crecimiento_historico > 100:
+        recomendaciones.append({
+            'categoria': '📈 TENDENCIA DE MERCADO',
+            'mensaje': f'El consumo interno ha crecido un {crecimiento_historico:.0f}% en {len(df_oficial)} años. Es un mercado en expansión acelerada.',
+            'prioridad': 'ALTA',
+            'accion': 'Aumentar capacidad de producción en un 30% para 2026'
+        })
+    
+    # 2. ANÁLISIS POR EDAD Y MÉTODO
+    if 'Edad' in _df.columns and 'Preparación' in _df.columns:
+        edad_coldbrew = _df[_df['Preparación'] == 'Cold brew']['Edad'].mean()
+        if edad_coldbrew < 35:
+            recomendaciones.append({
+                'categoria': '👥 DEMOGRAFÍA',
+                'mensaje': f'El Cold Brew es popular entre jóvenes ({edad_coldbrew:.0f} años promedio).',
+                'prioridad': 'MEDIA',
+                'accion': 'Lanzar campaña digital en redes sociales para menores de 35 años'
+            })
+    
+    # 3. ANÁLISIS POR FRECUENCIA
+    if 'Frecuencia' in _df.columns:
+        frecuencia_diaria = (_df['Frecuencia'] == 'Diario').mean() * 100
+        if frecuencia_diaria < 50:
+            recomendaciones.append({
+                'categoria': '🔄 FRECUENCIA',
+                'mensaje': f'Solo el {frecuencia_diaria:.1f}% consume café diariamente.',
+                'prioridad': 'ALTA',
+                'accion': 'Crear programa de fidelización con descuentos progresivos'
+            })
+    
+    # 4. ANÁLISIS POR REGIÓN
+    if 'Región' in _df.columns:
+        region_counts = _df['Región'].value_counts()
+        region_top = region_counts.index[0]
+        region_menos = region_counts.index[-1]
+        
+        if region_counts.iloc[0] > region_counts.iloc[-1] * 3:
+            recomendaciones.append({
+                'categoria': '🗺️ DISTRIBUCIÓN GEOGRÁFICA',
+                'mensaje': f'{region_top} domina el mercado vs {region_menos}.',
+                'prioridad': 'MEDIA',
+                'accion': f'Explorar oportunidades en {region_menos} con pilotos de cafeterías'
+            })
+    
+    # 5. PROYECCIÓN FUTURA
+    consumo_2030 = df_proyeccion[df_proyeccion['Año'] == 2030]['Consumo'].iloc[0]
+    consumo_2024 = df_oficial[df_oficial['Año'] == 2024]['Consumo'].iloc[0]
+    crecimiento_proyectado = ((consumo_2030 - consumo_2024) / consumo_2024) * 100
+    
+    if crecimiento_proyectado > 50:
+        recomendaciones.append({
+            'categoria': '🔮 PROYECCIÓN',
+            'mensaje': f'Se proyecta crecimiento del {crecimiento_proyectado:.0f}% para 2030.',
+            'prioridad': 'ALTA',
+            'accion': 'Planificar expansión de infraestructura para 2028'
+        })
+    
+    # 6. CALIDAD DEL MODELO
+    if metrics_modelo['r2_score'] > 0.95:
+        recomendaciones.append({
+            'categoria': '🎯 PRECISIÓN DEL MODELO',
+            'mensaje': f'Modelo predictivo con R²={metrics_modelo["r2_score"]:.3f} (Excelente ajuste).',
+            'prioridad': 'BAJA',
+            'accion': 'Las proyecciones son confiables para planificación estratégica'
+        })
+    
+    return recomendaciones
+
+# Generar recomendaciones
+recomendaciones = generar_recomendaciones_automaticas(df, df_proyeccion, df_oficial, metrics_modelo)
 # -----------------------------------------------------------------------------
 # 5. ENCABEZADO (HERO SECTION)
 # -----------------------------------------------------------------------------
@@ -320,13 +494,13 @@ with tab_roadmap:
         st.markdown("**Objetivo:** Aumentar la tasa de conversión de 'Ocasional' a 'Diario' en segmentos de valor.")
         
         # FIX: Se usa una sola llamada a st.markdown para la lista completa
-        list_html_pro = f"""
-        <ul>
-            <li>Foco de Retención (Variedades Estables):Reforzar la disponibilidad de Lempiray Pacas en contextos de Oficina y Hogar. Este es el ingreso base, la fidelidad diaria.</li>
-            <li>Foco de Crecimiento (Variedades Premium): Crear kits de iniciación y programas de suscripción para Bourbon y Caturra. Dirigido al consumidor de 25-45 años, cuyo alto potencial de gasto está actualmente clasificado como 'Ocasional'.</li>
-            <li>Innovación en Métodos:Invertir en promocionar el Cold Brew y Espresso. Estos métodos dominan en la demografía más joven (menores de 35 años) y son la clave para atraer a la Generación Z.</li>
-        </ul>
-        """
+        list_html_pro = """
+<ul>
+    <li>Foco de Retención (Variedades Estables): Reforzar la disponibilidad de Lempira y Pacas en contextos de Oficina y Hogar. Este es el ingreso base, la fidelidad diaria.</li>
+    <li>Foco de Crecimiento (Variedades Premium): Crear kits de iniciación y programas de suscripción para Bourbon y Caturra. Dirigido al consumidor de 25-45 años, cuyo alto potencial de gasto está actualmente clasificado como 'Ocasional'.</li>
+    <li>Innovación en Métodos: Invertir en promocionar el Cold Brew y Espresso. Estos métodos dominan en la demografía más joven (menores de 35 años) y son la clave para atraer a la Generación Z.</li>
+</ul>
+"""
         st.markdown(list_html_pro, unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
 
@@ -341,13 +515,13 @@ with tab_roadmap:
         st.markdown("**Objetivo:** Capitalizar la transición de 'Hogar' a 'Oficina/Cafetería' como centro de consumo.")
         
         # FIX: Se usa una sola llamada a st.markdown para la lista completa
-        list_html_dist = f"""
-        <ul>
-            <li>Expansión B2B (Oficina):Crear convenios de suministro exclusivo con las 50 empresas más grandes. El consumo en la Oficina es el segundo más alto y garantiza una demanda semanal estable.</li>
-            <li>Geografía de Inversión:Dirigir la inversión en nuevas cafeterías y puntos de venta a Copán y Comayagua (regiones con alta muestra), pero con atención prioritaria a **Montecillos** y **El Paraíso** para equilibrar el mercado.</li>
-            <li>Retail Inteligente:Rediseñar el empaque para el canal de Hogar, enfatizando la Región de Origen(trazabilidad), que resuena con el consumidor más informado (30-45 años).</li>
-        </ul>
-        """
+        list_html_dist = """
+<ul>
+    <li>Expansión B2B (Oficina): Crear convenios de suministro exclusivo con las 50 empresas más grandes. El consumo en la Oficina es el segundo más alto y garantiza una demanda semanal estable.</li>
+    <li>Geografía de Inversión: Dirigir la inversión en nuevas cafeterías y puntos de venta a Copán y Comayagua (regiones con alta muestra), pero con atención prioritaria a Montecillos y El Paraíso para equilibrar el mercado.</li>
+    <li>Retail Inteligente: Rediseñar el empaque para el canal de Hogar, enfatizando la Región de Origen (trazabilidad), que resuena con el consumidor más informado (30-45 años).</li>
+</ul>
+"""
         st.markdown(list_html_dist, unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
         
@@ -363,12 +537,12 @@ with tab_roadmap:
         
         # FIX: Se usa una sola llamada a st.markdown para la lista completa
         list_html_inv = f"""
-        <ul>
-            <li>Expansión de Tostado:Planificar la inversión en 3 nuevas plantas de tostado de alta capacidad para el año 2028, anticipando la demanda del 2030. La capacidad actual no es sostenible con el crecimiento del{crecimiento_proyectado:,.0f}%.</li>
-            <li>Gestión de Inventario:Mantener reservas de café verde premium para mitigar la volatilidad de precios en el mercado de exportación, asegurando que la demanda interna no afecte la calidad del producto.</li>
-            <li>Talento y Capacitación:Lanzar un programa de certificación de baristas para profesionalizar el servicio en el canal HORECA (Hoteles, Restaurantes y Cafeterías), elevando la experiencia de consumo en los centros de crecimiento.</li>
-        </ul>
-        """
+<ul>
+    <li>Expansión de Tostado: Planificar la inversión en 3 nuevas plantas de tostado de alta capacidad para el año 2028, anticipando la demanda del 2030. La capacidad actual no es sostenible con el crecimiento del {crecimiento_proyectado:,.0f}%.</li>
+    <li>Gestión de Inventario: Mantener reservas de café verde premium para mitigar la volatilidad de precios en el mercado de exportación, asegurando que la demanda interna no afecte la calidad del producto.</li>
+    <li>Talento y Capacitación: Lanzar un programa de certificación de baristas para profesionalizar el servicio en el canal HORECA (Hoteles, Restaurantes y Cafeterías), elevando la experiencia de consumo en los centros de crecimiento.</li>
+</ul>
+"""
         st.markdown(list_html_inv, unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
 
@@ -593,8 +767,22 @@ with tab_strategy:
         * **El Consumidor de Mañana (Potencial):** Jóvenes **menores de 25 años** que consumen **"Semanal"**. Requieren educación para la fidelización diaria.
         """)
         st.markdown('</div>', unsafe_allow_html=True)
-        
-    else:
+        st.markdown("---")
+    st.subheader("🤖 Recomendaciones Automáticas del Sistema")
+    for rec in recomendaciones:
+        with st.expander(f"{rec['categoria']} - Prioridad {rec['prioridad']}"):
+            st.write(f"**📌 Insight:** {rec['mensaje']}")
+            st.write(f"**🎯 Acción Recomendada:** {rec['accion']}")
+            
+            # Color según prioridad
+            if rec['prioridad'] == 'ALTA':
+                st.error("⏰ **Acción Inmediata Requerida**")
+            elif rec['prioridad'] == 'MEDIA':
+                st.warning("📅 **Planificar para los próximos 6 meses**")
+            else:
+                st.info("👁️ **Monitorear y evaluar**")
+    
+    if not recomendaciones:
         st.error("Datos insuficientes para generar el análisis estratégico de alto impacto.")
 
 
@@ -731,10 +919,6 @@ with tab3:
     # ============================================================
 
     # Agrupar datos reales del dataset
-    # ============================
-    # 2. CREAR DATA COMPLETA PARA LOS 18 DEPARTAMENTOS
-    # ========================================================
-
     departamentos_hn = [
         "Atlántida", "Colón", "Comayagua", "Copán", "Cortés", "Choluteca",
         "El Paraíso", "Francisco Morazán", "Gracias a Dios", "Intibucá",
@@ -777,7 +961,7 @@ with tab3:
     # ============================================================
     # 3. Construcción del MAPA interactivo
     # ============================================================
-
+    
     fig_map = px.choropleth_mapbox(
         df_mapa,
         geojson=honduras_geo,
@@ -798,31 +982,30 @@ with tab3:
             "Conteo": True
         }
     )
-
+    
     fig_map.update_layout(
         margin={"r":0, "t":20, "l":0, "b":0},
         height=650,
         title="Consumo Estimado y Perfil del Consumidor por Departamento"
     )
-
     st.plotly_chart(fig_map, use_container_width=True)
-
-    st.markdown("### Datos Detallados por Departamento")
-
-    col_map, col_raw = st.columns([1, 1])
     
+    st.markdown("### Datos Detallados por Departamento")
+    
+    col_map, col_raw = st.columns([1, 1])
+    col_map, col_raw = st.columns([1, 1])
     with col_map:
         st.subheader("Intensidad de Muestra por Región")
         if not df.empty and 'Región' in df.columns:
             conteo_region = df['Región'].value_counts().reset_index()
             conteo_region.columns = ['Región', 'Encuestados']
             
-            fig_map = px.bar(conteo_region, y='Región', x='Encuestados', orientation='h',
+            fig_bar = px.bar(conteo_region, y='Región', x='Encuestados', orientation='h',
                              color='Encuestados', 
                              color_continuous_scale=COLOR_CONTINUOUS, 
                              text='Encuestados')
-            fig_map.update_layout(yaxis={'categoryorder':'total ascending'})
-            st.plotly_chart(fig_map, use_container_width=True)
+            fig_bar.update_layout(yaxis={'categoryorder':'total ascending'})
+            st.plotly_chart(fig_bar, use_container_width=True)
         else:
             st.write("Sin datos regionales.")
         
@@ -843,4 +1026,4 @@ with tab3:
 # -----------------------------------------------------------------------------
 # 7. FOOTER
 # -----------------------------------------------------------------------------
-# #st.markdown('<div class="custom-footer">Proyecto de Ciencias de Datos | Honduras 2025 | Datos fuente: Encuestas propias & IHCAFE</div>', unsafe_allow_html=True)
+#st.markdown('<div class="custom-footer">Proyecto de Ciencias de Datos | Honduras 2025 | Datos fuente: Encuestas propias & IHCAFE</div>', unsafe_allow_html=True)
