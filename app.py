@@ -715,14 +715,13 @@ with tab2:
 
 # Pestaña 6 (Mapa & Datos)
 with tab3:
-    with tab3:
-
-     st.header("🗺️ Mapa Interactivo del Consumo de Café en Honduras")
+    st.header("🗺️ Mapa Interactivo del Consumo de Café en Honduras")
 
     # ============================================================
     # 1. Cargar GEOJSON oficial desde GADM (18 departamentos)
     # ============================================================
-    import requests, json
+    import requests
+    import json
 
     url_geo = "https://geodata.ucdavis.edu/gadm/gadm4.1/json/gadm41_HND_1.json"
     honduras_geo = requests.get(url_geo).json()
@@ -732,34 +731,45 @@ with tab3:
     # ============================================================
 
     # Agrupar datos reales del dataset
-    df_mapa = df.groupby("Región").agg(
+    # ============================
+    # 2. CREAR DATA COMPLETA PARA LOS 18 DEPARTAMENTOS
+    # ========================================================
+
+    departamentos_hn = [
+        "Atlántida", "Colón", "Comayagua", "Copán", "Cortés", "Choluteca",
+        "El Paraíso", "Francisco Morazán", "Gracias a Dios", "Intibucá",
+        "Islas de la Bahía", "La Paz", "Lempira", "Ocotepeque", "Olancho",
+        "Santa Bárbara", "Valle", "Yoro"
+    ]
+
+    # Datos reales del dataset
+    df_real = df.groupby("Región").agg(
         EdadPromedio=("Edad", "mean"),
         Conteo=("ID", "count"),
         CafeFavorito=("Variedad", lambda x: x.mode()[0]),
         PreparacionFavorita=("Preparación", lambda x: x.mode()[0])
     ).reset_index()
 
-    # Datos ficticios realistas por departamento
-    # Estimados inspirados en IHCAFE + tu dataset
+    # Crear base completa
+    df_mapa = pd.DataFrame({"Región": departamentos_hn})
+
+    # Merge: departamentos con y sin datos reales
+    df_mapa = df_mapa.merge(df_real, on="Región", how="left")
+
+    # Completar datos faltantes (ficticios realistas)
+    df_mapa["Conteo"] = df_mapa["Conteo"].fillna(0).astype(int)
+    df_mapa["EdadPromedio"] = df_mapa["EdadPromedio"].fillna(32)
+
+    df_mapa["CafeFavorito"] = df_mapa["CafeFavorito"].fillna("Café Tradicional")
+    df_mapa["PreparacionFavorita"] = df_mapa["PreparacionFavorita"].fillna("Colado")
+
+    # Asignar consumo ficticio (ya lo tenías)
     consumo_ficticio = {
-        "Yoro": 18000,
-        "Atlántida": 17000,
-        "Colón": 15000,
-        "Cortés": 30000,
-        "Copán": 32000,
-        "Ocotepeque": 14000,
-        "Intibucá": 16000,
-        "Lempira": 20000,
-        "Santa Bárbara": 24000,
-        "Comayagua": 28000,
-        "Francisco Morazán": 33000,
-        "El Paraíso": 27000,
-        "Olancho": 22000,
-        "La Paz": 15000,
-        "Valle": 11000,
-        "Choluteca": 12000,
-        "Gracias a Dios": 8000,
-        "Islas de la Bahía": 5000
+        "Yoro": 18000, "Atlántida": 17000, "Colón": 15000, "Cortés": 30000,
+        "Copán": 32000, "Ocotepeque": 14000, "Intibucá": 16000, "Lempira": 20000,
+        "Santa Bárbara": 24000, "Comayagua": 28000, "Francisco Morazán": 33000,
+        "El Paraíso": 27000, "Olancho": 22000, "La Paz": 15000, "Valle": 11000,
+        "Choluteca": 12000, "Gracias a Dios": 8000, "Islas de la Bahía": 5000
     }
 
     df_mapa["Consumo"] = df_mapa["Región"].map(consumo_ficticio)
@@ -767,8 +777,6 @@ with tab3:
     # ============================================================
     # 3. Construcción del MAPA interactivo
     # ============================================================
-
-    import plotly.express as px
 
     fig_map = px.choropleth_mapbox(
         df_mapa,
@@ -835,4 +843,4 @@ with tab3:
 # -----------------------------------------------------------------------------
 # 7. FOOTER
 # -----------------------------------------------------------------------------
-st.markdown('<div class="custom-footer">Proyecto de Ciencias de Datos | Honduras 2025 | Datos fuente: Encuestas propias & IHCAFE</div>', unsafe_allow_html=True)
+# #st.markdown('<div class="custom-footer">Proyecto de Ciencias de Datos | Honduras 2025 | Datos fuente: Encuestas propias & IHCAFE</div>', unsafe_allow_html=True)
