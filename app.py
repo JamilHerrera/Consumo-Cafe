@@ -715,6 +715,92 @@ with tab2:
 
 # Pestaña 6 (Mapa & Datos)
 with tab3:
+    with tab3:
+
+     st.header("🗺️ Mapa Interactivo del Consumo de Café en Honduras")
+
+    # ============================================================
+    # 1. Cargar GEOJSON oficial desde GADM (18 departamentos)
+    # ============================================================
+    import requests, json
+
+    url_geo = "https://geodata.ucdavis.edu/gadm/gadm4.1/json/gadm41_HND_1.json"
+    honduras_geo = requests.get(url_geo).json()
+
+    # ============================================================
+    # 2. Preparar DATA del mapa desde tu dataset + datos realistas
+    # ============================================================
+
+    # Agrupar datos reales del dataset
+    df_mapa = df.groupby("Región").agg(
+        EdadPromedio=("Edad", "mean"),
+        Conteo=("ID", "count"),
+        CafeFavorito=("Variedad", lambda x: x.mode()[0]),
+        PreparacionFavorita=("Preparación", lambda x: x.mode()[0])
+    ).reset_index()
+
+    # Datos ficticios realistas por departamento
+    # Estimados inspirados en IHCAFE + tu dataset
+    consumo_ficticio = {
+        "Yoro": 18000,
+        "Atlántida": 17000,
+        "Colón": 15000,
+        "Cortés": 30000,
+        "Copán": 32000,
+        "Ocotepeque": 14000,
+        "Intibucá": 16000,
+        "Lempira": 20000,
+        "Santa Bárbara": 24000,
+        "Comayagua": 28000,
+        "Francisco Morazán": 33000,
+        "El Paraíso": 27000,
+        "Olancho": 22000,
+        "La Paz": 15000,
+        "Valle": 11000,
+        "Choluteca": 12000,
+        "Gracias a Dios": 8000,
+        "Islas de la Bahía": 5000
+    }
+
+    df_mapa["Consumo"] = df_mapa["Región"].map(consumo_ficticio)
+
+    # ============================================================
+    # 3. Construcción del MAPA interactivo
+    # ============================================================
+
+    import plotly.express as px
+
+    fig_map = px.choropleth_mapbox(
+        df_mapa,
+        geojson=honduras_geo,
+        locations="Región",
+        featureidkey="properties.NAME_1",
+        color="Consumo",
+        color_continuous_scale="YlOrBr",
+        mapbox_style="carto-positron",
+        zoom=6.2,
+        center={"lat": 14.8, "lon": -86.2},
+        opacity=0.75,
+        hover_name="Región",
+        hover_data={
+            "Consumo": True,
+            "EdadPromedio": True,
+            "CafeFavorito": True,
+            "PreparacionFavorita": True,
+            "Conteo": True
+        }
+    )
+
+    fig_map.update_layout(
+        margin={"r":0, "t":20, "l":0, "b":0},
+        height=650,
+        title="Consumo Estimado y Perfil del Consumidor por Departamento"
+    )
+
+    st.plotly_chart(fig_map, use_container_width=True)
+
+    st.markdown("### Datos Detallados por Departamento")
+
     col_map, col_raw = st.columns([1, 1])
     
     with col_map:
